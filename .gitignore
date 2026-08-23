@@ -1,0 +1,64 @@
+# --- Tech Yugantar Project Gitignore ---
+
+# Dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# Next.js Build Output
+/.next/
+/out/
+/build/
+
+# Production
+/dist
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Local env files (NEVER commit these)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Testing
+/coverage
+/.nyc_output
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+*.swp
+
+# IDE - VS Code & JetBrains
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+
+# Python/Django (If using a monorepo for Tech Yugantar)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv
+venv/
+ENV/
+.python-version
+db.sqlite3
+
+# Turborepo (If applicable)
+.turbo

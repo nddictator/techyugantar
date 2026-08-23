@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 110" width="620" height="110">
+    <defs>
+        <!-- Icon badge gradient: vivid violet → deep indigo -->
+        <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7c94fa"/>
+            <stop offset="100%" stop-color="#3451e8"/>
+        </linearGradient>
+
+        <!-- "Yugantar" text gradient: brand blue → electric violet -->
+        <linearGradient id="textGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#4a6cf7"/>
+            <stop offset="100%" stop-color="#8b5cf6"/>
+        </linearGradient>
+
+        <!-- Subtle glow filter on badge -->
+        <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- ── BADGE ── -->
+    <rect x="4" y="4" width="100" height="100" rx="20" fill="url(#badgeGrad)" filter="url(#glow)"/>
+
+    <!-- Inner badge highlight (glassy top sheen) -->
+    <rect x="4" y="4" width="100" height="48" rx="20" fill="white" opacity="0.08"/>
+
+    <!-- ── MERGED TY GLYPH ── -->
+    <!-- Crossbar (T top / Y arms base) -->
+    <rect x="17" y="19" width="74" height="13" rx="4" fill="white"/>
+    <!-- Left fork -->
+    <polygon points="54,32 43,32 19,92 31,92" fill="white"/>
+    <!-- Right fork -->
+    <polygon points="54,32 65,32 89,92 77,92" fill="white"/>
+    <!-- Stem -->
+    <rect x="47" y="72" width="14" height="24" rx="4" fill="white"/>
+
+    <!-- ── WORDMARK ── -->
+    <!-- "Tech" — bold, dark charcoal -->
+    <text
+        x="122" y="74"
+        font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="900"
+        font-size="52"
+        fill="#1a1f36"
+        letter-spacing="-2">Tech</text>
+
+    <!-- Separator dot -->
+    <circle cx="266" cy="63" r="4.5" fill="#4a6cf7"/>
+
+    <!-- "Yugantar" — light weight, gradient fill -->
+    <text
+        x="280" y="74"
+        font-family="'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-weight="300"
+        font-size="52"
+        fill="url(#textGrad)"
+        letter-spacing="-1">Yugantar</text>
+
+    <!-- Underline accent -->
+    <rect x="122" y="82" width="472" height="2" rx="1" fill="url(#textGrad)" opacity="0.18"/>
+</svg>
