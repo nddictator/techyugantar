@@ -1,5 +1,4 @@
 import {
-  SiAmazonwebservices,
   SiDjango,
   SiDocker,
   SiFastapi,
@@ -12,6 +11,7 @@ import {
   SiReact,
   SiTailwindcss,
 } from "react-icons/si";
+import { DiAws } from "react-icons/di";
 import { HiSparkles } from "react-icons/hi2";
 
 export type TechCategory = {
@@ -49,7 +49,7 @@ const techStackData: TechCategory[] = [
   {
     category: "Cloud & DevOps",
     items: [
-      { name: "AWS", icon: <SiAmazonwebservices size={32} className="fill-current" /> },
+      { name: "AWS", icon: <DiAws size={32} className="fill-current" /> },
       { name: "Google Cloud", icon: <SiGooglecloud size={32} className="fill-current" /> },
       { name: "Docker", icon: <SiDocker size={32} className="fill-current" /> },
     ],
