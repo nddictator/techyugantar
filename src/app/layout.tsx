@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import JsonLd from "@/components/JsonLd";
 import { Providers } from "./providers";
 import { GoogleAnalytics } from "@next/third-parties/google";
@@ -97,6 +98,7 @@ export default function RootLayout({
             <Footer />
           </div>
           <ScrollToTop />
+          <WhatsAppButton />
         </Providers>
       </body>
 
