@@ -9,34 +9,19 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setStatus("sending");
 
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
 
-    // Honeypot: real users never fill this hidden field, so a filled value
-    // means a bot. Report success without submitting, so bots don't learn
-    // the field is being checked.
-    if (data["bot-field"]) {
-      setStatus("success");
-      form.reset();
-      return;
-    }
-
-    setStatus("sending");
-
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY,
-          subject: `New support ticket from ${data.name}`,
-          ...data,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
-      const result = await res.json();
 
-      if (res.ok && result.success) {
+      if (res.ok) {
         setStatus("success");
         form.reset();
       } else {
