@@ -6,6 +6,7 @@ import Features from "@/components/Features";
 import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
 import Trust from "@/components/Trust";
+import Projects from "@/components/Projects";
 import Video from "@/components/Video";
 import { Metadata } from "next";
 
@@ -51,6 +52,7 @@ export default function Home() {
       <AboutSectionOne />
       <AboutSectionTwo />
       <Trust />
+      <Projects />
       <Pricing />
       <Contact />
     </>
