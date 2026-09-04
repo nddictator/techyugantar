@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import HowWeWork from "@/components/HowWeWork";
+import HowWeCommunicate from "@/components/HowWeWork/HowWeCommunicate";
 import Contact from "@/components/Contact";
 import JsonLdScript from "@/components/JsonLdScript";
 
@@ -58,6 +59,8 @@ export default function HowWeWorkPage() {
       />
 
       <HowWeWork />
+
+      <HowWeCommunicate />
 
       <Contact />
     </>

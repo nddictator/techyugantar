@@ -3,6 +3,8 @@
 import { useState } from "react";
 import NewsLatterBox from "./NewsLatterBox";
 import { Reveal } from "@/components/motion";
+import { FaWhatsapp } from "react-icons/fa";
+import { FiMail, FiMapPin, FiClock } from "react-icons/fi";
 
 const Contact = () => {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -154,7 +156,57 @@ const Contact = () => {
           </Reveal>
 
           <Reveal delay={0.1} className="w-full px-4 lg:w-5/12 xl:w-4/12">
-            <NewsLatterBox />
+            <div className="space-y-5">
+
+              {/* WhatsApp CTA */}
+              <div className="relative overflow-hidden rounded-xs bg-[#25D366] px-7 py-8 shadow-three">
+                <div className="absolute right-0 top-0 opacity-10">
+                  <FaWhatsapp className="h-40 w-40 text-white" />
+                </div>
+                <div className="relative">
+                  <FaWhatsapp className="mb-4 h-10 w-10 text-white" />
+                  <h3 className="mb-2 text-xl font-bold text-white">Chat on WhatsApp</h3>
+                  <p className="mb-6 text-sm text-white/80 leading-relaxed">
+                    Prefer a quick chat? Message us directly — most inquiries get a response within 2 hours.
+                  </p>
+                  <a
+                    href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""}?text=${encodeURIComponent("Hi Tech Yugantar! I'd like to discuss a project. Can we connect?")}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xs bg-white px-6 py-3 text-sm font-semibold text-[#25D366] shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105"
+                  >
+                    <FaWhatsapp className="h-4 w-4" />
+                    Start WhatsApp Chat
+                  </a>
+                </div>
+              </div>
+
+              {/* Quick contact info */}
+              <div className="rounded-xs bg-white shadow-three dark:bg-gray-dark px-7 py-6 space-y-4">
+                <h4 className="font-bold text-black dark:text-white text-base mb-4">Contact Details</h4>
+                <a href="mailto:info@techyugantar.in" className="flex items-center gap-3 text-sm text-body-color hover:text-primary transition-colors">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <FiMail className="h-4 w-4 text-primary" />
+                  </span>
+                  info@techyugantar.in
+                </a>
+                <div className="flex items-center gap-3 text-sm text-body-color">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <FiMapPin className="h-4 w-4 text-primary" />
+                  </span>
+                  Varanasi, Uttar Pradesh, India
+                </div>
+                <div className="flex items-center gap-3 text-sm text-body-color">
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <FiClock className="h-4 w-4 text-primary" />
+                  </span>
+                  Mon–Sat, 9 AM – 7 PM IST
+                </div>
+              </div>
+
+              {/* Newsletter */}
+              <NewsLatterBox />
+            </div>
           </Reveal>
         </div>
       </div>
