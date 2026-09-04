@@ -33,4 +33,12 @@ export const projectsData: Project[] = [
     liveUrl: "https://itwebdream.com",
     tags: ["Portfolio", "Full-stack", "Next.js"],
   },
+  {
+    id: 5,
+    title: "Talk AcharyaJi",
+    paragraph: "Accurate Predictions For Love, Career, Marriage & More. Expert Vedic astrology, Kundli analysis, and gemstone guidance with 5100+ happy clients and 99% accuracy.",
+    image: "/images/projects/talkacharya.webp",
+    liveUrl: "https://talkacharya.com",
+    tags: ["Astrology", "Vedic", "Next.js", "Gemstones"],
+  },
 ];
