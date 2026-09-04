@@ -5,11 +5,11 @@ import { Reveal } from "@/components/motion";
 
 // ── Founder story data — edit here ────────────────────────────────────────────
 const founderStory = {
-  name: "Nishant Dixit",
+  name: "Tanmay Mishra",
   title: "Founder, Tech Yugantar",
   location: "Varanasi, Uttar Pradesh",
   founded: "2023",
-  avatar: "ND",
+  avatar: "TM",
   avatarBg: "bg-primary",
   story: [
     "Tech Yugantar started from a simple frustration. Growing up in Varanasi, I watched talented local businesses struggle to compete digitally — not because they lacked ambition, but because good software was either unaffordable or built by agencies that didn't understand their context.",
