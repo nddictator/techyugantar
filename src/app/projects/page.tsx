@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Breadcrumb from "@/components/Common/Breadcrumb";
 import ProjectsClient from "./ProjectsClient";
 
 export const metadata: Metadata = {
@@ -15,5 +16,13 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  return <ProjectsClient />;
+  return (
+    <>
+      <Breadcrumb
+        pageName="Our Projects"
+        description="Real products. Real clients. Shipped and live — from African EdTech platforms to India's top astrology apps."
+      />
+      <ProjectsClient />
+    </>
+  );
 }
