@@ -21,8 +21,7 @@ const NewsLatterBox = () => {
         Subscribe to receive future updates
       </h3>
       <p className="border-body-color/25 text-body-color mb-11 border-b pb-11 text-base leading-relaxed dark:border-white/25">
-        Lorem ipsum dolor sited Sed ullam corper consectur adipiscing Mae ornare
-        massa quis lectus.
+        Get tech insights, project case studies, and development tips from the Tech Yugantar team — straight to your inbox.
       </p>
       <div>
         <input
