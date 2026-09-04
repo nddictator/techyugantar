@@ -17,7 +17,7 @@ function Avatar({ initials, bg }: { initials: string; bg: string }) {
 
 export default function TeamSection() {
   return (
-    <section className="relative py-16 md:py-20 lg:py-28">
+    <section id="team" className="relative py-16 md:py-20 lg:py-28">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent dark:via-white/10" />
 
       <div className="container">

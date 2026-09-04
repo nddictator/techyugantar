@@ -12,13 +12,15 @@ import { FaWhatsapp, FaFacebook } from "react-icons/fa";
 // ── Data ─────────────────────────────────────────────────────────────────────
 
 const quickLinks = [
-  { label: "Home",     href: "/" },
-  { label: "About",    href: "/about" },
-  { label: "Services",    href: "/services" },
-  { label: "How We Work", href: "/how-we-work" },
-  { label: "Projects", href: "/projects" },
-  { label: "Blog",     href: "/blog" },
-  { label: "Support",  href: "/contact" },
+  { label: "Home",         href: "/" },
+  { label: "About Us",     href: "/about" },
+  { label: "Our Team",     href: "/about#team" },
+  { label: "Services",     href: "/services" },
+  { label: "How We Work",  href: "/how-we-work" },
+  { label: "Projects",     href: "/projects" },
+  { label: "Pricing",      href: "/pricing" },
+  { label: "Blog",         href: "/blog" },
+  { label: "Contact",      href: "/contact" },
 ];
 
 const services = [
