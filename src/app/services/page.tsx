@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Breadcrumb from "@/components/Common/Breadcrumb";
 import Services from "@/components/Services";
 import TechStackSection from "@/components/Services/TechStackSection";
+import StackRecommender from "@/components/Services/StackRecommender";
 import EngagementRecap from "@/components/Services/EngagementRecap";
 import FAQ from "@/components/FAQ";
 import JsonLdScript from "@/components/JsonLdScript";
@@ -57,6 +58,7 @@ const ServicesPage = () => {
       />
       <Services />
       <TechStackSection />
+      <StackRecommender />
       <EngagementRecap />
       <FAQ />
     </>
