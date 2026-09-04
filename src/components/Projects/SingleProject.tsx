@@ -25,7 +25,7 @@ export default function SingleProject({
   centerFeatured = false,
   imageHeight = "h-[220px]",
 }: Props) {
-  const { title, image, paragraph, liveUrl, tags } = project;
+  const { title, image, paragraph, liveUrl, tags, caseStudySlug } = project;
   const cardRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -122,15 +122,37 @@ export default function SingleProject({
           </Link>
 
           {!compact && (
-            <p className="text-body-color dark:text-body-color-dark text-sm leading-relaxed line-clamp-2">
+            <p className="text-body-color dark:text-body-color-dark text-sm leading-relaxed line-clamp-2 mb-3">
               {paragraph}
             </p>
           )}
           {compact && (
-            <p className="text-body-color dark:text-body-color-dark text-xs leading-relaxed line-clamp-2">
+            <p className="text-body-color dark:text-body-color-dark text-xs leading-relaxed line-clamp-2 mb-3">
               {paragraph}
             </p>
           )}
+
+          {/* Action buttons */}
+          <div className="flex items-center gap-2 flex-wrap">
+            {caseStudySlug && (
+              <Link
+                href={`/case-study/${caseStudySlug}`}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/20"
+                onClick={(e) => e.stopPropagation()}
+              >
+                📖 Case Study
+              </Link>
+            )}
+            <Link
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-600 transition-colors hover:border-primary/30 hover:text-primary dark:border-white/[0.08] dark:bg-transparent dark:text-zinc-400"
+              onClick={(e) => e.stopPropagation()}
+            >
+              ↗ Live Site
+            </Link>
+          </div>
         </div>
       </div>
     </TiltCard>

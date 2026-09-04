@@ -10,6 +10,7 @@ import RelatedPost from "@/components/Blog/RelatedPost";
 import JsonLdScript from "@/components/JsonLdScript";
 import { getAllSlugs, getBlogBySlug, getRelatedBlogs } from "@/lib/blog";
 import { buildArticleSchema, buildBreadcrumbSchema } from "@/lib/schema";
+import BlogCTA from "@/components/Blog/BlogCTA";
 
 const SITE_URL = "https://techyugantar.in";
 
@@ -182,6 +183,9 @@ const BlogDetailsPage = async ({
               <article>
                 <MDXRemote source={post.content} components={mdxComponents} />
               </article>
+
+              {/* Blog CTA — converts readers to clients */}
+              <BlogCTA />
 
               <div className="items-center justify-between sm:flex">
                 <div className="mb-5">

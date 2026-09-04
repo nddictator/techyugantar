@@ -5,4 +5,5 @@ export type Project = {
   image: string;
   liveUrl: string;
   tags: string[];
+  caseStudySlug?: string; // optional — links to /case-study/[slug]
 };

@@ -8,6 +8,7 @@ export const projectsData: Project[] = [
     image: "/images/projects/loexa.webp",
     liveUrl: "https://loexaafrica.com",
     tags: ["Next.js", "AI", "Education"],
+    caseStudySlug: "loexa-africa",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const projectsData: Project[] = [
     image: "/images/projects/jyotify.webp",
     liveUrl: "https://jyotify.in",
     tags: ["Astrology", "React", "Node.js"],
+    caseStudySlug: "jyotify",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ export const projectsData: Project[] = [
     image: "/images/projects/maasulakhi.webp",
     liveUrl: "https://maasulakhi.online",
     tags: ["Healthcare", "Ayurveda", "Web App"],
+    caseStudySlug: "maa-sulakhi",
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ export const projectsData: Project[] = [
     image: "/images/projects/itwebdream.webp",
     liveUrl: "https://itwebdream.com",
     tags: ["Portfolio", "Full-stack", "Next.js"],
+    caseStudySlug: "itwebdream",
   },
   {
     id: 5,
@@ -40,5 +44,6 @@ export const projectsData: Project[] = [
     image: "/images/projects/talkacharya.webp",
     liveUrl: "https://talkacharya.com",
     tags: ["Astrology", "Vedic", "Next.js", "Gemstones"],
+    caseStudySlug: "talk-acharya",
   },
 ];
