@@ -50,7 +50,7 @@ export default async function CaseStudyPage({
   if (!cs) notFound();
 
   return (
-    <main className="pt-[120px] pb-20">
+    <main className="pt-[150px] pb-20">
       <div className="container">
         {/* Back link */}
         <Link
