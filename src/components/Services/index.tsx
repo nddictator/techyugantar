@@ -8,8 +8,8 @@ import servicesData from "./servicesData";
 const Services = () => {
   return (
     <section className="relative pt-16 pb-8 md:pt-20 lg:pt-28">
-      {/* Background ambient glow */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* Background ambient glow — only visible in dark mode */}
+      <div className="pointer-events-none absolute inset-0 hidden overflow-hidden dark:block">
         <div className="absolute -top-40 left-1/4 h-96 w-96 rounded-full bg-primary/8 blur-[120px]" />
         <div className="absolute top-1/2 right-1/4 h-64 w-64 rounded-full bg-primary/5 blur-[100px]" />
       </div>
