@@ -7,7 +7,7 @@ import {
   FiGithub, FiLinkedin, FiTwitter, FiInstagram,
   FiMail, FiMapPin, FiArrowUpRight,
 } from "react-icons/fi";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaFacebook } from "react-icons/fa";
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -48,10 +48,11 @@ const domains = [
 ];
 
 const socials = [
-  { label: "GitHub",    href: "https://github.com/techyugantar",                icon: FiGithub },
-  { label: "LinkedIn",  href: "https://linkedin.com/company/techyugantar",      icon: FiLinkedin },
-  { label: "Twitter",   href: "https://twitter.com/techyugantar",               icon: FiTwitter },
-  { label: "Instagram", href: "https://instagram.com/techyugantar",             icon: FiInstagram },
+  { label: "GitHub",    href: "https://github.com/techyugantar",                           icon: FiGithub },
+  { label: "LinkedIn",  href: "https://www.linkedin.com/in/tech-yugantar-6b1147431/",      icon: FiLinkedin },
+  { label: "Facebook",  href: "https://www.facebook.com/profile.php?id=61590556752766",   icon: FaFacebook },
+  { label: "Twitter",   href: "https://twitter.com/techyugantar",                          icon: FiTwitter },
+  { label: "Instagram", href: "https://instagram.com/techyugantar",                        icon: FiInstagram },
 ];
 
 // ── Reusable column header ────────────────────────────────────────────────────
