@@ -3,11 +3,11 @@ import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
+import Domains from "@/components/Domains";
 import Hero from "@/components/Hero";
 import Pricing from "@/components/Pricing";
 import Trust from "@/components/Trust";
 import Projects from "@/components/Projects";
-import Video from "@/components/Video";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -48,7 +48,7 @@ export default function Home() {
       <ScrollUp />
       <Hero />
       <Features />
-      <Video />
+      <Domains />
       <AboutSectionOne />
       <AboutSectionTwo />
       <Trust />

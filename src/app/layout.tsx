@@ -77,6 +77,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://techyugantar.in",
   },
+  other: {
+    "facebook-domain-verification": "31sc4beglqxnbpmcsannhpitm6lynf",
+  },
 };
 
 export default function RootLayout({

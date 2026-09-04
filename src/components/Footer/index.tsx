@@ -14,7 +14,8 @@ import { FaWhatsapp } from "react-icons/fa";
 const quickLinks = [
   { label: "Home",     href: "/" },
   { label: "About",    href: "/about" },
-  { label: "Services", href: "/services" },
+  { label: "Services",    href: "/services" },
+  { label: "How We Work", href: "/how-we-work" },
   { label: "Projects", href: "/projects" },
   { label: "Blog",     href: "/blog" },
   { label: "Support",  href: "/contact" },
@@ -33,6 +34,17 @@ const legal = [
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Use",   href: "/terms" },
   { label: "Sitemap",        href: "/sitemap.xml" },
+];
+
+const domains = [
+  { emoji: "🏥", name: "Healthcare" },
+  { emoji: "📚", name: "School ERP" },
+  { emoji: "🛒", name: "E-Commerce" },
+  { emoji: "🚀", name: "Startups & SaaS" },
+  { emoji: "💆", name: "Salon & Spa" },
+  { emoji: "🍽️", name: "Restaurant & Food" },
+  { emoji: "🏢", name: "Real Estate" },
+  { emoji: "💳", name: "FinTech & Payments" },
 ];
 
 const socials = [
@@ -104,7 +116,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-12">
 
           {/* Brand column — wider */}
-          <Reveal className="lg:col-span-4">
+          <Reveal className="lg:col-span-3">
             <Link href="/" className="mb-6 inline-block">
               {/* Always show the light logo since footer is always dark */}
               <Image
@@ -145,11 +157,11 @@ export default function Footer() {
             {/* Contact pill */}
             <div className="mt-8 space-y-3">
               <a
-                href="mailto:hello@techyugantar.in"
+                href="mailto:info@techyugantar.in"
                 className="flex items-center gap-2.5 text-sm text-zinc-500 transition-colors duration-200 hover:text-white"
               >
                 <FiMail className="h-4 w-4 shrink-0 text-primary" />
-                hello@techyugantar.in
+                info@techyugantar.in
               </a>
               <div className="flex items-center gap-2.5 text-sm text-zinc-500">
                 <FiMapPin className="h-4 w-4 shrink-0 text-primary" />
@@ -169,11 +181,27 @@ export default function Footer() {
           </Reveal>
 
           {/* Services */}
-          <Reveal delay={0.1} className="lg:col-span-3">
+          <Reveal delay={0.1} className="lg:col-span-2">
             <ColHeader>Services</ColHeader>
             <ul className="space-y-3">
               {services.map((l) => (
                 <FooterLink key={l.label} href={l.href}>{l.label}</FooterLink>
+              ))}
+            </ul>
+          </Reveal>
+
+
+          {/* Industries / Domains */}
+          <Reveal delay={0.12} className="lg:col-span-2">
+            <ColHeader>Industries</ColHeader>
+            <ul className="grid grid-cols-1 gap-y-2.5">
+              {domains.map(({ emoji, name }) => (
+                <li key={name}>
+                  <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white transition-colors duration-200 cursor-default">
+                    <span className="text-sm leading-none">{emoji}</span>
+                    {name}
+                  </span>
+                </li>
               ))}
             </ul>
           </Reveal>

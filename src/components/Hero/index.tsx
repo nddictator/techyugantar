@@ -19,6 +19,7 @@ const STACK = [
   { label: "GraphQL",    icon: "🔴" },
   { label: "Redis",      icon: "🔥" },
   { label: "Tailwind",   icon: "💨" },
+  { label: "Node.js",    icon: "🟩" },
 ];
 
 // ── Avatar data ───────────────────────────────────────────────────────────────
