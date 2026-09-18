@@ -11,7 +11,7 @@ export default function Video() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const VIDEO_URL =
-    "https://firebasestorage.googleapis.com/v0/b/rewardhub-35c65.firebasestorage.app/o/videos%2FIMG_0651.MP4?alt=media&token=9f3a0eda-0898-46a9-82d0-a21ded37ff2a";
+    "https://firebasestorage.googleapis.com/v0/b/rewardhub-35c65.firebasestorage.app/o/videos%2FIMG_0651.MP4?alt=media&token=yugantar-main";
 
   // Optional: your thumbnail — replace with your actual path
   const THUMBNAIL = "/images/video/image.png";
