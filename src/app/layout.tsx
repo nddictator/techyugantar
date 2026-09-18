@@ -3,14 +3,12 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import JsonLd from "@/components/JsonLd";
+import { PageTransition } from "@/components/motion";
 import { Providers } from "./providers";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "lenis/dist/lenis.css";
 import "../styles/index.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://techyugantar.in"),
@@ -93,11 +91,11 @@ export default function RootLayout({
         <JsonLd />
       </head>
 
-      <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
+      <body className="bg-cream text-gray-900 dark:bg-obsidian dark:text-zinc-100 antialiased">
         <Providers>
           <div className="isolate">
             <Header />
-            {children}
+            <PageTransition>{children}</PageTransition>
             <Footer />
           </div>
           <ScrollToTop />

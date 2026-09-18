@@ -74,7 +74,7 @@ export default function Projects() {
                 inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full font-semibold text-sm
                 border border-primary/30 text-primary hover:text-white
                 hover:bg-gradient-to-r hover:from-primary hover:to-teal-400
-                hover:border-transparent hover:shadow-[0_0_24px_rgba(57,157,145,0.4)]
+                hover:border-transparent hover:shadow-[0_0_24px_rgba(45,212,191,0.4)]
                 transition-all duration-300 group
               "
             >

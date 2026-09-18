@@ -5,4 +5,8 @@ export { SpringButton, SpringLink } from "./SpringButton";
 export { default as GlowingBadge } from "./GlowingBadge";
 export { default as TiltCard } from "./TiltCard";
 export { default as Globe } from "./Globe";
+export { default as GlobeIllustration } from "./GlobeIllustration";
+export { default as LiveChart } from "./LiveChart";
+export { default as CodeEditor } from "./CodeEditor";
+export { default as NetworkMesh } from "./NetworkMesh";
 export { cx, EASE_OUT, SPRING_INTERACTION, SPRING_PHYSICS } from "./utils";

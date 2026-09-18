@@ -1,6 +1,6 @@
-import Image from "next/image";
 import SectionTitle from "../Common/SectionTitle";
-import { Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import NetworkMesh from "@/components/ui/NetworkMesh";
 
 const checkIcon = (
   <svg width="16" height="13" viewBox="0 0 16 13" className="fill-current">
@@ -9,9 +9,9 @@ const checkIcon = (
 );
 
 const AboutSectionOne = () => {
-  const List = ({ text }) => (
-    <p className="text-body-color mb-5 flex items-center text-lg font-medium">
-      <span className="bg-primary/10 text-primary mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md">
+  const List = ({ text }: { text: string }) => (
+    <p className="mb-5 flex items-center text-lg font-medium text-body-color dark:text-body-color-dark">
+      <span className="mr-4 flex h-[30px] w-[30px] items-center justify-center rounded-md bg-teal-500/10 text-primary">
         {checkIcon}
       </span>
       {text}
@@ -21,7 +21,7 @@ const AboutSectionOne = () => {
   return (
     <section id="about" className="pt-16 md:pt-20 lg:pt-28">
       <div className="container">
-        <div className="border-b border-body-color/[.15] pb-16 dark:border-white/[.15] md:pb-20 lg:pb-28">
+        <div className="border-b border-body-color/[.12] pb-16 dark:border-white/[.1] md:pb-20 lg:pb-28">
           <div className="-mx-4 flex flex-wrap items-center">
             <div className="w-full px-4 lg:w-1/2">
               <Reveal>
@@ -39,7 +39,6 @@ const AboutSectionOne = () => {
                     <StaggerItem><List text="ERP-Level Complexity" /></StaggerItem>
                     <StaggerItem><List text="Secure Data Isolation" /></StaggerItem>
                   </div>
-
                   <div className="w-full px-3 sm:w-1/2 lg:w-full xl:w-1/2">
                     <StaggerItem><List text="Custom SaaS Platforms" /></StaggerItem>
                     <StaggerItem><List text="Scalable API Design" /></StaggerItem>
@@ -50,22 +49,34 @@ const AboutSectionOne = () => {
             </div>
 
             <div className="w-full px-4 lg:w-1/2">
-              <Parallax offset={20} className="mx-auto aspect-25/24 max-w-[500px] lg:mr-0">
-                <div className="relative h-full w-full">
-                  <Image
-                    src="/images/about/about-image.svg"
-                    alt="Enterprise Solutions by Tech Yugantar"
-                    fill
-                    className="mx-auto max-w-full drop-shadow-three dark:hidden dark:drop-shadow-none lg:mr-0"
-                  />
-                  <Image
-                    src="/images/about/about-image-dark.svg"
-                    alt="Enterprise Solutions by Tech Yugantar"
-                    fill
-                    className="mx-auto hidden max-w-full drop-shadow-three dark:block dark:drop-shadow-none lg:mr-0"
-                  />
+              <Reveal delay={0.1}>
+                <div className="relative mx-auto max-w-[520px] lg:mr-0">
+                  {/* glow */}
+                  <div aria-hidden className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-teal-500/10 blur-3xl" />
+                  <div className="relative overflow-hidden rounded-3xl border p-8
+                    border-black/[0.07] bg-white/70 shadow-[0_20px_60px_rgba(6,8,15,0.08)] backdrop-blur-xl
+                    dark:border-white/[0.08] dark:bg-white/[0.03] dark:shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
+                    <span className="mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium
+                      border-black/[0.06] bg-cream-100 text-gray-500 dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-zinc-400">
+                      <span className="h-1.5 w-1.5 rounded-full bg-teal-400" />
+                      Distributed by design
+                    </span>
+                    <NetworkMesh className="mt-2" />
+                    <div className="mt-6 grid grid-cols-3 gap-3 text-center">
+                      {[
+                        { k: "99.9%", v: "Uptime" },
+                        { k: "<100ms", v: "API p95" },
+                        { k: "Multi", v: "Tenant" },
+                      ].map((s) => (
+                        <div key={s.v} className="rounded-xl border border-black/[0.05] bg-cream-100/60 py-3 dark:border-white/[0.06] dark:bg-white/[0.03]">
+                          <p className="font-display text-lg font-semibold text-gray-900 dark:text-white">{s.k}</p>
+                          <p className="text-[11px] uppercase tracking-wide text-gray-400 dark:text-zinc-500">{s.v}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </Parallax>
+              </Reveal>
             </div>
           </div>
         </div>

@@ -16,7 +16,7 @@ export default function GlowingBadge({ children, className, pulse = true }: Glow
         className="motion-safe:animate-[badge-ring-spin_3.5s_linear_infinite] absolute -inset-1/2"
         style={{
           background:
-            "conic-gradient(from 0deg, transparent, #399D91 15%, #22D3EE 30%, transparent 45%)",
+            "conic-gradient(from 0deg, transparent, #14B8A6 15%, #22D3EE 30%, transparent 45%)",
         }}
         aria-hidden
       />

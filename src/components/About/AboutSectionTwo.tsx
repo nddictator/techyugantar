@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { Parallax, Stagger, StaggerItem } from "@/components/motion";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import CodeEditor from "@/components/ui/CodeEditor";
 
 const AboutSectionTwo = () => {
   return (
@@ -7,28 +7,18 @@ const AboutSectionTwo = () => {
       <div className="container">
         <div className="-mx-4 flex flex-wrap items-center">
           <div className="w-full px-4 lg:w-1/2">
-            <Parallax offset={20} className="mx-auto mb-12 aspect-25/24 max-w-[500px] lg:m-0">
-              <div className="relative h-full w-full text-center">
-                <Image
-                  src="/images/about/about-image-2.svg"
-                  alt="Tech Yugantar Solutions"
-                  fill
-                  className="drop-shadow-three dark:hidden dark:drop-shadow-none"
-                />
-                <Image
-                  src="/images/about/about-image-2-dark.svg"
-                  alt="Tech Yugantar Solutions"
-                  fill
-                  className="hidden drop-shadow-three dark:block dark:drop-shadow-none"
-                />
+            <Reveal className="relative mx-auto mb-12 max-w-[520px] lg:m-0">
+              <div aria-hidden className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-teal-500/10 blur-3xl" />
+              <div className="relative motion-safe:animate-[float-soft_7s_ease-in-out_infinite]">
+                <CodeEditor />
               </div>
-            </Parallax>
+            </Reveal>
           </div>
           <div className="w-full px-4 lg:w-1/2">
             <Stagger className="max-w-[470px]">
               <StaggerItem className="mb-9">
                 <h3 className="mb-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-                  Scalable Python & Django Backends
+                  Scalable Python &amp; Django Backends
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
                   We architect robust server-side applications using Django and DRF,
@@ -48,11 +38,11 @@ const AboutSectionTwo = () => {
               </StaggerItem>
               <StaggerItem className="mb-1">
                 <h3 className="mb-4 text-xl font-bold text-black dark:text-white sm:text-2xl lg:text-xl xl:text-2xl">
-                  Agile Development & Support
+                  Agile Development &amp; Support
                 </h3>
                 <p className="text-base font-medium leading-relaxed text-body-color sm:text-lg sm:leading-relaxed">
                   From Varanasi to the world, we provide end-to-end support and
-                  agile iterations. We don't just write code; we partner with
+                  agile iterations. We don&apos;t just write code; we partner with
                   you to evolve your software as your business grows.
                 </p>
               </StaggerItem>

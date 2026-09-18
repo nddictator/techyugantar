@@ -60,8 +60,8 @@ const Pricing = () => {
               y2="1131.65"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#399D91" />
-              <stop offset="1" stopColor="#399D91" stopOpacity="0" />
+              <stop stopColor="#14B8A6" />
+              <stop offset="1" stopColor="#14B8A6" stopOpacity="0" />
             </linearGradient>
             <linearGradient
               id="paint1_linear_93:235"
@@ -71,8 +71,8 @@ const Pricing = () => {
               y2="915.952"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stopColor="#399D91" />
-              <stop offset="1" stopColor="#399D91" stopOpacity="0" />
+              <stop stopColor="#14B8A6" />
+              <stop offset="1" stopColor="#14B8A6" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>

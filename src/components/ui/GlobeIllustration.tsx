@@ -68,14 +68,14 @@ export default function GlobeIllustration({ className = "" }: { className?: stri
       <defs>
         {/* Outer glow behind sphere */}
         <radialGradient id={`${id}og`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor="#399D91" stopOpacity="0.22" />
-          <stop offset="100%" stopColor="#399D91" stopOpacity="0"    />
+          <stop offset="0%"   stopColor="#14B8A6" stopOpacity="0.22" />
+          <stop offset="100%" stopColor="#14B8A6" stopOpacity="0"    />
         </radialGradient>
 
         {/* Sphere fill — subtle inner light */}
         <radialGradient id={`${id}sf`} cx="38%" cy="32%" r="62%">
-          <stop offset="0%"   stopColor="#399D91" stopOpacity="0.09" />
-          <stop offset="100%" stopColor="#399D91" stopOpacity="0"    />
+          <stop offset="0%"   stopColor="#14B8A6" stopOpacity="0.09" />
+          <stop offset="100%" stopColor="#14B8A6" stopOpacity="0"    />
         </radialGradient>
 
         {/* Clip to circle */}
@@ -105,7 +105,7 @@ export default function GlobeIllustration({ className = "" }: { className?: stri
       <circle cx={CX} cy={CY} r={R} fill={`url(#${id}sf)`} />
 
       {/* ── Wireframe grid — clipped ────────────────────────────────────── */}
-      <g clipPath={`url(#${id}cl)`} stroke="#399D91" fill="none">
+      <g clipPath={`url(#${id}cl)`} stroke="#14B8A6" fill="none">
         {/* Latitude lines */}
         {latLines.map(({ key, cy: ly, rx, ry, opacity }) => (
           <ellipse
@@ -135,7 +135,7 @@ export default function GlobeIllustration({ className = "" }: { className?: stri
         cx={CX}
         cy={CY}
         r={R}
-        stroke="#399D91"
+        stroke="#14B8A6"
         strokeWidth="1"
         strokeOpacity="0.5"
       />
@@ -178,7 +178,7 @@ export default function GlobeIllustration({ className = "" }: { className?: stri
             cx={x}
             cy={y}
             r={home ? 10 : 7}
-            fill="#399D91"
+            fill="#14B8A6"
             fillOpacity="0.12"
             style={{
               animation: `city-pulse ${home ? 1.8 : 2.4}s ease-out infinite`,
@@ -190,7 +190,7 @@ export default function GlobeIllustration({ className = "" }: { className?: stri
             cx={x}
             cy={y}
             r={home ? 4 : 2.8}
-            fill="#399D91"
+            fill="#14B8A6"
             opacity={home ? "1" : "0.8"}
             filter={home ? `url(#${id}gf)` : undefined}
           />
@@ -215,7 +215,7 @@ export default function GlobeIllustration({ className = "" }: { className?: stri
       ))}
 
       {/* ── Connection arcs between cities (static, subtle) ────────────── */}
-      <g stroke="#399D91" strokeWidth="0.6" strokeOpacity="0.35" fill="none" clipPath={`url(#${id}cl)`}>
+      <g stroke="#14B8A6" strokeWidth="0.6" strokeOpacity="0.35" fill="none" clipPath={`url(#${id}cl)`}>
         {/* Varanasi → London */}
         <path d={`M 307,175 Q 240,100 178,140`} />
         {/* Varanasi → Lagos */}

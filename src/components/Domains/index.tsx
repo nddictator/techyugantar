@@ -51,7 +51,7 @@ export default function Domains() {
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl">
               From Healthcare to Hospitality —{" "}
               <span className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(135deg,#399D91,#22D3EE)" }}>
+                style={{ backgroundImage: "linear-gradient(135deg,#14B8A6,#22D3EE)" }}>
                 We've Done It
               </span>
             </h2>
@@ -70,7 +70,7 @@ export default function Domains() {
                   group relative flex flex-col items-start gap-2 rounded-xl p-4
                   border transition-all duration-300 cursor-default h-full
                   border-gray-100 bg-white shadow-sm
-                  hover:border-primary/30 hover:shadow-[0_4px_20px_rgba(57,157,145,0.1)] hover:-translate-y-0.5
+                  hover:border-primary/30 hover:shadow-[0_4px_20px_rgba(45,212,191,0.1)] hover:-translate-y-0.5
                   dark:border-white/[0.06] dark:bg-zinc-900/50
                   dark:hover:border-primary/40 dark:hover:bg-zinc-900
                 "

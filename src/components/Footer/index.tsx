@@ -222,8 +222,8 @@ export default function Footer() {
                 mb-4 inline-flex items-center gap-2 rounded-full
                 border border-t-primary/60 border-white/10
                 bg-gradient-to-b from-primary/60 to-primary px-5 py-2.5
-                text-sm font-semibold text-white shadow-[0_0_20px_rgba(57,157,145,0.35)]
-                transition-all duration-300 hover:shadow-[0_0_28px_rgba(57,157,145,0.55)] hover:scale-105
+                text-sm font-semibold text-white shadow-[0_0_20px_rgba(45,212,191,0.35)]
+                transition-all duration-300 hover:shadow-[0_0_28px_rgba(45,212,191,0.55)] hover:scale-105
               "
             >
               Get a Quote
