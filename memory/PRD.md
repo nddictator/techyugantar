@@ -51,7 +51,18 @@ which does not exist for this repo — dev server is started manually; will not 
 - Verified: all inner routes 200, no runtime/console errors, both themes clean; testing agent
   100% on tested flows (iteration_2.json).
 
+## Implemented — Phase 3 (2026-06, complete & tested)
+- Pricing: engagement cards rebuilt as aurora glass cards with hover-lift motion + featured
+  "Most popular" middle card (gradient CTA); fixed invisible check icon (white→teal) in OfferList.
+  Multi-step cost calculator logic unchanged and verified end-to-end (INR/USD, reset).
+- Blog listing: pill-shaped aurora tag filters + staggered card reveals; SingleBlog rebuilt as a
+  glass card with image zoom, teal category badge, Clash Display titles.
+- Article pages: fixed aurora reading-progress bar (scroll-driven), aurora tag chip, revealed hero
+  image, display-font MDX headings + darker code blocks; pill-shaped tag/share buttons.
+- Verified: /pricing, /blog, /blog/<slug> all 200, both themes clean, no console errors;
+  testing agent 100% on tested flows (iteration_3.json).
+
 ## Backlog — remaining phases (approved plan)
-- Phase 3: Pricing, Blog + article pages, Contact (deeper polish; they already inherit the system).
 - Phase 4: legal (privacy/terms), auth (signin/signup), 404/error, full light/dark + mobile QA sweep.
+- Optional: reuse ShipStory as a Services hero; case-insensitive blog tag URLs; next/link tag pills.
 - Nothing ships to live domain until reviewed/approved (user controls deploy via Save to GitHub).
