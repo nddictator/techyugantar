@@ -83,7 +83,7 @@ export default function Globe({ className, size = 480 }: GlobeProps) {
     <div className={cx("relative", className)} style={{ width: size, maxWidth: "100%", aspectRatio: "1 / 1" }}>
       <div
         className="pointer-events-none absolute inset-0 rounded-full opacity-70 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(57,157,145,0.35), transparent 65%)" }}
+        style={{ background: "radial-gradient(circle, rgba(45,212,191,0.35), transparent 65%)" }}
       />
       <canvas
         ref={canvasRef}

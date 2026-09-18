@@ -70,12 +70,12 @@ const NewsLatterBox = () => {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0.62"
                 />
                 <stop
                   offset="1"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -106,12 +106,12 @@ const NewsLatterBox = () => {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0.62"
                 />
                 <stop
                   offset="1"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -142,12 +142,12 @@ const NewsLatterBox = () => {
                 gradientUnits="userSpaceOnUse"
               >
                 <stop
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0.62"
                 />
                 <stop
                   offset="1"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -196,11 +196,11 @@ const NewsLatterBox = () => {
               >
                 <stop
                   offset="0.328125"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                 />
                 <stop
                   offset="1"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -214,11 +214,11 @@ const NewsLatterBox = () => {
               >
                 <stop
                   offset="0.328125"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                 />
                 <stop
                   offset="1"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -232,11 +232,11 @@ const NewsLatterBox = () => {
               >
                 <stop
                   offset="0.328125"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                 />
                 <stop
                   offset="1"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0"
                 />
               </linearGradient>
@@ -250,11 +250,11 @@ const NewsLatterBox = () => {
               >
                 <stop
                   offset="0.328125"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                 />
                 <stop
                   offset="1"
-                  stopColor={isLight ? "#399D91" : "#fff"}
+                  stopColor={isLight ? "#14B8A6" : "#fff"}
                   stopOpacity="0"
                 />
               </linearGradient>

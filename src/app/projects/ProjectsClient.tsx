@@ -66,7 +66,7 @@ export default function ProjectsClient() {
                     <motion.span
                       layoutId="filter-pill"
                       transition={{ type: "spring" as const, stiffness: 380, damping: 32 }}
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-teal-400 shadow-[0_0_16px_rgba(57,157,145,0.4)]"
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-teal-400 shadow-[0_0_16px_rgba(45,212,191,0.4)]"
                     />
                   )}
                   <span className="relative z-10">{tag}</span>

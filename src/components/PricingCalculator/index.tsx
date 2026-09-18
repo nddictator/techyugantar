@@ -147,7 +147,7 @@ function SelectCard({ selected, onClick, children }: { selected: boolean; onClic
       className={`
         group relative w-full rounded-xl border p-4 text-left transition-all duration-200
         ${selected
-          ? "border-primary bg-primary/5 shadow-[0_0_16px_rgba(57,157,145,0.15)] dark:bg-primary/10"
+          ? "border-primary bg-primary/5 shadow-[0_0_16px_rgba(45,212,191,0.15)] dark:bg-primary/10"
           : "border-gray-100 bg-white hover:border-primary/30 hover:bg-gray-50 dark:border-white/[0.07] dark:bg-zinc-900/50 dark:hover:border-primary/30 dark:hover:bg-zinc-900"
         }
       `}
@@ -184,8 +184,8 @@ function NavButtons({
         disabled={nextDisabled}
         className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-white
           bg-gradient-to-b from-primary/80 to-primary
-          shadow-[0_0_16px_rgba(57,157,145,0.3)]
-          hover:shadow-[0_0_24px_rgba(57,157,145,0.5)] hover:scale-105
+          shadow-[0_0_16px_rgba(45,212,191,0.3)]
+          hover:shadow-[0_0_24px_rgba(45,212,191,0.5)] hover:scale-105
           disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100 disabled:hover:shadow-none
           transition-all duration-200"
       >
@@ -488,8 +488,8 @@ export default function PricingCalculator() {
                       href={`/contact?msg=${preFilledMsg}`}
                       className="flex-1 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-white
                         bg-gradient-to-b from-primary/80 to-primary
-                        shadow-[0_0_20px_rgba(57,157,145,0.3)]
-                        hover:shadow-[0_0_32px_rgba(57,157,145,0.5)] hover:scale-105
+                        shadow-[0_0_20px_rgba(45,212,191,0.3)]
+                        hover:shadow-[0_0_32px_rgba(45,212,191,0.5)] hover:scale-105
                         transition-all duration-300"
                     >
                       📩 Get Exact Quote

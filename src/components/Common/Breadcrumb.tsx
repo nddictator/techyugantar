@@ -8,117 +8,61 @@ const Breadcrumb = ({
   description: string;
 }) => {
   return (
-    <>
-      <section className="relative z-10 overflow-hidden pt-28 lg:pt-[150px]">
-        <div className="container">
-          <div className="-mx-4 flex flex-wrap items-center">
-            <div className="w-full px-4 md:w-8/12 lg:w-7/12">
-              <div className="mb-8 max-w-[570px] md:mb-0 lg:mb-12">
-                <h1 className="mb-5 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                  {pageName}
-                </h1>
-                <p className="text-base font-medium leading-relaxed text-body-color">
-                  {description}
-                </p>
-              </div>
-            </div>
-            <div className="w-full px-4 md:w-4/12 lg:w-5/12">
-              <div className="text-end">
-                <ul className="flex items-center md:justify-end">
-                  <li className="flex items-center">
-                    <Link
-                      href="/"
-                      className="pr-1 text-base font-medium text-body-color hover:text-primary"
-                    >
-                      Home
-                    </Link>
-                    <span className="mr-3 block h-2 w-2 rotate-45 border-r-2 border-t-2 border-body-color"></span>
-                  </li>
-                  <li className="text-base font-medium text-primary">
-                    {pageName}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section className="relative z-10 overflow-hidden bg-cream pt-32 pb-4 dark:bg-obsidian lg:pt-[160px]">
+      {/* hairline grid, radially masked */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right,var(--g) 1px,transparent 1px),linear-gradient(to bottom,var(--g) 1px,transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "radial-gradient(ellipse 70% 90% at 50% 0%, black 20%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 90% at 50% 0%, black 20%, transparent 80%)",
+          ["--g" as string]: "rgba(15,23,35,0.05)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 hidden dark:block"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right,rgba(255,255,255,0.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.05) 1px,transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "radial-gradient(ellipse 70% 90% at 50% 0%, black 20%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 90% at 50% 0%, black 20%, transparent 80%)",
+        }}
+      />
+      {/* aurora glow */}
+      <div aria-hidden className="pointer-events-none absolute -top-32 left-1/2 -translate-x-1/2 h-72 w-[700px] rounded-full blur-[120px]"
+        style={{ background: "radial-gradient(ellipse at center, rgba(45,212,191,0.18), transparent 70%)" }} />
 
-        <div>
-          <span className="absolute left-0 top-0 z-[-1]">
-            <svg
-              width="287"
-              height="254"
-              viewBox="0 0 287 254"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                opacity="0.1"
-                d="M286.5 0.5L-14.5 254.5V69.5L286.5 0.5Z"
-                fill="url(#paint0_linear_111:578)"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_111:578"
-                  x1="-40.5"
-                  y1="117"
-                  x2="301.926"
-                  y2="-97.1485"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#399D91" />
-                  <stop offset="1" stopColor="#399D91" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </span>
-          <span className="absolute right-0 top-0 z-[-1]">
-            <svg
-              width="628"
-              height="258"
-              viewBox="0 0 628 258"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                opacity="0.1"
-                d="M669.125 257.002L345.875 31.9983L524.571 -15.8832L669.125 257.002Z"
-                fill="url(#paint0_linear_0:1)"
-              />
-              <path
-                opacity="0.1"
-                d="M0.0716344 182.78L101.988 -15.0769L142.154 81.4093L0.0716344 182.78Z"
-                fill="url(#paint1_linear_0:1)"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_0:1"
-                  x1="644"
-                  y1="221"
-                  x2="429.946"
-                  y2="37.0429"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#399D91" />
-                  <stop offset="1" stopColor="#399D91" stopOpacity="0" />
-                </linearGradient>
-                <linearGradient
-                  id="paint1_linear_0:1"
-                  x1="18.3648"
-                  y1="166.016"
-                  x2="105.377"
-                  y2="32.3398"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#399D91" />
-                  <stop offset="1" stopColor="#399D91" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </span>
-        </div>
-      </section>
-    </>
+      <div className="container relative">
+        {/* breadcrumb pill */}
+        <nav
+          aria-label="Breadcrumb"
+          className="mb-6 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-medium backdrop-blur-sm
+            border-black/[0.08] bg-white/70 text-gray-500
+            dark:border-white/[0.1] dark:bg-white/[0.04] dark:text-zinc-400"
+        >
+          <Link href="/" className="transition-colors hover:text-primary">Home</Link>
+          <svg className="h-3 w-3 text-gray-400 dark:text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+          <span className="font-semibold text-primary">{pageName}</span>
+        </nav>
+
+        <h1 className="font-display mb-5 max-w-3xl text-4xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
+          {pageName}
+        </h1>
+        <p className="max-w-2xl text-base font-medium leading-relaxed text-gray-500 dark:text-zinc-400 md:text-lg">
+          {description}
+        </p>
+
+        {/* accent underline */}
+        <div className="mt-8 h-px w-full max-w-2xl bg-gradient-to-r from-primary/50 via-primary/15 to-transparent" />
+      </div>
+    </section>
   );
 };
 

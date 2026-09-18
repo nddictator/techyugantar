@@ -22,11 +22,11 @@ export default function NotFound() {
           <span
             className="text-[130px] font-extrabold leading-none tracking-tighter sm:text-[180px]"
             style={{
-              backgroundImage: "linear-gradient(135deg, #399D91 0%, #22D3EE 50%, #399D91 100%)",
+              backgroundImage: "linear-gradient(135deg, #14B8A6 0%, #22D3EE 50%, #14B8A6 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 0 40px rgba(57,157,145,0.35))",
+              filter: "drop-shadow(0 0 40px rgba(45,212,191,0.35))",
             }}
           >
             404

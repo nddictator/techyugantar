@@ -51,7 +51,7 @@ const PricingPage = () => {
               <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl">
                 What Will Your Project{" "}
                 <span className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: "linear-gradient(135deg,#399D91,#22D3EE)" }}>
+                  style={{ backgroundImage: "linear-gradient(135deg,#14B8A6,#22D3EE)" }}>
                   Cost to Build?
                 </span>
               </h2>

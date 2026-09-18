@@ -180,7 +180,7 @@ export default function HowWeWork() {
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl lg:text-5xl">
               From Idea to{" "}
               <span className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(135deg,#399D91,#22D3EE)" }}>
+                style={{ backgroundImage: "linear-gradient(135deg,#14B8A6,#22D3EE)" }}>
                 Shipped Product
               </span>
             </h2>
@@ -217,7 +217,7 @@ export default function HowWeWork() {
                         viewport={{ once: true }}
                         transition={{ type: "spring", stiffness: 200, damping: 15, delay: i * 0.08 + 0.05 }}
                         className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full
-                          border-2 font-bold text-sm shadow-[0_0_16px_rgba(57,157,145,0.25)]
+                          border-2 font-bold text-sm shadow-[0_0_16px_rgba(45,212,191,0.25)]
                           bg-white border-primary text-primary
                           dark:bg-zinc-900 dark:border-primary dark:text-primary"
                       >
@@ -295,8 +295,8 @@ export default function HowWeWork() {
             className="
               inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white
               bg-gradient-to-b from-primary/80 to-primary
-              shadow-[0_0_24px_rgba(57,157,145,0.35)]
-              hover:shadow-[0_0_40px_rgba(57,157,145,0.55)] hover:scale-105
+              shadow-[0_0_24px_rgba(45,212,191,0.35)]
+              hover:shadow-[0_0_40px_rgba(45,212,191,0.55)] hover:scale-105
               transition-all duration-300
             "
           >
