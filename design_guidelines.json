@@ -1,0 +1,162 @@
+{
+  "theme": {
+    "mode": "dark",
+    "background": "#07090E",
+    "surface": "#0D1117",
+    "surface_subtle": "#161B22",
+    "surface_glass": "rgba(13, 17, 23, 0.75)",
+    "border": "rgba(255, 255, 255, 0.08)",
+    "border_glow": "rgba(99, 102, 241, 0.25)",
+    "accent_primary": "#6366F1",
+    "accent_cyan": "#06B6D4",
+    "accent_amber": "#F59E0B",
+    "accent_emerald": "#10B981",
+    "text_primary": "#F8FAFC",
+    "text_secondary": "#94A3B8",
+    "text_muted": "#64748B"
+  },
+  "typography": {
+    "font_family_display": "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    "font_family_code": "'JetBrains Mono', 'Fira Code', monospace",
+    "h1": "text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.08]",
+    "h2": "text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-100",
+    "h3": "text-xl sm:text-2xl font-semibold tracking-tight text-slate-100",
+    "h4": "text-lg sm:text-xl font-medium text-slate-200",
+    "subheading": "text-lg sm:text-xl text-slate-400 font-normal leading-relaxed max-w-2xl",
+    "eyebrow": "text-xs font-semibold uppercase tracking-[0.2em] text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-3 py-1 rounded-full inline-flex items-center gap-1.5"
+  },
+  "visual_enhancers": {
+    "grid_background": "radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%), radial-gradient(circle at 80% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 40%)",
+    "mesh_lines": "repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 40px), repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 40px)",
+    "glass_card": "backdrop-blur-xl bg-slate-900/60 border border-white/10 hover:border-indigo-500/30 transition-all duration-300 shadow-[0_8px_32px_rgba(0,0,0,0.36)]",
+    "glow_button": "relative group overflow-hidden rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 p-[1px] shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/40 transition-all duration-300",
+    "beam_effect": "linear-gradient(90deg, transparent, rgba(99,102,241,0.6), transparent)"
+  },
+  "sections_breakdown": [
+    {
+      "name": "Navigation Header",
+      "component_path": "src/components/Header.js",
+      "description": "Sticky blurred header with TechYugantar logo (Varanasi roots badge), 5 nav links (Services, Industries, Process, Showcase, Pricing), and 'Schedule Consultation' CTA button with WhatsApp trigger modal or direct link.",
+      "data_testids": ["header-navbar", "nav-logo", "nav-link-services", "nav-link-industries", "nav-link-process", "nav-link-showcase", "nav-link-pricing", "nav-cta-contact"]
+    },
+    {
+      "name": "Kinetic Hero Section with Launch UI Animations",
+      "component_path": "src/components/Hero.js",
+      "description": "Bold headline 'Next-Era Software Engineering from the Ancient City of Varanasi' with masked badge '✨ 50+ Shipped • 18+ Global Sectors • AI-First Architecture'. Includes an interactive Launch UI-style vector illustration with floating terminal cards, animated code beams, live latency counter, and CTAs 'Explore Capabilities' and 'Book Architecture Call'.",
+      "data_testids": ["hero-section", "hero-title", "hero-subtitle", "hero-cta-explore", "hero-cta-consult", "hero-stats-badge", "hero-interactive-canvas"]
+    },
+    {
+      "name": "Trusted By & Technology Stack Marquee",
+      "component_path": "src/components/TechMarquee.js",
+      "description": "Smooth dual-direction kinetic ribbon marquee showcasing core technical stack with handcrafted vector badges: Next.js 15, Django 5, React, Python AI/LLM, Flutter 3, Node.js, FastAPIs, AWS Cloud, Docker, PostgreSQL, Redis, LangChain.",
+      "data_testids": ["tech-marquee-section", "tech-marquee-ribbon-1", "tech-marquee-ribbon-2"]
+    },
+    {
+      "name": "Services Bento Grid (Launch-UI Aesthetic)",
+      "component_path": "src/components/ServicesBento.js",
+      "description": "7 asymmetrical bento cards (Frontend Engineering, Python & Django Core, AI/LLM & Autonomous Agents, Flutter Cross-Platform Mobile, Scalable APIs & Microservices, Node.js High-Throughput Systems, DevOps & Cloud Migration) with custom vector SVGs, live micro-widgets, and expandable feature pills.",
+      "data_testids": ["services-section", "service-card-ai", "service-card-python", "service-card-frontend", "service-card-mobile", "service-card-api", "service-card-cloud", "service-card-node"]
+    },
+    {
+      "name": "18+ Industries Served Interactive Filter/Grid",
+      "component_path": "src/components/IndustriesGrid.js",
+      "description": "Categorized high-density sector grid covering Healthcare, FinTech, EdTech, E-commerce, Logistics, Real Estate, Agritech, Hospitality, Manufacturing, Media & Streaming, LegalTech, Astrology/VedicTech (Jyotify reference), GovTech, etc. Interactive category filter tabs and sector metric cards.",
+      "data_testids": ["industries-section", "industry-filter-tabs", "industry-item-card"]
+    },
+    {
+      "name": "5-Step Engineering Velocity Process",
+      "component_path": "src/components/ProcessTimeline.js",
+      "description": "Numbered Launch-UI style chapter timeline: 01 Architecture Blueprinting -> 02 Rapid Prototype & Design -> 03 Sprint-Based Velocity Build -> 04 Automated QA & Load Testing -> 05 Production Deployment & Scale. Includes interactive progress step bar and delivery deliverables checklist.",
+      "data_testids": ["process-section", "process-step-1", "process-step-2", "process-step-3", "process-step-4", "process-step-5"]
+    },
+    {
+      "name": "Featured Projects & Client Case Studies",
+      "component_path": "src/components/ProjectShowcase.js",
+      "description": "High-impact presentation of live flagship products: LOEXA Africa (Fintech & Commerce in emerging markets), Jyotify (AI-driven Vedic Astrology platform), Maa Sulakhi (D2C Brand store & inventory suite), ItWebDream (Enterprise IT orchestration), Talk AcharyaJi (Realtime audio-video spiritual consultancy). Includes tech stack pills, impact metrics, and project preview modals.",
+      "data_testids": ["projects-section", "project-card-loexa", "project-card-jyotify", "project-card-sulakhi", "project-card-itwebdream", "project-card-acharya"]
+    },
+    {
+      "name": "Testimonials & Trust Signals",
+      "component_path": "src/components/Testimonials.js",
+      "description": "Launch-UI card testimonials with verified client avatars, star ratings, quote marks, company metrics, and founder verification badges from India, UK, UAE, and Africa.",
+      "data_testids": ["testimonials-section", "testimonial-card-1", "testimonial-card-2", "testimonial-card-3"]
+    },
+    {
+      "name": "Transparent Engagement Models",
+      "component_path": "src/components/EngagementModels.js",
+      "description": "Three distinct engagement tiers: 1) Fixed Price Project (Scoped milestones, zero surprise costs), 2) Time & Material (Agile velocity, weekly sprints), 3) Dedicated Engineering Pod (Full-time Python/React/AI squad integrated with client's Jira/Slack). Includes interactive scope calculator toggle.",
+      "data_testids": ["engagement-section", "model-card-fixed", "model-card-tm", "model-card-pod", "scope-calculator-toggle"]
+    },
+    {
+      "name": "High-Conversion Contact & WhatsApp Drawer",
+      "component_path": "src/components/ContactSection.js",
+      "description": "Interactive inquiry form with real-time budget selector, tech stack checkboxes, fast WhatsApp direct connect button (+91 Varanasi HQ direct link), meeting calendar picker mockup, and instant quote confirmation toast.",
+      "data_testids": ["contact-section", "contact-form", "contact-input-name", "contact-input-email", "contact-input-project-type", "contact-input-budget", "contact-submit-button", "contact-whatsapp-button"]
+    },
+    {
+      "name": "Engineered Footer with Varanasi Roots",
+      "component_path": "src/components/Footer.js",
+      "description": "Rich dark footer with 'Born on the Ghats of Varanasi, Engineering for the Globe' tribute, live server status indicator ('99.99% Systems Nominal'), social channels, quick links, privacy/terms, and newsletter subscription form.",
+      "data_testids": ["footer-section", "footer-newsletter-input", "footer-newsletter-submit", "footer-status-pill"]
+    }
+  ],
+  "image_urls": [
+    {
+      "category": "hero_office_team",
+      "image_url": "https://images.unsplash.com/photo-1559136555-9303baea8ebd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjB0ZWNoJTIwc3RhcnR1cCUyMG1vZGVybiUyMG9mZmljZSUyMHRlYW18ZW58MHx8fHwxNzg5NzQzNTM0fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Engineering team in modern collaborative workspace discussing system architecture"
+    },
+    {
+      "category": "developer_workstation",
+      "image_url": "https://images.unsplash.com/photo-1575089976121-8ed7b2a54265?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHw0fHxzb2Z0d2FyZSUyMGVuZ2luZWVyJTIwZGV2ZWxvcGVyJTIwY29kaW5nJTIwbGFwdG9wfGVufDB8fHx8MTc4OTc0MzUzNHww&ixlib=rb-4.1.0&q=85",
+      "description": "Senior software engineer coding on multi-screen setup"
+    },
+    {
+      "category": "varanasi_heritage_ghat",
+      "image_url": "https://images.pexels.com/photos/38846995/pexels-photo-38846995.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Atmospheric evening lights along the sacred Ghats of Varanasi, inspiring the company heritage"
+    },
+    {
+      "category": "varanasi_evening_aarti",
+      "image_url": "https://images.pexels.com/photos/21047821/pexels-photo-21047821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Varanasi Ganga evening ceremony depicting timeless culture and energy"
+    },
+    {
+      "category": "tech_team_collaboration",
+      "image_url": "https://images.pexels.com/photos/16323454/pexels-photo-16323454.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Young agile software engineers sprint planning and reviewing code"
+    }
+  ],
+  "vector_illustrations_strategy": {
+    "style": "Launch-UI inspired crisp SVGs with subtle linear gradients, drop-shadow glows, neon accents (#6366F1, #06B6D4, #10B981), and animated path strokes.",
+    "illustrations": [
+      {
+        "id": "hero_cloud_pipeline",
+        "description": "Connected node network with animated data packets traveling between Next.js, Django API, AI Brain, and Global Edge CDN."
+      },
+      {
+        "id": "ai_neural_agent",
+        "description": "Isometric processor chip with glowing neon circuit traces and LLM embeddings graph."
+      },
+      {
+        "id": "flutter_mobile_screen",
+        "description": "Sleek mobile app wireframe skeleton with floating reactive UI components."
+      },
+      {
+        "id": "security_devops_shield",
+        "description": "Layered hexagonal shield with CI/CD deployment ring and zero-downtime indicator."
+      }
+    ]
+  },
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Follow dark modern SaaS aesthetic inspired by launchuicomponents.com and modern engineering studios.",
+    "All files to create or modify are .js and .jsx files (not .tsx).",
+    "Never use fully transparent backgrounds behind text or dropdown menus. Always use backdrop-blur with minimum 70% opacity dark tint (e.g., bg-slate-900/80 backdrop-blur-xl).",
+    "Every interactive button, tab, modal trigger, card, and input MUST contain a unique, semantic 'data-testid' attribute.",
+    "Use framer-motion for smooth entrance stagger, hover card elevation, and glowing border beams.",
+    "Preserve all real brand context from techyugantar.in: Based in Varanasi, India, 50+ projects shipped, 18+ industries, full-stack Next.js, Django, Python, Flutter, AI integrations.",
+    "Include real case studies mentioned: LOEXA Africa, Jyotify, Maa Sulakhi, ItWebDream, Talk AcharyaJi.",
+    "Ensure 100% responsive design from mobile (360px) to ultra-wide displays without horizontal overflow.",
+    "Use sonner for instant toast feedback on form submissions and quote calculations."
+  ]
+}
