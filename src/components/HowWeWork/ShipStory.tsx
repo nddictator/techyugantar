@@ -80,6 +80,8 @@ export default function ShipStory() {
               {STAGES.map((s, i) => (
                 <button
                   key={s.k}
+                  aria-current={active === i ? "step" : undefined}
+                  data-active={active === i}
                   className={`block w-full rounded-2xl border p-6 text-left transition-all duration-500
                     ${active === i
                       ? "border-primary/40 bg-white shadow-[0_10px_40px_rgba(45,212,191,0.12)] dark:bg-white/[0.05]"

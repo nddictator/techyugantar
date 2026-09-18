@@ -199,7 +199,7 @@ export default async function CaseStudyPage({
 
         {/* ── Testimonial ──────────────────────────────────────────────────── */}
         {cs.testimonial && (
-          <div className="mb-16 relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-8 dark:border-primary/15 dark:bg-primary/5">
+          <div className="mb-16 relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-8 dark:border-primary/15 dark:bg-primary/5" data-testid="case-study-testimonial">
             <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
             <p className="mb-3 text-5xl font-serif leading-none text-primary/20">&ldquo;</p>
             <p className="mb-6 text-lg leading-relaxed font-medium text-gray-800 dark:text-zinc-200 italic">

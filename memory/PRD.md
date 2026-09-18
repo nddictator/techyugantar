@@ -38,8 +38,20 @@ which does not exist for this repo — dev server is started manually; will not 
   so submit returns "Email is not configured" — expected, out of scope for the visual refactor.
 - Supervisor frontend dir mismatch (`/app/frontend` vs `/app`) — dev server started manually.
 
+## Implemented — Phase 2 (2026-06, complete & tested)
+- Shared `Breadcrumb` fully redesigned (aurora glow + grid, Clash Display title, Home>Page pill,
+  accent underline) — lifts every inner page (Services, Projects, About, How-We-Work).
+- Global aurora color sweep across ALL remaining pages/components (legacy teal fully removed).
+- New scroll-pinned **ShipStory** ("Build. Measure. Scale.") on `/how-we-work`: sticky 300vh
+  sequence that highlights stages (We Build / We Measure / We Scale) and cross-fades
+  CodeEditor → LiveChart → NetworkMesh as one narrative; progress rail; reduced-motion fallback;
+  `aria-current` on active stage.
+- Inner pages inherit fonts + palette: Services, Projects (+ filter), Case Study, About
+  (network mesh, code editor, founder story, team), How-We-Work timeline + comms.
+- Verified: all inner routes 200, no runtime/console errors, both themes clean; testing agent
+  100% on tested flows (iteration_2.json).
+
 ## Backlog — remaining phases (approved plan)
-- Phase 2: inner pages — Services, Projects, Case Study, About, How-We-Work.
-- Phase 3: Pricing, Blog + article pages, Contact.
+- Phase 3: Pricing, Blog + article pages, Contact (deeper polish; they already inherit the system).
 - Phase 4: legal (privacy/terms), auth (signin/signup), 404/error, full light/dark + mobile QA sweep.
 - Nothing ships to live domain until reviewed/approved (user controls deploy via Save to GitHub).

@@ -1,0 +1,28 @@
+{
+  "summary": "Phase 2 frontend-only verification of inner pages + new ShipStory scroll sequence for Tech Yugantar. All 8 inner routes (/about, /services, /how-we-work, /projects, /case-study/loexa-africa, /pricing, /blog, /contact) return HTTP 200 with zero uncaught page errors and zero non-HMR console errors. Redesigned Breadcrumb renders on About/Services/Projects/How-We-Work with the required 'Home > PageName' pill (Home links to '/'), the large Clash Display title, and the aurora glow + grid backdrop; readable in both dark and light. The new scroll-pinned 'How We Ship' sequence (data-testid=ship-story, 300vh) works: scrolling triggers stage highlighting exactly as spec — at ~0% stage-0 (We Build) is active, at ~40% stage-1 (We Measure), at ~70% and ~95% stage-2 (We Scale). All three stages are reachable, layout is intact, no errors. 'How We Communicate' and the 8-step 'From Idea to Shipped Product' timeline both still render below the ShipStory. Projects page: 14 tag pills (All / Next.js / AI / Education / Astrology / React / Node.js / Healthcare / Ayurveda / Web App / Portfolio / Full-stack / Vedic / Gemstones) — clicking a pill (e.g. 'Web App') toggles the active state and filters the grid; each project card exposes View Live + Case Study actions (5 each visible). Case study /case-study/loexa-africa renders title, metrics, challenge, solution, outcome, tech stack, features. About page renders AboutSectionOne (network mesh + stat chips), AboutSectionTwo (code editor illustration), FounderStory (Tanmay Mishra) and TeamSection. Theme toggle (aria-label='theme toggler') flips html between 'lenis dark' and 'lenis light' on inner pages with no invisible/washed-out text observed in either theme. Global nav 'Process' pill routes to /how-we-work and receives the active pill styling.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Case study /case-study/loexa-africa", "issues": ["Testimonial block not detected by generic text scan — could not conclusively verify the pull-quote text (visual render appears fine). Consider adding data-testid=case-study-testimonial for future automation."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "(Optional/testability) Add data-testid=case-study-testimonial and data-testid=ship-progress-rail so future runs can assert the quote block and rail scale without heuristics.",
+    "(Carry-over from iter_1) Supervisor 'frontend' program still points at /app/frontend but the Next.js app lives at /app root — dev server has to be started manually via 'yarn dev' in /app. Please fix supervisor conf or move the app so the site auto-recovers on pod restart."
+  ],
+  "critical_code_review_comments": [
+    "ShipStory.tsx correctly gates the animation on useReducedMotion() and provides a 3-column static fallback — good a11y.",
+    "Active stage in ShipStory is only signalled via Tailwind class swaps (border-primary/40). Adding an explicit data-active or aria-current attribute on the <button> would make the section easier to test and improve a11y announcements.",
+    "Breadcrumb is consistent across inner pages with clickable Home anchor and page-name pill — matches the design system."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped per request)", "frontend": "100% on tested flows"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Preview URL: https://yugantar-main.preview.emergentagent.com. Next.js app at /app root (not /app/frontend); dev server started via 'cd /app && yarn dev'. ShipStory section is 300vh; scroll thresholds are 0-0.34 -> stage0, 0.34-0.67 -> stage1, 0.67-1 -> stage2. Active stage detectable via presence of 'border-primary' class on [data-testid=ship-stage-i]. Theme toggle aria-label='theme toggler'; html root class toggles between 'lenis dark' and 'lenis light'. Projects filter pills are plain <button> elements — active pill has bg-teal-ish highlight. Contact form email backend still intentionally unconfigured — do not treat 500 on /api/contact as a bug.",
+  "rca of the issue": "n/a — no functional defects reproduced in Phase 2."
+}
