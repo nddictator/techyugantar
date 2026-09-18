@@ -127,7 +127,7 @@ export default function Footer() {
                 alt="Tech Yugantar"
                 width={150}
                 height={32}
-                className="w-36"
+                className="h-auto w-36"
               />
             </Link>
 

@@ -201,6 +201,7 @@ export default function Hero() {
                     src="/images/projects/loexa.webp"
                     alt="Tech Yugantar — featured project preview"
                     fill
+                    sizes="(max-width: 768px) 100vw, 1024px"
                     className="object-cover object-top"
                     priority
                   />
