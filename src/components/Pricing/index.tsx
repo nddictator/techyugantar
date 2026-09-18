@@ -17,8 +17,8 @@ const Pricing = () => {
         </Reveal>
 
         <Stagger className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-          {engagementData.map((model) => (
-            <EngagementBox key={model.id} model={model} />
+          {engagementData.map((model, i) => (
+            <EngagementBox key={model.id} model={model} featured={i === 1} />
           ))}
         </Stagger>
       </div>

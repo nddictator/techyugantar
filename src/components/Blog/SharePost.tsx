@@ -1,5 +1,5 @@
 const shareLinkClass =
-  "mb-3 ml-3 first:ml-0 inline-flex h-9 w-9 items-center justify-center rounded-xs bg-gray-light text-body-color duration-300 hover:bg-primary hover:text-white dark:bg-gray-dark dark:hover:bg-primary";
+  "mb-3 ml-3 first:ml-0 inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/[0.08] bg-white/70 text-gray-500 duration-300 hover:border-primary/40 hover:bg-primary hover:text-white dark:border-white/[0.1] dark:bg-white/[0.04] dark:text-zinc-400 dark:hover:bg-primary dark:hover:text-white";
 
 const SharePost = ({ url, title }: { url: string; title: string }) => {
   const encodedUrl = encodeURIComponent(url);

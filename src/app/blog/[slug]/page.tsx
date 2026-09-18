@@ -7,6 +7,8 @@ import AuthorAvatar from "@/components/Blog/AuthorAvatar";
 import SharePost from "@/components/Blog/SharePost";
 import TagButton from "@/components/Blog/TagButton";
 import RelatedPost from "@/components/Blog/RelatedPost";
+import ReadingProgress from "@/components/Blog/ReadingProgress";
+import { Reveal } from "@/components/motion";
 import JsonLdScript from "@/components/JsonLdScript";
 import { getAllSlugs, getBlogBySlug, getRelatedBlogs } from "@/lib/blog";
 import { buildArticleSchema, buildBreadcrumbSchema } from "@/lib/schema";
@@ -50,7 +52,7 @@ export async function generateMetadata({
 const mdxComponents = {
   h2: (props: React.ComponentProps<"h2">) => (
     <h2
-      className="font-xl mt-12 mb-6 leading-tight font-bold text-black sm:text-2xl sm:leading-tight lg:text-xl lg:leading-tight xl:text-2xl xl:leading-tight dark:text-white"
+      className="font-display mt-12 mb-6 text-2xl leading-tight font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white"
       {...props}
     />
   ),
@@ -71,7 +73,7 @@ const mdxComponents = {
   ),
   pre: (props: React.ComponentProps<"pre">) => (
     <pre
-      className="mb-6 overflow-x-auto rounded-md bg-[#1a1f2b] p-5 text-sm leading-relaxed text-[#e2e8f0]"
+      className="mb-6 overflow-x-auto rounded-xl border border-white/[0.06] bg-[#0d0f13] p-5 text-sm leading-relaxed text-[#e2e8f0] shadow-[0_10px_30px_rgba(0,0,0,0.3)]"
       {...props}
     />
   ),
@@ -117,8 +119,9 @@ const BlogDetailsPage = async ({
     <>
       <JsonLdScript schema={breadcrumbSchema} />
       <JsonLdScript schema={articleSchema} />
+      <ReadingProgress />
 
-      <section className="pt-[150px] pb-[120px]">
+      <section className="pt-[140px] pb-[120px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap justify-center">
             <div className="w-full px-4 lg:w-8/12">
@@ -157,7 +160,7 @@ const BlogDetailsPage = async ({
                 <div className="mb-2">
                   <Link
                     href={`/blog?tag=${post.tags[0]}`}
-                    className="bg-primary inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-white capitalize"
+                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-teal-400 to-teal-600 px-4 py-2 text-sm font-semibold text-white capitalize shadow-[0_0_16px_rgba(45,212,191,0.3)]"
                   >
                     {post.tags[0]}
                   </Link>
@@ -168,16 +171,17 @@ const BlogDetailsPage = async ({
                 {post.excerpt}
               </p>
 
-              <div className="mb-10 w-full overflow-hidden rounded-sm">
-                <div className="relative aspect-97/60 w-full sm:aspect-97/44">
+              <div className="mb-10 w-full overflow-hidden rounded-2xl">
+                <Reveal className="relative aspect-97/60 w-full sm:aspect-97/44 overflow-hidden rounded-2xl border border-black/[0.06] shadow-[0_20px_60px_rgba(6,8,15,0.12)] dark:border-white/[0.08]">
                   <Image
                     src={post.image}
                     alt={post.title}
                     fill
                     priority
+                    sizes="(max-width: 992px) 100vw, 66vw"
                     className="object-cover object-center"
                   />
-                </div>
+                </Reveal>
               </div>
 
               <article>
