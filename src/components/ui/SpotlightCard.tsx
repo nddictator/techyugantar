@@ -53,7 +53,7 @@ export default function SpotlightCard({ children, className, tag, as: Tag = "div
           {tag}
         </span>
       )}
-      <Tag className="relative z-10">{children}</Tag>
+      <Tag className="relative z-10 h-full">{children}</Tag>
     </motion.div>
   );
 }
