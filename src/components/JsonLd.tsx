@@ -35,7 +35,7 @@ export default function JsonLd() {
         contactPoint: {
             "@type": "ContactPoint",
             contactType: "customer service",
-            email: "nddictator@gmail.com",
+            email: "info@techyugantar.in",
             availableLanguage: ["English", "Hindi"],
         },
         sameAs: [
