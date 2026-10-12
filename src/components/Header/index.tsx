@@ -6,8 +6,11 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
+import { SPRING_HOVER, SPRING_SURFACE } from "@/components/ui/utils";
 
-const SPRING = { type: "spring" as const, stiffness: 380, damping: 32 };
+const MotionLink = motion.create(Link);
+// Nav pill + hamburger morph: hover-grade snap, slightly more damping so the pill doesn't wobble.
+const SPRING = { ...SPRING_HOVER, damping: 32 } as const;
 
 export default function Header() {
   const [scrolled, setScrolled]     = useState(false);
@@ -27,8 +30,16 @@ export default function Header() {
     <>
       {/* ── Desktop / Tablet header ──────────────────────────────────────── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center px-4 pt-4 pointer-events-none">
+        {/* Scrolled scrim — keeps the floating logo/nav legible over page content */}
+        <div
+          aria-hidden
+          className={`absolute inset-x-0 top-0 h-28 transition-opacity duration-500
+            bg-gradient-to-b from-cream via-cream/75 to-transparent
+            dark:from-obsidian dark:via-obsidian/75 dark:to-transparent
+            ${scrolled ? "opacity-100" : "opacity-0"}`}
+        />
         {/* Outer row — full width so logo & CTA sit outside the pill */}
-        <div className="w-full max-w-7xl flex items-center justify-between pointer-events-auto">
+        <div className="relative w-full max-w-7xl flex items-center justify-between pointer-events-auto">
 
           {/* Logo */}
           <Link href="/" className="relative z-10 shrink-0">
@@ -89,20 +100,23 @@ export default function Header() {
 
           {/* Right: CTA + Theme + Mobile hamburger */}
           <div className="flex items-center gap-3 relative z-10 pointer-events-auto">
-            <Link
+            <MotionLink
               href="/contact"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={SPRING_HOVER}
               className="
                 hidden md:inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full text-sm font-semibold text-white
                 bg-gradient-to-r from-primary to-teal-400
                 shadow-[0_0_20px_rgba(45,212,191,0.35)] hover:shadow-[0_0_28px_rgba(45,212,191,0.55)]
-                transition-all duration-300 hover:scale-105 active:scale-95
+                transition-shadow duration-300
               "
             >
               Get a Quote
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </Link>
+            </MotionLink>
             <ThemeToggler />
             {/* Hamburger */}
             <button
@@ -150,7 +164,7 @@ export default function Header() {
               initial={{ x: "100%", opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0 }}
-              transition={SPRING}
+              transition={SPRING_SURFACE}
               className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-white dark:bg-gray-dark shadow-2xl flex flex-col lg:hidden"
             >
               <div className="flex items-center justify-between p-5 border-b border-black/5 dark:border-white/5">

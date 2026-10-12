@@ -3,9 +3,9 @@ import Privacy from "@/components/Privacy";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Tech Yugantar",
+  title: "Privacy Policy",
   description:
-    "Tech Yugantar's privacy policy explains how we collect, use, and protect your personal data, including advertising identifiers and reward transaction records, across our applications and services.",
+    "How Tech Yugantar, a software development company in Varanasi, collects, uses and protects personal data from website visitors, prospective clients and client projects.",
   robots: {
     index: true,
     follow: true,
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     siteName: "Tech Yugantar",
     title: "Privacy Policy | Tech Yugantar",
     description:
-      "How Tech Yugantar collects, uses, and protects your personal data across our applications and services.",
+      "How Tech Yugantar collects, uses and protects personal data on its website and in client engagements.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Tech Yugantar Privacy Policy",

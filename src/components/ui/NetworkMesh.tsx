@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { cx } from "./utils";
+import { SPRING_REVEAL, cx } from "./utils";
 
 /**
  * Infrastructure / pipeline flow illustration. Nodes pulse, wires draw
@@ -64,7 +64,7 @@ export default function NetworkMesh({ className = "" }: { className?: string }) 
             initial={reduce ? undefined : { scale: 0, opacity: 0 }}
             whileInView={reduce ? undefined : { scale: 1, opacity: 1 }}
             viewport={{ once: true, amount: 0.5 }}
-            transition={{ type: "spring", stiffness: 200, damping: 16, delay: 0.4 + i * 0.1 }}
+            transition={{ ...SPRING_REVEAL, delay: 0.4 + i * 0.1 }}
             style={{ transformOrigin: `${n.x}px ${n.y}px` }}
           >
             <circle cx={n.x} cy={n.y} r={n.r} fill="url(#nm-node)"

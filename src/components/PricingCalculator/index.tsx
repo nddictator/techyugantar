@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
+import { SPRING_HOVER } from "@/components/ui/utils";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const USD_RATE = 84;
@@ -278,7 +279,7 @@ export default function PricingCalculator() {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ type: "spring", stiffness: 300, damping: 28 }}
+              transition={SPRING_HOVER}
             >
 
               {/* ── Step 1: Project Type ───────────────────────────────── */}

@@ -5,6 +5,7 @@ import { motion } from "motion/react";
 import OfferList from "./OfferList";
 import { StaggerItem } from "@/components/motion";
 import type { EngagementModel } from "./engagementData";
+import { SPRING_HOVER } from "@/components/ui/utils";
 
 const EngagementBox = ({ model, featured = false }: { model: EngagementModel; featured?: boolean }) => {
   const { name, bestFor, howItWorks, includes } = model;
@@ -13,7 +14,7 @@ const EngagementBox = ({ model, featured = false }: { model: EngagementModel; fe
     <StaggerItem className="w-full">
       <motion.div
         whileHover={{ y: -6 }}
-        transition={{ type: "spring", stiffness: 300, damping: 24 }}
+        transition={SPRING_HOVER}
         className={`group relative z-10 flex h-full flex-col overflow-hidden rounded-2xl border p-8 backdrop-blur-xl transition-colors duration-300
           ${featured
             ? "border-primary/40 bg-white shadow-[0_20px_60px_rgba(45,212,191,0.15)] dark:bg-white/[0.05]"

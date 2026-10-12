@@ -5,6 +5,7 @@ import { projectsData } from "@/components/Projects/projectsData";
 import SingleProject from "@/components/Projects/SingleProject";
 import GlowingBadge from "@/components/ui/GlowingBadge";
 import { Reveal } from "@/components/motion";
+import { SPRING_HOVER, SPRING_REVEAL } from "@/components/ui/utils";
 
 const ALL = "All";
 
@@ -65,7 +66,7 @@ export default function ProjectsClient() {
                   {isActive && (
                     <motion.span
                       layoutId="filter-pill"
-                      transition={{ type: "spring" as const, stiffness: 380, damping: 32 }}
+                      transition={SPRING_HOVER}
                       className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-teal-400 shadow-[0_0_16px_rgba(45,212,191,0.4)]"
                     />
                   )}
@@ -89,7 +90,7 @@ export default function ProjectsClient() {
                 initial={{ opacity: 0, y: 24, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -12, scale: 0.97 }}
-                transition={{ type: "spring" as const, stiffness: 280, damping: 26, delay: i * 0.06 }}
+                transition={{ ...SPRING_REVEAL, delay: i * 0.06 }}
               >
                 <SingleProject project={project} />
               </motion.div>

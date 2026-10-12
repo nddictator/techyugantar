@@ -1,5 +1,3 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
-import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
@@ -48,13 +46,12 @@ export default function Home() {
   return (
     <>
       <ScrollUp />
+      {/* Story order: what we build → proof → who for → how → what clients say → engage */}
       <Hero />
       <Features />
-      <Domains />
-      <AboutSectionOne />
-      <AboutSectionTwo />
-      <Trust />
       <Projects />
+      <Domains />
+      <Trust />
       <Testimonials />
       <Pricing />
       <Contact />

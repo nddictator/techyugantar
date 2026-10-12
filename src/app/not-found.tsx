@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 export default function NotFound() {
   return (
@@ -16,7 +17,7 @@ export default function NotFound() {
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: "spring", stiffness: 80, damping: 18 }}
+          transition={SPRING_REVEAL}
           className="mb-6 select-none"
         >
           <span
@@ -37,7 +38,7 @@ export default function NotFound() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.15, type: "spring", stiffness: 80 }}
+          transition={{ ...SPRING_REVEAL, delay: 0.15 }}
           className="mb-6 text-6xl"
         >
           🔭
@@ -47,7 +48,7 @@ export default function NotFound() {
         <motion.h1
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 80 }}
+          transition={{ ...SPRING_REVEAL, delay: 0.2 }}
           className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl"
         >
           This page doesn&apos;t exist — yet.
@@ -56,7 +57,7 @@ export default function NotFound() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.28, type: "spring", stiffness: 80 }}
+          transition={{ ...SPRING_REVEAL, delay: 0.28 }}
           className="mb-10 max-w-lg text-base leading-relaxed text-gray-600 dark:text-zinc-400"
         >
           The page you&apos;re looking for may have moved, been renamed, or never existed.
@@ -67,7 +68,7 @@ export default function NotFound() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.36, type: "spring", stiffness: 80 }}
+          transition={{ ...SPRING_REVEAL, delay: 0.36 }}
           className="mb-14 flex flex-col gap-3 sm:flex-row"
         >
           <Link

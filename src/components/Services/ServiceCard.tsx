@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import type { ServiceItem } from "./servicesData";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 const ServiceCard = ({
   service,
@@ -18,12 +19,7 @@ const ServiceCard = ({
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{
-        type: "spring",
-        stiffness: 80,
-        damping: 20,
-        delay: (index % 3) * 0.1,
-      }}
+      transition={{ ...SPRING_REVEAL, delay: (index % 3) * 0.1, }}
     >
       <div
         className="

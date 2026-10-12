@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { Reveal } from "@/components/motion";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 const commsChannels = [
   {
@@ -109,7 +110,7 @@ export default function HowWeCommunicate() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
-              transition={{ type: "spring", stiffness: 80, damping: 20, delay: i * 0.07 }}
+              transition={{ ...SPRING_REVEAL, delay: i * 0.07 }}
               className="relative flex flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-white/[0.08] dark:bg-zinc-900/60"
             >
               {/* Badge */}
