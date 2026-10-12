@@ -48,8 +48,10 @@ const AboutPage = () => {
   return (
     <>
       <Breadcrumb
-        pageName="About Tech Yugantar"
-        description="We are a forward-thinking technology company dedicated to building robust, scalable software solutions that empower businesses to thrive in the digital age."
+        pageName="About"
+        headline="A small, senior team building software from Varanasi for the world."
+        highlight="from Varanasi for the world."
+        description="Tech Yugantar is a Varanasi-based software studio. We design, build and run web, mobile and AI products for startups and growing businesses."
       />
       <AboutSectionOne />
       <AboutSectionTwo />

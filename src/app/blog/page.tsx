@@ -58,8 +58,10 @@ const Blog = async ({
   return (
     <>
       <Breadcrumb
-        pageName="Tech Insights"
-        description="Deep dives into the world of software development, modern architecture, and the future of digital business. Knowledge shared by the Tech Yugantar team."
+        pageName="Blog"
+        headline="Notes from building software in production."
+        highlight="in production."
+        description="Field notes from our engineering team — the trade-offs, bugs and patterns we hit while shipping Django, Next.js and Flutter in production."
       />
 
       <section className="py-16 md:py-20 lg:py-24">

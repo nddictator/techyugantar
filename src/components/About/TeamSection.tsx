@@ -63,7 +63,6 @@ export default function TeamSection() {
               <div className="flex items-start gap-5">
                 <div className="relative">
                   <Avatar initials={member.avatar} bg={member.avatarBg} />
-                  <span className="absolute -bottom-1 -right-1 text-2xl">{member.emoji}</span>
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="mb-1 flex items-center justify-between gap-2">
@@ -131,7 +130,9 @@ export default function TeamSection() {
               transition={{ ...SPRING_REVEAL, delay: i * 0.07 }}
               className="flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm dark:border-white/[0.07] dark:bg-zinc-900/40"
             >
-              <span className="mt-0.5 text-2xl">{v.emoji}</span>
+              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-inset ring-primary/15">
+                <v.Icon aria-hidden className="h-[18px] w-[18px]" />
+              </span>
               <div>
                 <p className="mb-1 text-sm font-bold text-gray-900 dark:text-white">{v.title}</p>
                 <p className="text-sm leading-relaxed text-gray-600 dark:text-zinc-400">{v.desc}</p>

@@ -20,7 +20,9 @@ export default function ProjectsPage() {
   return (
     <>
       <Breadcrumb
-        pageName="Our Projects"
+        pageName="Projects"
+        headline="Real products for real clients — shipped and live."
+        highlight="shipped and live."
         description="Real products. Real clients. Shipped and live — from African EdTech platforms to India's top astrology apps."
       />
       <ProjectsClient />

@@ -31,7 +31,9 @@ const PricingPage = () => {
   return (
     <>
       <Breadcrumb
-        pageName="Pricing & Estimates"
+        pageName="Pricing"
+        headline="Know the ballpark before the first call."
+        highlight="before the first call."
         description="Get a ballpark estimate for your project in under 2 minutes — then book a call for the exact quote."
       />
 

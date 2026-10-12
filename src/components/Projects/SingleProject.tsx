@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { LuBookOpen } from "react-icons/lu";
 import { Project } from "@/types/project";
 import TiltCard from "@/components/ui/TiltCard";
 import GlowingBadge from "@/components/ui/GlowingBadge";
@@ -141,7 +142,7 @@ export default function SingleProject({
                 className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/20"
                 onClick={(e) => e.stopPropagation()}
               >
-                📖 Case Study
+                <LuBookOpen aria-hidden className="h-3.5 w-3.5" /> Case Study
               </Link>
             )}
             <Link

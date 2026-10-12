@@ -3,61 +3,55 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { projectsData } from "@/components/Projects/projectsData";
 import SingleProject from "@/components/Projects/SingleProject";
-import GlowingBadge from "@/components/ui/GlowingBadge";
 import { Reveal } from "@/components/motion";
 import { SPRING_HOVER, SPRING_REVEAL } from "@/components/ui/utils";
 
 const ALL = "All";
 
+// Curated filters — a handful of meaningful categories instead of every raw tag.
+const CATEGORIES: { label: string; tags: string[] }[] = [
+  { label: "Web platforms", tags: ["Next.js", "React", "Web App", "Full-stack", "Node.js"] },
+  { label: "AI", tags: ["AI"] },
+  { label: "EdTech", tags: ["Education"] },
+  { label: "Healthcare", tags: ["Healthcare", "Ayurveda"] },
+  { label: "Astrology", tags: ["Astrology", "Vedic"] },
+];
+
 export default function ProjectsClient() {
-  const allTags = useMemo(() => {
-    const set = new Set<string>();
-    projectsData.forEach((p) => p.tags.forEach((t) => set.add(t)));
-    return [ALL, ...Array.from(set)];
-  }, []);
+  const filters = useMemo(
+    () => [ALL, ...CATEGORIES.filter((c) => projectsData.some((p) => p.tags.some((t) => c.tags.includes(t)))).map((c) => c.label)],
+    [],
+  );
 
   const [active, setActive] = useState(ALL);
 
-  const filtered = useMemo(
-    () => (active === ALL ? projectsData : projectsData.filter((p) => p.tags.includes(active))),
-    [active],
-  );
+  const filtered = useMemo(() => {
+    if (active === ALL) return projectsData;
+    const cat = CATEGORIES.find((c) => c.label === active);
+    return projectsData.filter((p) => p.tags.some((t) => cat?.tags.includes(t)));
+  }, [active]);
 
   return (
-    <main className="relative min-h-screen pt-8 pb-24 overflow-hidden">
+    <main className="relative min-h-screen pt-12 pb-24 overflow-hidden">
       {/* Ambient blobs */}
       <div className="pointer-events-none absolute -top-60 left-1/3 w-[700px] h-[700px] rounded-full bg-primary/5 blur-3xl" />
       <div className="pointer-events-none absolute bottom-20 right-10 w-[500px] h-[500px] rounded-full bg-teal-400/5 blur-3xl" />
 
       <div className="container relative">
-        {/* ── Header ───────────────────────────────────────────────────────── */}
-        <Reveal>
-          <div className="text-center mb-14 pt-6">
-            <div className="inline-flex mb-5">
-              <GlowingBadge>Full Portfolio</GlowingBadge>
-            </div>
-            <h2 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white tracking-tight mb-5">
-              All{" "}
-              <span className="bg-gradient-to-r from-primary to-teal-400 bg-clip-text text-transparent">
-                Projects
-              </span>
-            </h2>
-            <p className="max-w-lg mx-auto text-body-color dark:text-body-color-dark text-lg leading-relaxed">
-              Every product we've designed, built, and shipped — from idea to production.
-            </p>
-          </div>
-        </Reveal>
-
         {/* ── Tag filter pills ─────────────────────────────────────────────── */}
         <Reveal delay={0.1}>
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {allTags.map((tag) => {
+          <div className="mb-10 flex flex-col gap-4 border-b border-black/[0.07] pb-6 md:flex-row md:items-center md:justify-between dark:border-white/[0.08]">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-gray-400 dark:text-zinc-500">
+            {String(filtered.length).padStart(2, "0")} {filtered.length === 1 ? "project" : "projects"}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {filters.map((tag) => {
               const isActive = tag === active;
               return (
                 <button
                   key={tag}
                   onClick={() => setActive(tag)}
-                  className={`relative px-5 py-2 rounded-full text-sm font-medium transition-all duration-300
+                  className={`relative px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-300
                     ${isActive
                       ? "text-white"
                       : "text-body-color dark:text-body-color-dark hover:text-black dark:hover:text-white border border-black/10 dark:border-white/10 hover:border-primary/50"
@@ -74,6 +68,7 @@ export default function ProjectsClient() {
                 </button>
               );
             })}
+          </div>
           </div>
         </Reveal>
 

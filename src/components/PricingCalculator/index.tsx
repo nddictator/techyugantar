@@ -3,20 +3,26 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { SPRING_HOVER } from "@/components/ui/utils";
+import type { IconType } from "react-icons";
+import {
+  LuBell, LuBot, LuBuilding2, LuCalculator, LuCalendar, LuChartColumn, LuCog, LuCreditCard, LuFolder, LuGlobe,
+  LuLanguages, LuLink, LuLock, LuMap, LuMonitor, LuPackage, LuPalette, LuRotateCcw, LuSend, LuShoppingCart,
+  LuSmartphone, LuStethoscope, LuTimer, LuUsers, LuWallet, LuZap,
+} from "react-icons/lu";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 const USD_RATE = 84;
 
 type Range = [number, number];
 
-const PROJECT_TYPES: { id: string; emoji: string; label: string; base: Range; weeks: Range }[] = [
-  { id: "landing",     emoji: "🌐", label: "Landing / Marketing Site",    base: [15000, 50000],    weeks: [2, 5]   },
-  { id: "webapp",      emoji: "💻", label: "Web Application / SaaS",      base: [80000, 200000],   weeks: [8, 16]  },
-  { id: "ecommerce",   emoji: "🛒", label: "E-Commerce Store",             base: [150000, 400000],  weeks: [10, 18] },
-  { id: "mobile",      emoji: "📱", label: "Mobile App (iOS + Android)",   base: [120000, 300000],  weeks: [10, 18] },
-  { id: "erp",         emoji: "⚙️", label: "ERP / Enterprise System",      base: [300000, 1000000], weeks: [16, 36] },
-  { id: "ai",          emoji: "🤖", label: "AI-Powered Product",           base: [200000, 800000],  weeks: [12, 24] },
-  { id: "specialized", emoji: "🏥", label: "Domain-Specific Software",     base: [150000, 500000],  weeks: [10, 22] },
+const PROJECT_TYPES: { id: string; Icon: IconType; label: string; base: Range; weeks: Range }[] = [
+  { id: "landing",     Icon: LuGlobe, label: "Landing / Marketing Site",    base: [15000, 50000],    weeks: [2, 5]   },
+  { id: "webapp",      Icon: LuMonitor, label: "Web Application / SaaS",      base: [80000, 200000],   weeks: [8, 16]  },
+  { id: "ecommerce",   Icon: LuShoppingCart, label: "E-Commerce Store",             base: [150000, 400000],  weeks: [10, 18] },
+  { id: "mobile",      Icon: LuSmartphone, label: "Mobile App (iOS + Android)",   base: [120000, 300000],  weeks: [10, 18] },
+  { id: "erp",         Icon: LuCog, label: "ERP / Enterprise System",      base: [300000, 1000000], weeks: [16, 36] },
+  { id: "ai",          Icon: LuBot, label: "AI-Powered Product",           base: [200000, 800000],  weeks: [12, 24] },
+  { id: "specialized", Icon: LuStethoscope, label: "Domain-Specific Software",     base: [150000, 500000],  weeks: [10, 22] },
 ];
 
 const PLATFORMS: { id: string; label: string; note: string; add: Range }[] = [
@@ -26,19 +32,19 @@ const PLATFORMS: { id: string; label: string; note: string; add: Range }[] = [
   { id: "admin",   label: "Admin / Back-office",note: "Internal management panel",    add: [20000, 45000]   },
 ];
 
-const FEATURES: { id: string; emoji: string; label: string; add: Range }[] = [
-  { id: "auth",        emoji: "🔐", label: "User Auth & Role Management",  add: [10000, 22000]  },
-  { id: "payment",     emoji: "💳", label: "Payment Gateway Integration",  add: [12000, 28000]  },
-  { id: "admin",       emoji: "📊", label: "Analytics & Reports Dashboard",add: [20000, 50000]  },
-  { id: "realtime",    emoji: "⚡", label: "Real-time (Chat / Notifications)", add: [25000, 60000] },
-  { id: "ai",          emoji: "🤖", label: "AI / LLM / Chatbot",           add: [50000, 150000] },
-  { id: "multilang",   emoji: "🌍", label: "Multi-language Support",       add: [12000, 30000]  },
-  { id: "multitenant", emoji: "🏢", label: "Multi-tenant Architecture",    add: [40000, 95000]  },
-  { id: "thirdparty",  emoji: "🔗", label: "Third-party API Integrations", add: [8000, 22000]   },
-  { id: "files",       emoji: "📁", label: "File & Document Management",   add: [12000, 28000]  },
-  { id: "maps",        emoji: "🗺️", label: "Maps & Geolocation",           add: [15000, 38000]  },
-  { id: "booking",     emoji: "📅", label: "Booking / Appointment System", add: [20000, 48000]  },
-  { id: "notifications", emoji: "🔔", label: "Push Notifications (Mobile)", add: [10000, 22000] },
+const FEATURES: { id: string; Icon: IconType; label: string; add: Range }[] = [
+  { id: "auth",        Icon: LuLock, label: "User Auth & Role Management",  add: [10000, 22000]  },
+  { id: "payment",     Icon: LuCreditCard, label: "Payment Gateway Integration",  add: [12000, 28000]  },
+  { id: "admin",       Icon: LuChartColumn, label: "Analytics & Reports Dashboard",add: [20000, 50000]  },
+  { id: "realtime",    Icon: LuZap, label: "Real-time (Chat / Notifications)", add: [25000, 60000] },
+  { id: "ai",          Icon: LuBot, label: "AI / LLM / Chatbot",           add: [50000, 150000] },
+  { id: "multilang",   Icon: LuLanguages, label: "Multi-language Support",       add: [12000, 30000]  },
+  { id: "multitenant", Icon: LuBuilding2, label: "Multi-tenant Architecture",    add: [40000, 95000]  },
+  { id: "thirdparty",  Icon: LuLink, label: "Third-party API Integrations", add: [8000, 22000]   },
+  { id: "files",       Icon: LuFolder, label: "File & Document Management",   add: [12000, 28000]  },
+  { id: "maps",        Icon: LuMap, label: "Maps & Geolocation",           add: [15000, 38000]  },
+  { id: "booking",     Icon: LuCalendar, label: "Booking / Appointment System", add: [20000, 48000]  },
+  { id: "notifications", Icon: LuBell, label: "Push Notifications (Mobile)", add: [10000, 22000] },
 ];
 
 const SCALE_OPTIONS = [
@@ -246,7 +252,7 @@ export default function PricingCalculator() {
         <div className="flex items-center justify-between border-b px-6 py-4
           border-gray-100 bg-gray-50 dark:border-white/[0.06] dark:bg-zinc-800/40">
           <div className="flex items-center gap-2">
-            <span className="text-lg">🧮</span>
+            <LuCalculator aria-hidden className="h-[18px] w-[18px] text-primary" />
             <span className="text-sm font-semibold text-gray-700 dark:text-zinc-300">
               Project Cost Estimator
             </span>
@@ -291,7 +297,7 @@ export default function PricingCalculator() {
                   <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                     {PROJECT_TYPES.map((p) => (
                       <SelectCard key={p.id} selected={projectType === p.id} onClick={() => setProject(p.id)}>
-                        <span className="mb-2 block text-2xl">{p.emoji}</span>
+                        <span className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-inset ring-primary/15"><p.Icon aria-hidden className="h-[18px] w-[18px]" /></span>
                         <span className="block text-sm font-semibold text-gray-800 dark:text-zinc-200">{p.label}</span>
                         <span className="mt-0.5 block text-xs text-gray-400 dark:text-zinc-500">
                           {fmt(p.base[0], currency)} – {fmt(p.base[1], currency)} base
@@ -344,7 +350,7 @@ export default function PricingCalculator() {
                     {FEATURES.map((f) => (
                       <SelectCard key={f.id} selected={features.includes(f.id)} onClick={() => toggleFeature(f.id)}>
                         <div className="flex items-start gap-3">
-                          <span className="text-xl leading-none">{f.emoji}</span>
+                          <f.Icon aria-hidden className="h-[18px] w-[18px] shrink-0 text-primary" />
                           <div>
                             <span className="block text-sm font-medium text-gray-800 dark:text-zinc-200">{f.label}</span>
                             <span className="mt-0.5 block text-[11px] text-primary">
@@ -420,8 +426,8 @@ export default function PricingCalculator() {
               {step === 5 && (
                 <div>
                   <div className="mb-8 text-center">
-                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-3xl">
-                      💰
+                    <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                      <LuWallet aria-hidden className="h-7 w-7" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white">Your Project Estimate</h3>
                     <p className="mt-1 text-sm text-gray-500 dark:text-zinc-400">
@@ -468,12 +474,12 @@ export default function PricingCalculator() {
                     border-gray-100 bg-gray-50 dark:border-white/[0.06] dark:bg-zinc-800/40">
                     <p className="mb-2 font-semibold text-gray-700 dark:text-zinc-300">Your selections</p>
                     <div className="space-y-1 text-gray-500 dark:text-zinc-400">
-                      <p>📦 {PROJECT_TYPES.find(p => p.id === projectType)?.label}</p>
-                      <p>🖥 Platforms: {platforms.join(", ")}</p>
-                      {features.length > 0 && <p>⚡ Features: {features.map(f => FEATURES.find(x => x.id === f)?.label).join(", ")}</p>}
-                      <p>👥 Scale: {SCALE_OPTIONS.find(s => s.id === scale)?.label}</p>
-                      <p>🎨 Design: {DESIGN_OPTIONS.find(d => d.id === design)?.label}</p>
-                      <p>⏱ Timeline: {TIMELINE_OPTIONS.find(t => t.id === timeline)?.label}</p>
+                      <p className="flex gap-2"><LuPackage aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-primary" />{PROJECT_TYPES.find(p => p.id === projectType)?.label}</p>
+                      <p className="flex gap-2"><LuMonitor aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Platforms: {platforms.join(", ")}</p>
+                      {features.length > 0 && <p className="flex gap-2"><LuZap aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Features: {features.map(f => FEATURES.find(x => x.id === f)?.label).join(", ")}</p>}
+                      <p className="flex gap-2"><LuUsers aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Scale: {SCALE_OPTIONS.find(s => s.id === scale)?.label}</p>
+                      <p className="flex gap-2"><LuPalette aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Design: {DESIGN_OPTIONS.find(d => d.id === design)?.label}</p>
+                      <p className="flex gap-2"><LuTimer aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-primary" />Timeline: {TIMELINE_OPTIONS.find(t => t.id === timeline)?.label}</p>
                     </div>
                   </div>
 
@@ -493,7 +499,7 @@ export default function PricingCalculator() {
                         hover:shadow-[0_0_32px_rgba(45,212,191,0.5)] hover:scale-105
                         transition-all duration-300"
                     >
-                      📩 Get Exact Quote
+                      <LuSend aria-hidden className="h-4 w-4" /> Get Exact Quote
                     </Link>
                     <button
                       type="button"
@@ -502,7 +508,7 @@ export default function PricingCalculator() {
                         border-gray-200 text-gray-600 hover:border-gray-300 hover:text-gray-900
                         dark:border-white/[0.1] dark:text-zinc-400 dark:hover:border-white/[0.2] dark:hover:text-white"
                     >
-                      🔄 Start Over
+                      <LuRotateCcw aria-hidden className="mr-1.5 inline h-4 w-4 -translate-y-px" /> Start Over
                     </button>
                   </div>
                 </div>

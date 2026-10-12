@@ -4,11 +4,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
 import { SPRING_REVEAL } from "@/components/ui/utils";
+import type { IconType } from "react-icons";
+import {
+  LuDatabase, LuFactory, LuGlobe, LuMonitor, LuPenLine, LuPointer, LuRocket, LuServer, LuShoppingCart, LuSmartphone,
+} from "react-icons/lu";
 
 type Stack = {
   id: string;
   label: string;
-  icon: string;
+  icon: IconType;
   description: string;
   tags: string[];
   color: string;
@@ -33,7 +37,7 @@ const useCases: Stack[] = [
   {
     id: "saas",
     label: "SaaS / Web App",
-    icon: "🌐",
+    icon: LuGlobe,
     description: "A scalable multi-tenant web application",
     tags: ["web", "saas"],
     color: "from-blue-500/20 to-cyan-500/10",
@@ -41,7 +45,7 @@ const useCases: Stack[] = [
   {
     id: "ecommerce",
     label: "E-commerce",
-    icon: "🛒",
+    icon: LuShoppingCart,
     description: "Online store with payments & inventory",
     tags: ["ecommerce", "web"],
     color: "from-orange-500/20 to-yellow-500/10",
@@ -49,7 +53,7 @@ const useCases: Stack[] = [
   {
     id: "mobile",
     label: "Mobile App",
-    icon: "📱",
+    icon: LuSmartphone,
     description: "iOS + Android app from a single codebase",
     tags: ["mobile", "app"],
     color: "from-purple-500/20 to-pink-500/10",
@@ -57,7 +61,7 @@ const useCases: Stack[] = [
   {
     id: "erp",
     label: "ERP / Internal Tool",
-    icon: "🏭",
+    icon: LuFactory,
     description: "Business operations & workflow automation",
     tags: ["erp", "enterprise"],
     color: "from-emerald-500/20 to-teal-500/10",
@@ -65,7 +69,7 @@ const useCases: Stack[] = [
   {
     id: "cms",
     label: "Content / Blog",
-    icon: "✍️",
+    icon: LuPenLine,
     description: "Content-heavy site or publishing platform",
     tags: ["cms", "blog", "seo"],
     color: "from-rose-500/20 to-pink-500/10",
@@ -73,7 +77,7 @@ const useCases: Stack[] = [
   {
     id: "api",
     label: "API / Microservices",
-    icon: "⚡",
+    icon: LuServer,
     description: "High-performance backend or data pipeline",
     tags: ["api", "backend"],
     color: "from-amber-500/20 to-orange-500/10",
@@ -195,14 +199,14 @@ const recommendations: Record<string, StackCombo> = {
 const StackCard = ({
   label,
   value,
-  icon,
+  icon: Icon,
 }: {
   label: string;
   value: string;
-  icon: string;
+  icon: IconType;
 }) => (
   <div className="flex items-start gap-3 rounded-xl border border-gray-100 bg-gray-50/80 px-4 py-3 dark:border-white/[0.06] dark:bg-white/[0.03]">
-    <span className="mt-0.5 text-base">{icon}</span>
+    <Icon aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
     <div className="min-w-0">
       <p className="mb-0.5 text-[11px] font-semibold uppercase tracking-widest text-primary/70">
         {label}
@@ -264,7 +268,7 @@ export default function StackRecommender() {
                 }
               `}
             >
-              <span className="text-3xl">{uc.icon}</span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/15"><uc.icon aria-hidden className="h-5 w-5" /></span>
               <span
                 className={`text-xs font-semibold leading-tight ${
                   selected === uc.id
@@ -324,13 +328,13 @@ export default function StackRecommender() {
 
                 {/* Stack breakdown */}
                 <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  <StackCard label="Frontend" value={rec.frontend} icon="🖥️" />
-                  <StackCard label="Backend" value={rec.backend} icon="⚙️" />
-                  <StackCard label="Database" value={rec.database} icon="🗄️" />
+                  <StackCard label="Frontend" value={rec.frontend} icon={LuMonitor} />
+                  <StackCard label="Backend" value={rec.backend} icon={LuServer} />
+                  <StackCard label="Database" value={rec.database} icon={LuDatabase} />
                   {rec.mobile && (
-                    <StackCard label="Mobile" value={rec.mobile} icon="📱" />
+                    <StackCard label="Mobile" value={rec.mobile} icon={LuSmartphone} />
                   )}
-                  <StackCard label="DevOps" value={rec.devops} icon="🚀" />
+                  <StackCard label="DevOps" value={rec.devops} icon={LuRocket} />
                 </div>
 
                 {/* Why this stack */}
@@ -383,7 +387,7 @@ export default function StackRecommender() {
               exit={{ opacity: 0 }}
               className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 bg-gray-50/50 py-16 text-center dark:border-white/[0.08] dark:bg-white/[0.02]"
             >
-              <span className="mb-3 text-5xl">👆</span>
+              <span className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary"><LuPointer aria-hidden className="h-6 w-6" /></span>
               <p className="text-base font-medium text-gray-500 dark:text-zinc-500">
                 Select what you&apos;re building above to see our recommendation
               </p>

@@ -55,6 +55,8 @@ const ServicesPage = () => {
 
       <Breadcrumb
         pageName="Services"
+        headline="Everything you need to ship — web, mobile, ERP and AI."
+        highlight="web, mobile, ERP and AI."
         description="Web, mobile, ERP, backend, AI, and the cloud infrastructure to run it all — here's what we build and the technologies behind it."
       />
       <Services />

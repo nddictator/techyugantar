@@ -153,9 +153,12 @@ export default async function CaseStudyPage({
       {/* ── Metrics ──────────────────────────────────────────────────── */}
       <section className="container relative mt-24">
         <Stagger className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-black/[0.07] bg-black/[0.07] dark:border-white/[0.08] dark:bg-white/[0.08] lg:grid-cols-4">
-          {cs.metrics.map((m) => (
+          {cs.metrics.map((m, i) => (
             <StaggerItem key={m.label} className="bg-cream p-6 dark:bg-obsidian md:p-8">
-              <span aria-hidden className="mb-4 block text-xl opacity-80">{m.icon}</span>
+              <span aria-hidden className="mb-5 flex items-center gap-2 font-mono text-[11px] text-gray-400 dark:text-zinc-500">
+                {String(i + 1).padStart(2, "0")}
+                <span className="h-px w-6 bg-primary/50" />
+              </span>
               <p className="font-display text-4xl font-semibold tracking-tight text-gray-900 dark:text-white md:text-5xl">
                 <span className="text-aurora">{m.value}</span>
               </p>

@@ -56,7 +56,9 @@ export default function HowWeWorkPage() {
       <JsonLdScript schema={processSchema} />
 
       <Breadcrumb
-        pageName="How We Work"
+        pageName="Process"
+        headline="From first message to production, with zero guesswork."
+        highlight="zero guesswork."
         description="8 steps. Zero guesswork. From your first message to a shipped, production-ready product — here's exactly how we work."
       />
 
