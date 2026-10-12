@@ -2,6 +2,7 @@
   "name": "techyugantar",
   "version": "2.2.1",
   "private": true,
+  "packageManager": "pnpm@10.28.0",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
