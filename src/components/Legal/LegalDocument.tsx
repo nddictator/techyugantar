@@ -160,7 +160,7 @@ export default function LegalDocument({ doc }: { doc: LegalDoc }) {
                       [&_a]:text-primary [&_a]:underline-offset-2 hover:[&_a]:underline
                       [&_h3]:mt-6 [&_h3]:font-semibold [&_h3]:text-gray-900 dark:[&_h3]:text-white
                       [&_li]:pl-1 [&_strong]:font-semibold [&_strong]:text-gray-900 dark:[&_strong]:text-zinc-100
-                      [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 marker:[&_ul]:text-primary"
+                      [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-5 [&_li]:marker:text-primary"
                   >
                     {s.body}
                   </div>

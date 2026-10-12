@@ -7,9 +7,12 @@ import HeroStack from "./HeroStack";
 import { SPRING_HOVER, SPRING_REVEAL } from "@/components/ui/utils";
 import type { IconType } from "react-icons";
 import {
-  SiAmazonwebservices, SiDjango, SiDocker, SiFlutter, SiGraphql, SiNextdotjs, SiNodedotjs,
-  SiOpenai, SiPostgresql, SiPython, SiReact, SiRedis, SiTailwindcss, SiTypescript,
+  SiDjango, SiDocker, SiFlutter, SiGraphql, SiNextdotjs, SiNodedotjs,
+  SiPostgresql, SiPython, SiReact, SiRedis, SiTailwindcss, SiTypescript,
 } from "react-icons/si";
+// Simple Icons dropped the AWS and OpenAI marks (react-icons ≥5.6), so these come from other sets.
+import { FaAws } from "react-icons/fa";
+import { RiOpenaiFill } from "react-icons/ri";
 
 const MotionLink = motion.create(Link);
 
@@ -21,9 +24,9 @@ const STACK: { label: string; Icon: IconType; brand?: string }[] = [
   { label: "Python",     Icon: SiPython,            brand: "#3776AB" },
   { label: "TypeScript", Icon: SiTypescript,        brand: "#3178C6" },
   { label: "Flutter",    Icon: SiFlutter,           brand: "#02569B" },
-  { label: "OpenAI",     Icon: SiOpenai },
+  { label: "OpenAI",     Icon: RiOpenaiFill },
   { label: "PostgreSQL", Icon: SiPostgresql,        brand: "#4169E1" },
-  { label: "AWS",        Icon: SiAmazonwebservices, brand: "#FF9900" },
+  { label: "AWS",        Icon: FaAws, brand: "#FF9900" },
   { label: "Docker",     Icon: SiDocker,            brand: "#2496ED" },
   { label: "GraphQL",    Icon: SiGraphql,           brand: "#E10098" },
   { label: "Redis",      Icon: SiRedis,             brand: "#DC382D" },
