@@ -5,22 +5,31 @@ import { motion } from "motion/react";
 import { Stagger, StaggerItem } from "@/components/motion";
 import TiltCard from "@/components/ui/TiltCard";
 import LiveChart from "@/components/ui/LiveChart";
+import { SPRING_HOVER, SPRING_REVEAL, SPRING_SURFACE } from "@/components/ui/utils";
+import type { IconType } from "react-icons";
+import {
+  SiAmazonwebservices, SiDjango, SiDocker, SiFlutter, SiGraphql, SiNextdotjs, SiNodedotjs,
+  SiOpenai, SiPostgresql, SiPython, SiReact, SiRedis, SiTailwindcss, SiTypescript,
+} from "react-icons/si";
+
+const MotionLink = motion.create(Link);
 
 // ── Tech stack ticker ─────────────────────────────────────────────────────────
-const STACK = [
-  { label: "Next.js",    icon: "⬛" },
-  { label: "React",      icon: "⚛️" },
-  { label: "Django",     icon: "🎸" },
-  { label: "Python",     icon: "🐍" },
-  { label: "TypeScript", icon: "🔷" },
-  { label: "Flutter",    icon: "💙" },
-  { label: "PostgreSQL", icon: "🐘" },
-  { label: "AWS",        icon: "☁️" },
-  { label: "Docker",     icon: "🐳" },
-  { label: "GraphQL",    icon: "🔴" },
-  { label: "Redis",      icon: "🔥" },
-  { label: "Tailwind",   icon: "💨" },
-  { label: "Node.js",    icon: "🟩" },
+const STACK: { label: string; Icon: IconType; brand?: string }[] = [
+  { label: "Next.js",    Icon: SiNextdotjs },
+  { label: "React",      Icon: SiReact,             brand: "#61DAFB" },
+  { label: "Django",     Icon: SiDjango,            brand: "#44B78B" },
+  { label: "Python",     Icon: SiPython,            brand: "#3776AB" },
+  { label: "TypeScript", Icon: SiTypescript,        brand: "#3178C6" },
+  { label: "Flutter",    Icon: SiFlutter,           brand: "#02569B" },
+  { label: "OpenAI",     Icon: SiOpenai },
+  { label: "PostgreSQL", Icon: SiPostgresql,        brand: "#4169E1" },
+  { label: "AWS",        Icon: SiAmazonwebservices, brand: "#FF9900" },
+  { label: "Docker",     Icon: SiDocker,            brand: "#2496ED" },
+  { label: "GraphQL",    Icon: SiGraphql,           brand: "#E10098" },
+  { label: "Redis",      Icon: SiRedis,             brand: "#DC382D" },
+  { label: "Tailwind",   Icon: SiTailwindcss,       brand: "#06B6D4" },
+  { label: "Node.js",    Icon: SiNodedotjs,         brand: "#5FA04E" },
 ];
 
 const AVATARS = [
@@ -31,7 +40,6 @@ const AVATARS = [
   { bg: "#F472B6", letter: "S" },
 ];
 
-const SPRING = { type: "spring" as const, stiffness: 55, damping: 20 };
 
 export default function Hero() {
   return (
@@ -117,29 +125,35 @@ export default function Hero() {
             {/* CTAs */}
             <StaggerItem>
               <div className="mb-12 flex flex-wrap items-center justify-center gap-4">
-                <Link
+                <MotionLink
                   href="/contact"
                   data-testid="hero-start-project-btn"
+                  whileHover={{ scale: 1.04, y: -1 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={SPRING_HOVER}
                   className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white
                     bg-gradient-to-b from-teal-400 to-teal-600
                     shadow-[0_0_30px_rgba(45,212,191,0.4)] hover:shadow-[0_0_48px_rgba(45,212,191,0.6)]
-                    hover:scale-[1.04] active:scale-95 transition-all duration-300"
+                    transition-shadow duration-300"
                 >
                   Start a Project
                   <svg className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
-                </Link>
+                </MotionLink>
 
-                <Link
+                <MotionLink
                   href="/projects"
                   data-testid="hero-view-work-btn"
-                  className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-300
+                  whileHover={{ scale: 1.03, y: -1 }}
+                  whileTap={{ scale: 0.97 }}
+                  transition={SPRING_HOVER}
+                  className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition-[color,background-color,box-shadow] duration-300
                     border border-black/[0.08] bg-white text-gray-700 hover:text-gray-900 shadow-sm hover:shadow
                     dark:border-white/[0.12] dark:bg-white/[0.05] dark:text-zinc-200 dark:hover:bg-white/[0.09] dark:hover:text-white dark:shadow-none"
                 >
                   View Our Work
-                </Link>
+                </MotionLink>
               </div>
             </StaggerItem>
 
@@ -175,7 +189,7 @@ export default function Hero() {
             className="relative w-full max-w-5xl"
             initial={{ opacity: 0, y: 80 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ ...SPRING, delay: 0.8 }}
+            transition={{ ...SPRING_SURFACE, delay: 0.8 }}
           >
             <TiltCard maxTilt={3} perspective={1800} className="w-full">
               <div className="overflow-hidden rounded-2xl border bg-white shadow-[0_30px_90px_rgba(0,0,0,0.14)]
@@ -211,7 +225,7 @@ export default function Hero() {
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.4, type: "spring", stiffness: 200, damping: 20 }}
+                    transition={{ ...SPRING_REVEAL, delay: 1.4 }}
                     className="absolute left-4 top-4 flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/80 px-3 py-2 shadow-lg backdrop-blur-md"
                   >
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-amber-400/20 text-amber-400">
@@ -229,7 +243,7 @@ export default function Hero() {
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1.6, type: "spring", stiffness: 200, damping: 20 }}
+                    transition={{ ...SPRING_REVEAL, delay: 1.6 }}
                     className="absolute right-4 top-4 flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/80 px-3 py-2 shadow-lg backdrop-blur-md"
                   >
                     <div className="flex h-6 w-6 items-center justify-center rounded-full bg-teal-500/20 text-teal-300">
@@ -250,7 +264,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: 1.8, type: "spring", stiffness: 140, damping: 18 }}
+              transition={{ ...SPRING_REVEAL, delay: 1.8 }}
               className="absolute -bottom-10 -left-4 hidden w-64 md:block lg:-left-16 motion-safe:animate-[float-soft_6s_ease-in-out_infinite]"
             >
               <LiveChart />
@@ -267,12 +281,23 @@ export default function Hero() {
       <div className="relative overflow-hidden border-y py-4 border-black/[0.05] bg-white dark:border-white/[0.05] dark:bg-gray-dark">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent dark:from-gray-dark" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent dark:from-gray-dark" />
-        <div className="flex animate-[ticker_32s_linear_infinite] whitespace-nowrap" style={{ width: "max-content" }}>
-          {[...STACK, ...STACK].map((item, i) => (
-            <div key={i} className="mx-6 flex items-center gap-2.5 text-sm font-medium text-gray-500 dark:text-zinc-500">
-              <span className="text-base leading-none">{item.icon}</span>
-              {item.label}
-              <span className="mx-2 h-1 w-1 rounded-full bg-gray-300 dark:bg-zinc-700" />
+        <div
+          className="flex whitespace-nowrap motion-safe:animate-[ticker_32s_linear_infinite] hover:[animation-play-state:paused]"
+          style={{ width: "max-content" }}
+        >
+          {[...STACK, ...STACK].map(({ label, Icon, brand }, i) => (
+            <div
+              key={i}
+              aria-hidden={i >= STACK.length || undefined}
+              style={brand ? { ["--brand" as string]: brand } : undefined}
+              className="group mx-7 flex items-center gap-2.5 text-sm font-medium tracking-tight text-gray-400 transition-colors duration-300
+                hover:text-gray-900 dark:text-zinc-500 dark:hover:text-white"
+            >
+              <Icon
+                aria-hidden
+                className="h-[18px] w-[18px] shrink-0 transition-colors duration-300 group-hover:text-[var(--brand,currentColor)]"
+              />
+              {label}
             </div>
           ))}
         </div>

@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import type { ReactNode } from "react";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 const tagMap = {
   div: motion.div,
@@ -41,7 +42,7 @@ export default function Reveal({
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
-      transition={{ type: "spring", stiffness: 90, damping: 18, delay }}
+      transition={{ ...SPRING_REVEAL, delay }}
     >
       {children}
     </Tag>

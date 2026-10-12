@@ -1,11 +1,9 @@
 /* ─────────────────────────────────────────────────────────────────────────
    Tech Yugantar — Design System
-   Fonts: Clash Display (display) + Satoshi (body) via Fontshare
+   Fonts: Clash Display (display) + Satoshi (body) via Fontshare — loaded
+   with preconnect + <link> in app/layout.tsx so they don't chain behind this file
    Palette: Aurora Teal + Signal Amber, dark-first with a warm light mode
    ───────────────────────────────────────────────────────────────────────── */
-@import url('https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700,900&display=swap')
-layer(base);
-
 @import 'tailwindcss';
 
 @custom-variant dark (&:is(.dark *));

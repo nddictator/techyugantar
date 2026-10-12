@@ -9,4 +9,14 @@ export { default as GlobeIllustration } from "./GlobeIllustration";
 export { default as LiveChart } from "./LiveChart";
 export { default as CodeEditor } from "./CodeEditor";
 export { default as NetworkMesh } from "./NetworkMesh";
-export { cx, EASE_OUT, SPRING_INTERACTION, SPRING_PHYSICS } from "./utils";
+export {
+  cx,
+  EASE_OUT,
+  SPRING_HOVER,
+  SPRING_REVEAL,
+  SPRING_SURFACE,
+  STAGGER,
+  REVEAL_Y,
+  SPRING_INTERACTION,
+  SPRING_PHYSICS,
+} from "./utils";

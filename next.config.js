@@ -7,6 +7,14 @@ const nextConfig = {
     "*.preview.emergentcf.cloud",
     "*.emergentagent.com",
   ],
+  // Leftover template routes (auth demo + a duplicate 404) — send visitors somewhere useful.
+  async redirects() {
+    return [
+      { source: "/signin", destination: "/contact", permanent: true },
+      { source: "/signup", destination: "/contact", permanent: true },
+      { source: "/error", destination: "/", permanent: true },
+    ];
+  },
   images: {
     remotePatterns: [
       {
