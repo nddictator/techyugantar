@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import { cx } from "./utils";
+import { SPRING_HOVER, SPRING_REVEAL, cx } from "./utils";
 
 /**
  * Self-drawing analytics illustration: an area/line trend that draws itself on
@@ -71,7 +71,7 @@ export default function LiveChart({ className = "" }: { className?: string }) {
             initial={reduce ? undefined : { height: 0, y: 140 }}
             whileInView={reduce ? undefined : { height: b.h, y: 140 - b.h }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ type: "spring", stiffness: 120, damping: 18, delay: 0.15 + i * 0.06 }}
+            transition={{ ...SPRING_REVEAL, delay: 0.15 + i * 0.06 }}
             height={reduce ? b.h : undefined}
             y={reduce ? 140 - b.h : undefined}
           />
@@ -107,7 +107,7 @@ export default function LiveChart({ className = "" }: { className?: string }) {
           initial={reduce ? undefined : { scale: 0, opacity: 0 }}
           whileInView={reduce ? undefined : { scale: 1, opacity: 1 }}
           viewport={{ once: true, amount: 0.4 }}
-          transition={{ type: "spring", stiffness: 300, damping: 15, delay: 1.5 }}
+          transition={{ ...SPRING_HOVER, delay: 1.5 }}
         />
       </svg>
     </div>

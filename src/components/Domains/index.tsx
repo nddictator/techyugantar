@@ -1,26 +1,32 @@
 "use client";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import type { IconType } from "react-icons";
+import {
+  LuBuilding2, LuCreditCard, LuDumbbell, LuFactory, LuGraduationCap, LuHandHeart, LuHardHat, LuHeartPulse,
+  LuMonitorPlay, LuPlane, LuRocket, LuScale, LuScissors, LuShoppingCart, LuSprout, LuStore, LuTruck, LuUtensils,
+} from "react-icons/lu";
 
 // ── Industry verticals ────────────────────────────────────────────────────────
-const DOMAINS = [
-  { emoji: "🏥", name: "Healthcare & MedTech",    note: "HIS, EMR, telemedicine" },
-  { emoji: "📚", name: "School & College ERP",     note: "LMS, fee mgmt, timetable" },
-  { emoji: "🛒", name: "E-Commerce Platforms",     note: "D2C stores, marketplaces" },
-  { emoji: "🚀", name: "Startups & SaaS",          note: "MVP, landing pages, SaaS" },
-  { emoji: "💆", name: "Salon & Spa Management",   note: "Bookings, POS, loyalty" },
-  { emoji: "🍽️", name: "Restaurant & Food Tech",   note: "Ordering, KDS, delivery" },
-  { emoji: "🏢", name: "Real Estate Portals",      note: "Listings, CRM, EMI tools" },
-  { emoji: "💳", name: "FinTech & Payments",       note: "Wallets, lending, ledgers" },
-  { emoji: "🚛", name: "Logistics & Transport",    note: "Fleet, tracking, routing" },
-  { emoji: "✈️", name: "Travel & Hospitality",     note: "Booking, hotels, tours" },
-  { emoji: "⚙️", name: "Manufacturing & Inventory",note: "ERP, WMS, QC systems" },
-  { emoji: "⚖️", name: "Legal & Professional",     note: "Case mgmt, billing, docs" },
-  { emoji: "🤝", name: "NGO & Non-Profit",         note: "Donations, volunteers" },
-  { emoji: "💪", name: "Fitness & Wellness",       note: "Gym mgmt, class booking" },
-  { emoji: "🌾", name: "AgriTech & FarmTech",      note: "Crop mgmt, market prices" },
-  { emoji: "🎓", name: "EdTech Platforms",         note: "Video courses, quizzes" },
-  { emoji: "🏗️", name: "Construction & Projects",  note: "Project tracking, BOQ" },
-  { emoji: "🛍️", name: "Retail & POS Systems",     note: "Billing, inventory, GST" },
+// `emoji` is kept for reference/other uses; the grid renders the line icon for a consistent look.
+const DOMAINS: { emoji: string; name: string; note: string; Icon: IconType }[] = [
+  { emoji: "🏥", name: "Healthcare & MedTech",    note: "HIS, EMR, telemedicine", Icon: LuHeartPulse },
+  { emoji: "📚", name: "School & College ERP",     note: "LMS, fee mgmt, timetable", Icon: LuGraduationCap },
+  { emoji: "🛒", name: "E-Commerce Platforms",     note: "D2C stores, marketplaces", Icon: LuShoppingCart },
+  { emoji: "🚀", name: "Startups & SaaS",          note: "MVP, landing pages, SaaS", Icon: LuRocket },
+  { emoji: "💆", name: "Salon & Spa Management",   note: "Bookings, POS, loyalty", Icon: LuScissors },
+  { emoji: "🍽️", name: "Restaurant & Food Tech",   note: "Ordering, KDS, delivery", Icon: LuUtensils },
+  { emoji: "🏢", name: "Real Estate Portals",      note: "Listings, CRM, EMI tools", Icon: LuBuilding2 },
+  { emoji: "💳", name: "FinTech & Payments",       note: "Wallets, lending, ledgers", Icon: LuCreditCard },
+  { emoji: "🚛", name: "Logistics & Transport",    note: "Fleet, tracking, routing", Icon: LuTruck },
+  { emoji: "✈️", name: "Travel & Hospitality",     note: "Booking, hotels, tours", Icon: LuPlane },
+  { emoji: "⚙️", name: "Manufacturing & Inventory",note: "ERP, WMS, QC systems", Icon: LuFactory },
+  { emoji: "⚖️", name: "Legal & Professional",     note: "Case mgmt, billing, docs", Icon: LuScale },
+  { emoji: "🤝", name: "NGO & Non-Profit",         note: "Donations, volunteers", Icon: LuHandHeart },
+  { emoji: "💪", name: "Fitness & Wellness",       note: "Gym mgmt, class booking", Icon: LuDumbbell },
+  { emoji: "🌾", name: "AgriTech & FarmTech",      note: "Crop mgmt, market prices", Icon: LuSprout },
+  { emoji: "🎓", name: "EdTech Platforms",         note: "Video courses, quizzes", Icon: LuMonitorPlay },
+  { emoji: "🏗️", name: "Construction & Projects",  note: "Project tracking, BOQ", Icon: LuHardHat },
+  { emoji: "🛍️", name: "Retail & POS Systems",     note: "Billing, inventory, GST", Icon: LuStore },
 ];
 
 export default function Domains() {
@@ -63,7 +69,7 @@ export default function Domains() {
 
         {/* Domain grid */}
         <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {DOMAINS.map(({ emoji, name, note }) => (
+          {DOMAINS.map(({ name, note, Icon }) => (
             <StaggerItem key={name} className="w-full">
               <div
                 className="
@@ -78,7 +84,9 @@ export default function Domains() {
                 {/* Hover top glow */}
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-t-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-                <span className="text-2xl leading-none">{emoji}</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-inset ring-primary/15 transition-colors duration-300 group-hover:bg-primary/15">
+                  <Icon aria-hidden className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                </span>
                 <div>
                   <p className="text-sm font-semibold leading-snug text-gray-800 dark:text-zinc-200">
                     {name}

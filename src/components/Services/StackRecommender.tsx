@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Link from "next/link";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 type Stack = {
   id: string;
@@ -226,7 +227,7 @@ export default function StackRecommender() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          transition={SPRING_REVEAL}
           className="mb-12 text-center"
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
@@ -250,7 +251,7 @@ export default function StackRecommender() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ type: "spring", stiffness: 90, damping: 20, delay: i * 0.06 }}
+              transition={{ ...SPRING_REVEAL, delay: i * 0.06 }}
               whileHover={{ y: -3 }}
               whileTap={{ scale: 0.97 }}
               className={`
@@ -285,7 +286,7 @@ export default function StackRecommender() {
               initial={{ opacity: 0, y: 24, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -16, scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 90, damping: 22 }}
+              transition={SPRING_REVEAL}
               className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl dark:border-white/[0.08] dark:bg-zinc-950/70"
             >
               {/* Gradient bg accent */}

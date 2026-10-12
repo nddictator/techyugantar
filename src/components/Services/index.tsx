@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import SectionTitle from "../Common/SectionTitle";
 import ServiceCard from "./ServiceCard";
 import servicesData from "./servicesData";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 const Services = () => {
   return (
@@ -19,7 +20,7 @@ const Services = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          transition={SPRING_REVEAL}
         >
           <SectionTitle
             title="What We Build"

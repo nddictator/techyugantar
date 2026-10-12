@@ -30,8 +30,16 @@ export default function Header() {
     <>
       {/* ── Desktop / Tablet header ──────────────────────────────────────── */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center px-4 pt-4 pointer-events-none">
+        {/* Scrolled scrim — keeps the floating logo/nav legible over page content */}
+        <div
+          aria-hidden
+          className={`absolute inset-x-0 top-0 h-28 transition-opacity duration-500
+            bg-gradient-to-b from-cream via-cream/75 to-transparent
+            dark:from-obsidian dark:via-obsidian/75 dark:to-transparent
+            ${scrolled ? "opacity-100" : "opacity-0"}`}
+        />
         {/* Outer row — full width so logo & CTA sit outside the pill */}
-        <div className="w-full max-w-7xl flex items-center justify-between pointer-events-auto">
+        <div className="relative w-full max-w-7xl flex items-center justify-between pointer-events-auto">
 
           {/* Logo */}
           <Link href="/" className="relative z-10 shrink-0">

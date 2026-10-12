@@ -8,6 +8,7 @@ import {
   FiMail, FiMapPin, FiArrowUpRight,
 } from "react-icons/fi";
 import { FaWhatsapp, FaFacebook } from "react-icons/fa";
+import { SPRING_HOVER } from "@/components/ui/utils";
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -149,7 +150,7 @@ export default function Footer() {
                   aria-label={label}
                   whileHover={{ y: -3, scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring" as const, stiffness: 400, damping: 20 }}
+                  transition={SPRING_HOVER}
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-zinc-400 backdrop-blur-sm transition-colors duration-200 hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
                 >
                   <Icon className="h-4 w-4" />

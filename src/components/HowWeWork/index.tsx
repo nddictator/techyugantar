@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "motion/react";
 import { Reveal } from "@/components/motion";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 // ── Process steps ─────────────────────────────────────────────────────────────
 const STEPS = [
@@ -109,7 +110,7 @@ function StepCard({
       initial={{ opacity: 0, x: align === "left" ? -40 : 40 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ type: "spring", stiffness: 60, damping: 18, delay: index * 0.08 }}
+      transition={{ ...SPRING_REVEAL, delay: index * 0.08 }}
       className={`group relative h-full rounded-2xl p-6 border transition-all duration-300
         bg-white shadow-sm hover:shadow-md
         dark:bg-zinc-900/60 dark:hover:bg-zinc-900
@@ -215,7 +216,7 @@ export default function HowWeWork() {
                         initial={{ opacity: 0, scale: 0.5 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15, delay: i * 0.08 + 0.05 }}
+                        transition={{ ...SPRING_REVEAL, delay: i * 0.08 + 0.05 }}
                         className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full
                           border-2 font-bold text-sm shadow-[0_0_16px_rgba(45,212,191,0.25)]
                           bg-white border-primary text-primary
@@ -251,7 +252,7 @@ export default function HowWeWork() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 200, damping: 15, delay: i * 0.06 }}
+                    transition={{ ...SPRING_REVEAL, delay: i * 0.06 }}
                     className="relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full
                       border-2 font-bold text-xs shadow-md
                       bg-white border-primary text-primary
@@ -265,7 +266,7 @@ export default function HowWeWork() {
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 70, damping: 18, delay: i * 0.06 + 0.05 }}
+                    transition={{ ...SPRING_REVEAL, delay: i * 0.06 + 0.05 }}
                     className="flex-1 rounded-2xl border p-5
                       bg-white border-gray-100 shadow-sm
                       dark:bg-zinc-900/60 dark:border-white/[0.07]"

@@ -1,8 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import caseStudiesData from "@/data/caseStudies";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion";
+import ParallaxShowcase from "@/components/CaseStudy/ParallaxShowcase";
 
 export function generateStaticParams() {
   return caseStudiesData.map((cs) => ({ slug: cs.slug }));
@@ -30,13 +31,26 @@ export async function generateMetadata({
   };
 }
 
-function MetricCard({ label, value, icon }: { label: string; value: string; icon: string }) {
+const hostOf = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
+
+/** Numbered editorial chapter: sticky label on the left, prose on the right. */
+function Chapter({ index, label, title, children }: { index: string; label: string; title: string; children: React.ReactNode }) {
   return (
-    <div className="flex flex-col items-center gap-1 rounded-2xl border border-gray-200 bg-white px-6 py-5 text-center shadow-sm dark:border-white/[0.08] dark:bg-zinc-900">
-      <span className="mb-1 text-3xl">{icon}</span>
-      <span className="text-2xl font-extrabold text-primary">{value}</span>
-      <span className="text-xs font-medium text-gray-500 dark:text-zinc-500">{label}</span>
-    </div>
+    <Reveal>
+      <div className="grid gap-6 border-t border-black/[0.07] py-14 dark:border-white/[0.08] lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-4">
+          <div className="lg:sticky lg:top-28">
+            <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-primary">
+              {index} — {label}
+            </p>
+            <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-gray-900 dark:text-white">
+              {title}
+            </h2>
+          </div>
+        </div>
+        <div className="lg:col-span-8">{children}</div>
+      </div>
+    </Reveal>
   );
 }
 
@@ -46,196 +60,214 @@ export default async function CaseStudyPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const cs = caseStudiesData.find((c) => c.slug === slug);
-  if (!cs) notFound();
+  const index = caseStudiesData.findIndex((c) => c.slug === slug);
+  if (index === -1) notFound();
+  const cs = caseStudiesData[index];
+  const next = caseStudiesData[(index + 1) % caseStudiesData.length];
+
+  const meta = [
+    { k: "Client", v: cs.client },
+    { k: "Industry", v: cs.industry },
+    { k: "Timeline", v: cs.duration },
+    { k: "Team", v: cs.teamSize },
+  ];
 
   return (
-    <main className="pt-[150px] pb-20">
-      <div className="container">
-        {/* Back link */}
+    <main className="relative overflow-hidden pb-24">
+      <div aria-hidden className="pointer-events-none absolute -top-48 right-[-10%] h-[620px] w-[820px] rounded-full blur-[130px]"
+        style={{ background: "radial-gradient(ellipse at center, rgba(45,212,191,0.16), transparent 70%)" }} />
+
+      {/* ── Editorial hero ───────────────────────────────────────────── */}
+      <section className="container relative pt-36 md:pt-44">
         <Link
           href="/projects"
-          className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-primary dark:text-zinc-400"
+          className="group mb-10 inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-primary dark:text-zinc-400"
         >
-          ← Back to Projects
+          <span className="transition-transform duration-300 group-hover:-translate-x-1">←</span> All projects
         </Link>
 
-        {/* ── Hero ─────────────────────────────────────────────────────────── */}
-        <div className="mb-12 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            {/* Tags */}
-            <div className="mb-4 flex flex-wrap gap-2">
-              {cs.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <h1 className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 dark:text-white sm:text-4xl lg:text-[42px]">
-              {cs.title}
-            </h1>
-            <p className="mb-6 text-lg leading-relaxed text-gray-600 dark:text-zinc-400">
-              {cs.summary}
+        <Stagger immediate>
+          <StaggerItem>
+            <p className="mb-6 font-mono text-xs uppercase tracking-[0.2em] text-primary">
+              Case study · {cs.client}
             </p>
+          </StaggerItem>
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <StaggerItem className="lg:col-span-8">
+              <h1 className="font-display text-4xl font-semibold leading-[1.03] tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-[4.25rem]">
+                {cs.title}
+              </h1>
+            </StaggerItem>
+            <StaggerItem className="lg:col-span-4">
+              <p className="text-base leading-relaxed text-gray-500 dark:text-zinc-400 md:text-lg">{cs.summary}</p>
+            </StaggerItem>
+          </div>
 
-            {/* Meta row */}
-            <div className="flex flex-wrap gap-5 text-sm text-gray-500 dark:text-zinc-500">
-              <span>🏢 <strong className="text-gray-700 dark:text-zinc-300">{cs.client}</strong></span>
-              <span>🏷️ <strong className="text-gray-700 dark:text-zinc-300">{cs.industry}</strong></span>
-              <span>⏱️ <strong className="text-gray-700 dark:text-zinc-300">{cs.duration}</strong></span>
-              <span>👥 <strong className="text-gray-700 dark:text-zinc-300">{cs.teamSize}</strong></span>
-            </div>
+          <StaggerItem>
+            <dl className="mt-12 grid grid-cols-2 border-y border-black/[0.07] dark:border-white/[0.08] md:grid-cols-4">
+              {meta.map((m, i) => (
+                <div
+                  key={m.k}
+                  className={`py-5 pr-4 ${i > 0 ? "md:border-l md:pl-6" : ""} ${i % 2 === 1 ? "border-l pl-4 md:pl-6" : ""} border-black/[0.07] dark:border-white/[0.08]`}
+                >
+                  <dt className="mb-1 text-xs uppercase tracking-wider text-gray-400 dark:text-zinc-500">{m.k}</dt>
+                  <dd className="text-sm font-medium text-gray-900 dark:text-zinc-100">{m.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </StaggerItem>
 
-            <div className="mt-6 flex gap-3">
+          <StaggerItem>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href={cs.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90"
+                className="inline-flex items-center gap-2 rounded-full bg-gradient-to-b from-teal-400 to-teal-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_rgba(45,212,191,0.35)] transition-shadow duration-300 hover:shadow-[0_0_44px_rgba(45,212,191,0.55)]"
               >
-                View Live Site ↗
+                Visit live site ↗
               </Link>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition-all hover:border-primary/40 hover:text-primary dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300"
+                className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition-colors hover:text-gray-900 dark:border-white/[0.12] dark:bg-white/[0.05] dark:text-zinc-200 dark:hover:text-white"
               >
-                Build Something Similar
+                Build something similar
               </Link>
-            </div>
-          </div>
-
-          {/* Project image */}
-          <div className="relative aspect-video overflow-hidden rounded-2xl border border-gray-200 shadow-xl dark:border-white/[0.08]">
-            <Image
-              src={cs.image}
-              alt={cs.title}
-              fill
-              className="object-cover object-top"
-              priority
-            />
-          </div>
-        </div>
-
-        {/* ── Metrics ──────────────────────────────────────────────────────── */}
-        <div className="mb-16 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {cs.metrics.map((m) => (
-            <MetricCard key={m.label} {...m} />
-          ))}
-        </div>
-
-        {/* ── Story ────────────────────────────────────────────────────────── */}
-        <div className="mb-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Challenge */}
-          <div className="rounded-2xl border border-red-100 bg-red-50/50 p-7 dark:border-red-500/10 dark:bg-red-500/5">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="text-2xl">🎯</span>
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">The Challenge</h2>
-            </div>
-            <p className="text-sm leading-relaxed text-gray-700 dark:text-zinc-400">{cs.challenge}</p>
-          </div>
-
-          {/* Solution */}
-          <div className="rounded-2xl border border-blue-100 bg-blue-50/50 p-7 dark:border-blue-500/10 dark:bg-blue-500/5">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="text-2xl">⚙️</span>
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">Our Solution</h2>
-            </div>
-            <p className="text-sm leading-relaxed text-gray-700 dark:text-zinc-400">{cs.solution}</p>
-          </div>
-
-          {/* Outcome */}
-          <div className="rounded-2xl border border-emerald-100 bg-emerald-50/50 p-7 dark:border-emerald-500/10 dark:bg-emerald-500/5">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="text-2xl">📈</span>
-              <h2 className="text-lg font-bold text-gray-900 dark:text-white">The Outcome</h2>
-            </div>
-            <p className="text-sm leading-relaxed text-gray-700 dark:text-zinc-400">{cs.outcome}</p>
-          </div>
-        </div>
-
-        {/* ── Tech Stack ───────────────────────────────────────────────────── */}
-        <div className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Tech Stack</h2>
-          <div className="overflow-hidden rounded-2xl border border-gray-200 dark:border-white/[0.08]">
-            <table className="w-full text-sm">
-              <tbody>
-                {cs.techStack.map((row, i) => (
-                  <tr
-                    key={row.layer}
-                    className={`${
-                      i % 2 === 0
-                        ? "bg-white dark:bg-zinc-900"
-                        : "bg-gray-50/80 dark:bg-zinc-900/50"
-                    }`}
-                  >
-                    <td className="w-32 px-6 py-4 font-semibold text-primary">{row.layer}</td>
-                    <td className="px-6 py-4 text-gray-700 dark:text-zinc-300">{row.tech}</td>
-                  </tr>
+              <div className="ml-auto hidden flex-wrap gap-2 md:flex">
+                {cs.tags.map((tag) => (
+                  <span key={tag} className="rounded-full border border-black/[0.07] px-3 py-1 text-xs text-gray-500 dark:border-white/[0.08] dark:text-zinc-400">
+                    {tag}
+                  </span>
                 ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+              </div>
+            </div>
+          </StaggerItem>
+        </Stagger>
+      </section>
 
-        {/* ── Features ─────────────────────────────────────────────────────── */}
-        <div className="mb-16">
-          <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">What We Built</h2>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      {/* ── Showcase ─────────────────────────────────────────────────── */}
+      <section className="container relative mt-16">
+        <ParallaxShowcase src={cs.image} alt={cs.title} url={hostOf(cs.liveUrl)} />
+      </section>
+
+      {/* ── Metrics ──────────────────────────────────────────────────── */}
+      <section className="container relative mt-24">
+        <Stagger className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-black/[0.07] bg-black/[0.07] dark:border-white/[0.08] dark:bg-white/[0.08] lg:grid-cols-4">
+          {cs.metrics.map((m) => (
+            <StaggerItem key={m.label} className="bg-cream p-6 dark:bg-obsidian md:p-8">
+              <span aria-hidden className="mb-4 block text-xl opacity-80">{m.icon}</span>
+              <p className="font-display text-4xl font-semibold tracking-tight text-gray-900 dark:text-white md:text-5xl">
+                <span className="text-aurora">{m.value}</span>
+              </p>
+              <p className="mt-2 text-sm text-gray-500 dark:text-zinc-400">{m.label}</p>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </section>
+
+      {/* ── Story chapters ───────────────────────────────────────────── */}
+      <section className="container relative mt-24">
+        <Chapter index="01" label="Challenge" title="The problem worth solving">
+          <p className="text-lg leading-[1.8] text-gray-600 first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-6xl first-letter:font-semibold first-letter:leading-[0.9] first-letter:text-primary dark:text-zinc-300">
+            {cs.challenge}
+          </p>
+        </Chapter>
+
+        <Chapter index="02" label="Solution" title="What we designed and built">
+          <p className="text-lg leading-[1.8] text-gray-600 dark:text-zinc-300">{cs.solution}</p>
+          <Stagger className="mt-10 grid gap-3 sm:grid-cols-2">
             {cs.features.map((feat) => (
-              <div
-                key={feat}
-                className="flex items-start gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4 dark:border-white/[0.07] dark:bg-zinc-900/60"
-              >
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary">✓</span>
-                <p className="text-sm text-gray-700 dark:text-zinc-300">{feat}</p>
+              <StaggerItem key={feat}>
+                <div className="flex h-full items-start gap-3 rounded-xl border border-black/[0.06] bg-white/70 px-4 py-3.5 backdrop-blur-xl dark:border-white/[0.07] dark:bg-white/[0.03]">
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[10px] font-bold text-primary">✓</span>
+                  <p className="text-sm text-gray-700 dark:text-zinc-300">{feat}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
+        </Chapter>
+
+        <Chapter index="03" label="Stack" title="Under the hood">
+          <dl className="divide-y divide-black/[0.06] dark:divide-white/[0.07]">
+            {cs.techStack.map((row) => (
+              <div key={row.layer} className="grid gap-1 py-4 sm:grid-cols-[140px_1fr] sm:gap-6">
+                <dt className="font-mono text-xs uppercase tracking-wider text-primary sm:pt-0.5">{row.layer}</dt>
+                <dd className="text-[15px] text-gray-700 dark:text-zinc-300">{row.tech}</dd>
               </div>
             ))}
-          </div>
-        </div>
+          </dl>
+        </Chapter>
 
-        {/* ── Testimonial ──────────────────────────────────────────────────── */}
-        {cs.testimonial && (
-          <div className="mb-16 relative overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-8 dark:border-primary/15 dark:bg-primary/5" data-testid="case-study-testimonial">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
-            <p className="mb-3 text-5xl font-serif leading-none text-primary/20">&ldquo;</p>
-            <p className="mb-6 text-lg leading-relaxed font-medium text-gray-800 dark:text-zinc-200 italic">
-              {cs.testimonial.quote}
-            </p>
-            <div>
-              <p className="font-bold text-gray-900 dark:text-white">{cs.testimonial.name}</p>
-              <p className="text-sm text-gray-500 dark:text-zinc-500">{cs.testimonial.role}</p>
+        <Chapter index="04" label="Outcome" title="What changed">
+          <p className="text-lg leading-[1.8] text-gray-600 dark:text-zinc-300">{cs.outcome}</p>
+        </Chapter>
+      </section>
+
+      {/* ── Pull quote ───────────────────────────────────────────────── */}
+      {cs.testimonial && (
+        <section className="container relative mt-10" data-testid="case-study-testimonial">
+          <Reveal>
+            <figure className="relative overflow-hidden rounded-3xl border border-primary/20 bg-primary/[0.04] px-6 py-14 text-center md:px-16 dark:bg-primary/[0.06]">
+              <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
+              <span aria-hidden className="font-display block text-7xl leading-none text-primary/30">&ldquo;</span>
+              <blockquote className="font-display mx-auto mt-2 max-w-3xl text-2xl font-medium leading-snug tracking-tight text-gray-900 dark:text-white md:text-3xl">
+                {cs.testimonial.quote}
+              </blockquote>
+              <figcaption className="mt-8 text-sm">
+                <span className="font-semibold text-gray-900 dark:text-white">{cs.testimonial.name}</span>
+                <span className="text-gray-500 dark:text-zinc-400"> · {cs.testimonial.role}</span>
+              </figcaption>
+            </figure>
+          </Reveal>
+        </section>
+      )}
+
+      {/* ── Next case study ──────────────────────────────────────────── */}
+      <section className="container relative mt-24">
+        <Reveal>
+          <Link
+            href={`/case-study/${next.slug}`}
+            className="group grid items-center gap-8 rounded-3xl border border-black/[0.07] p-6 transition-colors duration-300 hover:border-primary/40 md:grid-cols-12 md:p-10 dark:border-white/[0.08]"
+          >
+            <div className="md:col-span-7">
+              <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-gray-400 dark:text-zinc-500">Next case study</p>
+              <p className="font-display text-3xl font-semibold leading-tight tracking-tight text-gray-900 transition-colors group-hover:text-primary dark:text-white md:text-4xl">
+                {next.title}
+              </p>
+              <p className="mt-3 text-sm text-gray-500 dark:text-zinc-400">{next.client} · {next.industry}</p>
             </div>
-          </div>
-        )}
+            <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-black/[0.06] md:col-span-5 dark:border-white/[0.08]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={next.image}
+                alt=""
+                loading="lazy"
+                className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+            </div>
+          </Link>
+        </Reveal>
+      </section>
 
-        {/* ── CTA ──────────────────────────────────────────────────────────── */}
-        <div className="rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm dark:border-white/[0.08] dark:bg-zinc-900 md:p-12">
-          <h2 className="mb-3 text-2xl font-bold text-gray-900 dark:text-white md:text-3xl">
-            Want a similar result for your business?
-          </h2>
-          <p className="mb-8 text-gray-600 dark:text-zinc-400">
-            Tell us your idea — we&apos;ll scope it, plan it, and build it.
-          </p>
-          <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+      {/* ── CTA ──────────────────────────────────────────────────────── */}
+      <section className="container relative mt-16">
+        <Reveal>
+          <div className="flex flex-col items-start justify-between gap-6 border-t border-black/[0.07] pt-12 md:flex-row md:items-center dark:border-white/[0.08]">
+            <div>
+              <h2 className="font-display text-3xl font-semibold tracking-tight text-gray-900 dark:text-white md:text-4xl">
+                Want a similar result for your business?
+              </h2>
+              <p className="mt-2 text-gray-500 dark:text-zinc-400">Tell us your idea — we&apos;ll scope it, plan it, and build it.</p>
+            </div>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-primary/25 transition-all hover:bg-primary/90"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-gradient-to-b from-teal-400 to-teal-600 px-8 py-4 text-sm font-semibold text-white shadow-[0_0_30px_rgba(45,212,191,0.4)] transition-shadow duration-300 hover:shadow-[0_0_48px_rgba(45,212,191,0.6)]"
             >
               Start a Project →
             </Link>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 rounded-xl border border-gray-200 bg-white px-8 py-4 text-sm font-semibold text-gray-700 transition-all hover:border-primary/40 hover:text-primary dark:border-white/10 dark:bg-zinc-900 dark:text-zinc-300"
-            >
-              View All Projects
-            </Link>
           </div>
-        </div>
-      </div>
+        </Reveal>
+      </section>
     </main>
   );
 }
