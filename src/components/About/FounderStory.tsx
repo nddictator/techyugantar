@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { FiMapPin, FiStar } from "react-icons/fi";
 import { Reveal } from "@/components/motion";
 import { SPRING_REVEAL } from "@/components/ui/utils";
 
@@ -59,7 +60,7 @@ export default function FounderStory() {
             </h3>
             <p className="mb-1 text-sm font-semibold text-primary">{founderStory.title}</p>
             <p className="mb-5 text-xs text-gray-500 dark:text-zinc-500">
-              📍 {founderStory.location}
+              <FiMapPin aria-hidden className="mr-1 inline h-3.5 w-3.5 -translate-y-px" />{founderStory.location}
             </p>
 
             {/* Stats */}
@@ -77,7 +78,7 @@ export default function FounderStory() {
                 <p className="text-xs text-gray-500 dark:text-zinc-500">Countries</p>
               </div>
               <div className="rounded-lg bg-gray-50 p-3 dark:bg-white/[0.04]">
-                <p className="text-lg font-bold text-primary">4.9★</p>
+                <p className="text-lg font-bold text-primary">4.9<FiStar aria-hidden className="ml-0.5 inline h-3.5 w-3.5 -translate-y-0.5 fill-current" /></p>
                 <p className="text-xs text-gray-500 dark:text-zinc-500">Avg. rating</p>
               </div>
             </div>

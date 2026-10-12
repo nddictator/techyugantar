@@ -150,16 +150,18 @@ export default function Hero() {
 
             {/* Headline */}
             <StaggerItem>
-              <h1 className="font-display mb-7 text-[2.75rem] font-semibold leading-[1.02] tracking-tight text-gray-900 dark:text-white sm:text-6xl xl:text-[4.75rem]">
-                <span className="sr-only">We build web apps, mobile apps, AI systems and ERP platforms that ship.</span>
-                <span aria-hidden>
-                  We build
-                  <br />
-                  <RotatingWord />
-                  <br />
-                  that ship.
-                </span>
-              </h1>
+              {/* Crawlers and screen readers get one clean sentence; the animated version is decorative. */}
+              <h1 className="sr-only">We build web apps, mobile apps, AI systems and ERP platforms that ship.</h1>
+              <p
+                aria-hidden
+                className="font-display mb-7 text-[2.75rem] font-semibold leading-[1.02] tracking-tight text-gray-900 dark:text-white sm:text-6xl xl:text-[4.75rem]"
+              >
+                We build
+                <br />
+                <RotatingWord />
+                <br />
+                that ship.
+              </p>
             </StaggerItem>
 
             {/* Subtext */}

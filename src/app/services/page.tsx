@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     canonical: "https://techyugantar.in/services",
   },
   openGraph: {
+    images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Tech Yugantar" }],
     title: "Services | Tech Yugantar",
     description:
       "Web, mobile, ERP, backend, AI, and cloud/DevOps — the full stack of software services Tech Yugantar delivers.",
@@ -54,6 +55,8 @@ const ServicesPage = () => {
 
       <Breadcrumb
         pageName="Services"
+        headline="Everything you need to ship — web, mobile, ERP and AI."
+        highlight="web, mobile, ERP and AI."
         description="Web, mobile, ERP, backend, AI, and the cloud infrastructure to run it all — here's what we build and the technologies behind it."
       />
       <Services />

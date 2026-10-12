@@ -2,12 +2,15 @@
 import { motion } from "motion/react";
 import { Reveal } from "@/components/motion";
 import { SPRING_REVEAL } from "@/components/ui/utils";
+import {
+  LuBlocks, LuClipboardList, LuCode, LuFlaskConical, LuPalette, LuPhoneCall, LuRefreshCw, LuRocket,
+} from "react-icons/lu";
 
 // ── Process steps ─────────────────────────────────────────────────────────────
 const STEPS = [
   {
     n: "01",
-    emoji: "📞",
+    Icon: LuPhoneCall,
     title: "Discovery Call",
     summary: "We listen before we build.",
     desc: "You share your idea, goals, and constraints. We ask the right questions to understand scope, timeline, and budget — no templates, no generic forms.",
@@ -18,7 +21,7 @@ const STEPS = [
   },
   {
     n: "02",
-    emoji: "📋",
+    Icon: LuClipboardList,
     title: "Requirement Analysis",
     summary: "Everything documented — nothing assumed.",
     desc: "We prepare a detailed SRS covering user stories, functional requirements, API contracts, and edge cases. You sign off before development begins.",
@@ -29,7 +32,7 @@ const STEPS = [
   },
   {
     n: "03",
-    emoji: "🏗️",
+    Icon: LuBlocks,
     title: "Architecture & Planning",
     summary: "Design the system before writing a line of code.",
     desc: "Tech stack selection, database schema, system architecture, and a full sprint roadmap with milestones. You see the blueprint before work starts.",
@@ -40,7 +43,7 @@ const STEPS = [
   },
   {
     n: "04",
-    emoji: "🎨",
+    Icon: LuPalette,
     title: "UI / UX Design",
     summary: "From wireframe to pixel-perfect Figma — your approval first.",
     desc: "We design every screen, user flow, and component in Figma. You review and approve before development. Zero surprises in the final product.",
@@ -51,7 +54,7 @@ const STEPS = [
   },
   {
     n: "05",
-    emoji: "⚡",
+    Icon: LuCode,
     title: "Agile Development",
     summary: "Two-week sprints. Real demos. Full visibility.",
     desc: "We ship working features every sprint. You attend demo calls, give feedback, and see your product come to life — not just progress reports in a doc.",
@@ -62,7 +65,7 @@ const STEPS = [
   },
   {
     n: "06",
-    emoji: "🧪",
+    Icon: LuFlaskConical,
     title: "Quality Assurance",
     summary: "Automated + manual testing across every surface.",
     desc: "Unit tests, integration tests, cross-browser and device testing, and a full QA round before any build reaches production. We find bugs so your users don't.",
@@ -73,7 +76,7 @@ const STEPS = [
   },
   {
     n: "07",
-    emoji: "🚀",
+    Icon: LuRocket,
     title: "Deployment & Launch",
     summary: "Zero-downtime launch with full monitoring.",
     desc: "CI/CD pipeline, staging environment validation, then production launch. We set up error tracking, uptime monitoring, and make sure everything runs smoothly.",
@@ -84,7 +87,7 @@ const STEPS = [
   },
   {
     n: "08",
-    emoji: "🔄",
+    Icon: LuRefreshCw,
     title: "Support & Growth",
     summary: "30-day warranty. Then grow together.",
     desc: "30 days of post-launch support included. After that — ongoing retainer sprints, feature additions, or performance scaling as your product grows.",
@@ -127,8 +130,8 @@ function StepCard({
 
       <div className="relative">
         {/* Emoji */}
-        <div className={`mb-3 text-3xl ${align === "right" ? "" : "md:ml-auto md:mr-0 w-fit"}`}>
-          {step.emoji}
+        <div className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/20 ${align === "right" ? "" : "md:ml-auto md:mr-0"}`}>
+          <step.Icon aria-hidden className="h-5 w-5" />
         </div>
 
         {/* Time tag */}
@@ -271,7 +274,9 @@ export default function HowWeWork() {
                       bg-white border-gray-100 shadow-sm
                       dark:bg-zinc-900/60 dark:border-white/[0.07]"
                   >
-                    <div className="mb-2 text-2xl">{step.emoji}</div>
+                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                      <step.Icon aria-hidden className="h-[18px] w-[18px]" />
+                    </div>
                     <span className={`mb-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${step.accent}`}>
                       {step.tag}
                     </span>

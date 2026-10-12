@@ -7,7 +7,7 @@ import Contact from "@/components/Contact";
 import JsonLdScript from "@/components/JsonLdScript";
 
 export const metadata: Metadata = {
-  title: "How We Work | Project Delivery Process — Tech Yugantar",
+  title: "How We Work — Project Delivery Process",
   description:
     "From discovery call to post-launch support — see exactly how Tech Yugantar takes your idea through 8 structured steps to a shipped, production-ready product.",
   keywords: [
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     canonical: "https://techyugantar.in/how-we-work",
   },
   openGraph: {
+    images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Tech Yugantar" }],
     title: "How We Work | Tech Yugantar",
     description:
       "8 steps. Zero guesswork. See how we take your idea from discovery to a shipped product.",
@@ -55,7 +56,9 @@ export default function HowWeWorkPage() {
       <JsonLdScript schema={processSchema} />
 
       <Breadcrumb
-        pageName="How We Work"
+        pageName="Process"
+        headline="From first message to production, with zero guesswork."
+        highlight="zero guesswork."
         description="8 steps. Zero guesswork. From your first message to a shipped, production-ready product — here's exactly how we work."
       />
 

@@ -3,10 +3,13 @@
 import { motion } from "motion/react";
 import { Reveal } from "@/components/motion";
 import { SPRING_REVEAL } from "@/components/ui/utils";
+import { FaWhatsapp } from "react-icons/fa";
+import { SiFigma, SiGithub, SiNotion } from "react-icons/si";
+import { LuBellRing, LuCalendarDays, LuFileText, LuFlag, LuGitBranch, LuMail, LuVideo, LuZap } from "react-icons/lu";
 
 const commsChannels = [
   {
-    icon: "💬",
+    Icon: FaWhatsapp,
     tool: "WhatsApp",
     color: "bg-[#25D366]/10 border-[#25D366]/20 text-[#25D366]",
     badge: "Primary",
@@ -16,7 +19,7 @@ const commsChannels = [
     use: "Quick questions, status updates, urgent issues",
   },
   {
-    icon: "📋",
+    Icon: SiNotion,
     tool: "Notion",
     color: "bg-gray-900/10 border-gray-900/20 text-gray-900 dark:bg-white/10 dark:border-white/20 dark:text-white",
     badge: "Project Hub",
@@ -26,7 +29,7 @@ const commsChannels = [
     use: "Task tracking, sprint planning, shared documentation",
   },
   {
-    icon: "📹",
+    Icon: LuVideo,
     tool: "Weekly Demo Calls",
     color: "bg-blue-500/10 border-blue-500/20 text-blue-600 dark:text-blue-400",
     badge: "Recurring",
@@ -36,7 +39,7 @@ const commsChannels = [
     use: "Sprint reviews, feedback sessions, milestone demos",
   },
   {
-    icon: "📧",
+    Icon: LuMail,
     tool: "Email",
     color: "bg-primary/10 border-primary/20 text-primary",
     badge: "Formal",
@@ -46,7 +49,7 @@ const commsChannels = [
     use: "Contracts, invoices, formal project sign-offs",
   },
   {
-    icon: "🐙",
+    Icon: SiGithub,
     tool: "GitHub",
     color: "bg-gray-800/10 border-gray-800/20 text-gray-800 dark:bg-white/10 dark:border-white/20 dark:text-white",
     badge: "Dev Transparency",
@@ -56,7 +59,7 @@ const commsChannels = [
     use: "Code access, pull request reviews, deployment logs",
   },
   {
-    icon: "🎨",
+    Icon: SiFigma,
     tool: "Figma",
     color: "bg-purple-500/10 border-purple-500/20 text-purple-600 dark:text-purple-400",
     badge: "Design",
@@ -68,12 +71,12 @@ const commsChannels = [
 ];
 
 const guarantees = [
-  { icon: "⚡", text: "WhatsApp reply within 2 hours" },
-  { icon: "📅", text: "Bi-weekly video demo — every sprint" },
-  { icon: "🔍", text: "Full code access from day one" },
-  { icon: "📄", text: "All decisions documented in writing" },
-  { icon: "🔔", text: "No surprises — blockers flagged immediately" },
-  { icon: "🏁", text: "30-day post-launch support included" },
+  { Icon: LuZap, text: "WhatsApp reply within 2 hours" },
+  { Icon: LuCalendarDays, text: "Bi-weekly video demo — every sprint" },
+  { Icon: LuGitBranch, text: "Full code access from day one" },
+  { Icon: LuFileText, text: "All decisions documented in writing" },
+  { Icon: LuBellRing, text: "No surprises — blockers flagged immediately" },
+  { Icon: LuFlag, text: "30-day post-launch support included" },
 ];
 
 export default function HowWeCommunicate() {
@@ -115,8 +118,8 @@ export default function HowWeCommunicate() {
             >
               {/* Badge */}
               <div className="flex items-center justify-between">
-                <span className={`flex h-12 w-12 items-center justify-center rounded-xl border text-2xl ${ch.color}`}>
-                  {ch.icon}
+                <span className={`flex h-12 w-12 items-center justify-center rounded-xl border ${ch.color}`}>
+                  <ch.Icon aria-hidden className="h-5 w-5" />
                 </span>
                 <span className={`rounded-full px-3 py-1 text-[11px] font-semibold ${ch.badgeColor}`}>
                   {ch.badge}
@@ -155,7 +158,9 @@ export default function HowWeCommunicate() {
                   key={g.text}
                   className="flex flex-col items-center gap-2 rounded-xl bg-white/60 p-4 text-center dark:bg-white/[0.04]"
                 >
-                  <span className="text-2xl">{g.icon}</span>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <g.Icon aria-hidden className="h-[18px] w-[18px]" />
+                  </span>
                   <p className="text-xs font-medium leading-snug text-gray-700 dark:text-zinc-300">
                     {g.text}
                   </p>

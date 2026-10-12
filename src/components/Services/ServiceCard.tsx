@@ -29,7 +29,7 @@ const ServiceCard = ({
           border-gray-200/80 bg-white
           hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10
           /* Dark mode */
-          dark:border-white/[0.08] dark:bg-gradient-to-b dark:from-white/[0.07] dark:to-white/[0.02]
+          dark:border-white/[0.08] dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.07] dark:to-white/[0.02]
           dark:shadow-none dark:hover:border-primary/40 dark:hover:shadow-2xl dark:hover:shadow-primary/10
         "
       >

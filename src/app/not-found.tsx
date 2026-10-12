@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
+import { LuTelescope } from "react-icons/lu";
 import { SPRING_REVEAL } from "@/components/ui/utils";
 
 export default function NotFound() {
@@ -39,9 +40,9 @@ export default function NotFound() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...SPRING_REVEAL, delay: 0.15 }}
-          className="mb-6 text-6xl"
+          className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/20"
         >
-          🔭
+          <LuTelescope aria-hidden className="h-8 w-8" />
         </motion.div>
 
         {/* Heading */}

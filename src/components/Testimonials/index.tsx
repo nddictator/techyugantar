@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight, FiStar } from "react-icons/fi";
 import testimonialsData from "@/data/testimonials";
 import Link from "next/link";
 
@@ -62,7 +62,7 @@ export default function Testimonials() {
           className="mb-14 text-center"
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-amber-600 dark:text-amber-400">
-            <span className="text-base">⭐</span>
+            <FiStar aria-hidden className="h-3.5 w-3.5 fill-current" />
             Client Stories
           </div>
           <h2 className="mb-4 text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl md:text-[42px]">
