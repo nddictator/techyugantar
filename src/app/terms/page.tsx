@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   alternates: { canonical: "https://techyugantar.in/terms" },
   openGraph: {
+    images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Tech Yugantar" }],
     title: "Terms of Service | Tech Yugantar",
     description: "The terms on which Tech Yugantar provides software development services.",
     url: "https://techyugantar.in/terms",

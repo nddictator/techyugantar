@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Learn about Tech Yugantar, a Varanasi-based software development company serving startups to enterprise businesses.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "About Tech Yugantar",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "About Tech Yugantar — Software Company in Varanasi",
     description:
       "A Varanasi-based software development company serving startups to enterprises.",
-    images: ["/og-image.png"],
+    images: ["/og-image.webp"],
   },
 };
 

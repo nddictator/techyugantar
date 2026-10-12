@@ -6,7 +6,7 @@ import { getAllBlogs } from "@/lib/blog";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tech Insights & Tutorials | Tech Yugantar Blog",
+  title: "Tech Insights & Tutorials — Blog",
   description:
     "Articles on Flutter, Django, Next.js, and mobile development from the Tech Yugantar team in Varanasi — practical tutorials and insights for developers and businesses building software products.",
   keywords: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
       "Expert insights into Flutter, Django, Next.js, and software engineering from the Tech Yugantar team.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Tech Yugantar Blog",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tech Yugantar Blog — Digital Innovation Insights",
     description: "Insights on Flutter, Django, Next.js, and software engineering.",
-    images: ["/og-image.png"],
+    images: ["/og-image.webp"],
   },
 };
 

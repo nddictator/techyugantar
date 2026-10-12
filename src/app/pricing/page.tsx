@@ -5,7 +5,7 @@ import { Reveal } from "@/components/motion";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pricing Calculator & Engagement Models | Tech Yugantar",
+  title: "Pricing Calculator & Engagement Models",
   description:
     "Estimate your project cost instantly — web apps, mobile apps, ERP, SaaS, and AI products. Development-only pricing, no hidden charges. Get a detailed quote after.",
   keywords: [
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "https://techyugantar.in/pricing" },
   openGraph: {
+    images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Tech Yugantar" }],
     title: "Pricing Calculator | Tech Yugantar",
     description: "Estimate your software project cost in 5 steps. Development-only pricing.",
     url: "https://techyugantar.in/pricing",

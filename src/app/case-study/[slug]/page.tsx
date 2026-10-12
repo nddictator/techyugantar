@@ -18,7 +18,7 @@ export async function generateMetadata({
   const cs = caseStudiesData.find((c) => c.slug === slug);
   if (!cs) return {};
   return {
-    title: `${cs.title} | Case Study — Tech Yugantar`,
+    title: `${cs.title} — Case Study`,
     description: cs.summary,
     alternates: { canonical: `https://techyugantar.in/case-study/${slug}` },
     openGraph: {

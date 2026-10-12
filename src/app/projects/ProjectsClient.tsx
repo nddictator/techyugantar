@@ -36,12 +36,12 @@ export default function ProjectsClient() {
             <div className="inline-flex mb-5">
               <GlowingBadge>Full Portfolio</GlowingBadge>
             </div>
-            <h1 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white tracking-tight mb-5">
+            <h2 className="text-5xl md:text-6xl font-extrabold text-black dark:text-white tracking-tight mb-5">
               All{" "}
               <span className="bg-gradient-to-r from-primary to-teal-400 bg-clip-text text-transparent">
                 Projects
               </span>
-            </h1>
+            </h2>
             <p className="max-w-lg mx-auto text-body-color dark:text-body-color-dark text-lg leading-relaxed">
               Every product we've designed, built, and shipped — from idea to production.
             </p>

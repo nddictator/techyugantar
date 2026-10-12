@@ -26,7 +26,7 @@ const EngagementRecap = () => {
               /* Light mode */
               border-gray-200 bg-white shadow-xl shadow-gray-200/60
               /* Dark mode */
-              dark:border-white/[0.08] dark:bg-gradient-to-b dark:from-white/[0.06] dark:to-transparent dark:shadow-2xl
+              dark:border-white/[0.08] dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.06] dark:to-transparent dark:shadow-2xl
             "
           >
             {/* Inner glow overlay — dark mode only */}

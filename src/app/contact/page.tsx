@@ -27,7 +27,7 @@ export const metadata: Metadata = {
       "Ready to scale your business? Reach out to discuss Android, iOS, web, or ERP software development with our team in Varanasi.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Contact Tech Yugantar",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact Tech Yugantar — Software Company in Varanasi",
     description: "Reach out to discuss your software development project.",
-    images: ["/og-image.png"],
+    images: ["/og-image.webp"],
   },
 };
 const ContactPage = () => {

@@ -30,7 +30,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   return {
-    title: `${post.title} | Tech Yugantar Blog`,
+    title: `${post.title} — Blog`,
     description: post.excerpt,
     alternates: { canonical: `${SITE_URL}/blog/${slug}` },
     openGraph: {

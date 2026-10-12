@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     canonical: "https://techyugantar.in/services",
   },
   openGraph: {
+    images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Tech Yugantar" }],
     title: "Services | Tech Yugantar",
     description:
       "Web, mobile, ERP, backend, AI, and cloud/DevOps — the full stack of software services Tech Yugantar delivers.",
