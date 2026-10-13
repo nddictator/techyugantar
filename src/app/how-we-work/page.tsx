@@ -59,12 +59,12 @@ export default function HowWeWorkPage() {
         pageName="Process"
         headline="From first message to production, with zero guesswork."
         highlight="zero guesswork."
-        description="8 steps. Zero guesswork. From your first message to a shipped, production-ready product — here's exactly how we work."
+        description="Eight structured steps, one shared workspace and a demo every sprint — here's exactly how your idea becomes a shipped, production-ready product."
       />
 
-      <ShipStory />
-
       <HowWeWork />
+
+      <ShipStory />
 
       <HowWeCommunicate />
 
