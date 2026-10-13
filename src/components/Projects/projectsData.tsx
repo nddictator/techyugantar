@@ -20,9 +20,9 @@ export const projectsData: Project[] = [
     title: "TalkAcharya Apps",
     paragraph: "Both sides of an astrology marketplace — a customer app to consult verified astrologers over chat, voice and video, and a partner app for astrologers to go live and track earnings in real time.",
     image: "/images/projects/talkacharya-app.webp",
-    tags: ["Astrology", "Android", "Mobile App", "Real-time"],
+    tags: ["Astrology", "Android", "iOS", "Mobile App", "Real-time"],
     caseStudySlug: "talkacharya-app",
-    platforms: ["Android"],
+    platforms: ["Android", "iOS"],
     screens: {
       web: "/images/projects/talkacharya-partner-banner.webp",
       webFrame: "plain",

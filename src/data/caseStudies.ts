@@ -91,8 +91,8 @@ const caseStudiesData: CaseStudy[] = [
     client: "TalkAcharya",
     industry: "Spiritual Tech / Consumer App",
     image: "/images/projects/talkacharya-app.webp",
-    tags: ["Astrology", "Android", "Mobile App", "Real-time"],
-    platforms: ["Android"],
+    tags: ["Astrology", "Android", "iOS", "Mobile App", "Real-time"],
+    platforms: ["Android", "iOS"],
     screens: {
       web: "/images/projects/talkacharya-partner-banner.webp",
       webFrame: "plain",
@@ -103,7 +103,7 @@ const caseStudiesData: CaseStudy[] = [
       mobileBackAspect: "706/1124",
     },
     summary:
-      "TalkAcharya connects people with verified astrologers over chat, voice and video. We built both sides of the marketplace as mobile apps: a customer app to find an astrologer and start a consultation in seconds, and a partner app for astrologers to go live, take requests and track their earnings in real time.",
+      "TalkAcharya connects people with verified astrologers over chat, voice and video. We built both sides of the marketplace as Android and iOS apps: a customer app to find an astrologer and start a consultation in seconds, and a partner app for astrologers to go live, take requests and track their earnings in real time.",
     challenge:
       "A consultation marketplace has to work for two very different people at once. Customers want to find a trustworthy astrologer who is online right now, see the price per minute up front and start talking without friction. Astrologers need to know when customers are waiting, answer requests before they expire and see what each session earned them after the platform fee — or they stop showing up. TalkAcharya needed both experiences to feel premium and to stay in sync in real time.",
     solution:
@@ -111,7 +111,7 @@ const caseStudiesData: CaseStudy[] = [
     outcome:
       "Customers can go from opening the app to talking with a verified astrologer in a few taps, and astrologers run their whole practice from their phone — going live when they are free, answering requests in time and seeing every session's effect on their monthly earnings straight away.",
     metrics: [
-      { label: "Apps — one for customers, one for astrologers", value: "2", icon: "📱" },
+      { label: "Apps, each on Android and iOS — for customers and astrologers", value: "2", icon: "📱" },
       { label: "Consultation modes — chat, voice and video", value: "3", icon: "💬" },
       { label: "Free tools — Kundali, Matching, Horoscope, Vastu", value: "4", icon: "✨" },
       { label: "Partner earnings after platform fee, updated live", value: "Real-time", icon: "💰" },
