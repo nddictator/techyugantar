@@ -10,6 +10,19 @@ export type ProjectScreens = {
   /** CSS aspect ratios of the source images, e.g. "1919/1001". */
   webAspect?: string;
   mobileAspect?: string;
+  /** Optional second phone (a companion app) shown behind the main one. */
+  mobileBack?: string;
+  mobileBackAspect?: string;
+};
+
+/** One app in a multi-app product, for the case study's "apps" section. */
+export type ProductApp = {
+  name: string;
+  /** Who uses it, e.g. "For customers". */
+  audience: string;
+  description: string;
+  highlights: string[];
+  screens: { src: string; alt: string; aspect?: string }[];
 };
 
 export type Project = {

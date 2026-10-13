@@ -3,7 +3,7 @@
 // Edit this file to update all case study pages.
 // ─────────────────────────────────────────────────────────────────────────────
 
-import type { ProjectScreens } from "@/types/project";
+import type { ProductApp, ProjectScreens } from "@/types/project";
 
 export type CaseStudy = {
   slug: string;
@@ -39,6 +39,9 @@ export type CaseStudy = {
 
   // What we built — feature list
   features: string[];
+
+  /** Apps that make up a multi-app product, shown as "One platform, N apps". */
+  apps?: ProductApp[];
 };
 
 const caseStudiesData: CaseStudy[] = [
@@ -82,44 +85,83 @@ const caseStudiesData: CaseStudy[] = [
     ],
   },
   {
-    slug: "talkacharya-partner",
+    slug: "talkacharya-app",
     projectId: 7,
-    title: "A partner app that runs an astrologer's practice from their phone",
+    title: "Two apps, one astrology marketplace — for customers and for astrologers",
     client: "TalkAcharya",
     industry: "Spiritual Tech / Consumer App",
-    image: "/images/projects/talkacharya-partner.webp",
+    image: "/images/projects/talkacharya-app.webp",
     tags: ["Astrology", "Android", "Mobile App", "Real-time"],
     platforms: ["Android"],
     screens: {
       web: "/images/projects/talkacharya-partner-banner.webp",
       webFrame: "plain",
       webAspect: "1024/500",
-      mobile: "/images/projects/talkacharya-partner-app.webp",
-      mobileAspect: "706/1124",
+      mobile: "/images/projects/talkacharya-customer-home.webp",
+      mobileAspect: "702/1522",
+      mobileBack: "/images/projects/talkacharya-partner-app.webp",
+      mobileBackAspect: "706/1124",
     },
     summary:
-      "TalkAcharya Partner is the astrologer-facing app behind the TalkAcharya consultation platform. Astrologers set their availability, accept chat, voice and video consultations, and watch their earnings grow in real time — all from one app.",
+      "TalkAcharya connects people with verified astrologers over chat, voice and video. We built both sides of the marketplace as mobile apps: a customer app to find an astrologer and start a consultation in seconds, and a partner app for astrologers to go live, take requests and track their earnings in real time.",
     challenge:
-      "A consultation marketplace is only as good as the astrologers who show up on it. Partners need to know when customers are waiting, answer requests before they expire, and see what each session actually earned them after the platform fee. Without that, availability is patchy, requests go unanswered and good astrologers drift away. TalkAcharya needed a partner app that makes being online — and staying online — clearly worth it.",
+      "A consultation marketplace has to work for two very different people at once. Customers want to find a trustworthy astrologer who is online right now, see the price per minute up front and start talking without friction. Astrologers need to know when customers are waiting, answer requests before they expire and see what each session earned them after the platform fee — or they stop showing up. TalkAcharya needed both experiences to feel premium and to stay in sync in real time.",
     solution:
-      "We built a dedicated partner app with five focused sections: Home, Requests, Earnings, Chats and Profile. Home shows the astrologer's rating, a one-tap online / away switch, today's earnings after the platform fee, and sessions, talk time and online time at a glance. A monthly earnings tracker turns income into milestones — on-pace projections toward the next club and a daily nudge showing how much more to earn today. Requests separates incoming, active and history, with every past chat, voice or video session listed with its duration and what it earned.",
+      "We built two dedicated apps on one real-time backend. The customer app signs people in with a mobile OTP — new users get an account automatically — and opens on a home screen with a live count of astrologers online, one-tap Chat now and Call now, a wallet, free tools like Kundali, Matching, Horoscope and Vastu, and a referral programme. Its astrologer directory can be searched by name, skill or language and filtered by chat, call or video, with ratings, per-minute pricing, experience and languages on every card. The partner app gives astrologers a one-tap online / away switch, incoming, active and past requests, today's earnings after the platform fee, and monthly earnings milestones that show how close they are to the next tier.",
     outcome:
-      "Astrologers run their whole practice from the app: they go live when they are free, respond to requests before they expire, and see the effect of every session on their monthly goal straight away — which gives them a clear reason to stay online and keep customers coming back.",
+      "Customers can go from opening the app to talking with a verified astrologer in a few taps, and astrologers run their whole practice from their phone — going live when they are free, answering requests in time and seeing every session's effect on their monthly earnings straight away.",
     metrics: [
+      { label: "Apps — one for customers, one for astrologers", value: "2", icon: "📱" },
       { label: "Consultation modes — chat, voice and video", value: "3", icon: "💬" },
-      { label: "App sections, from requests to payouts", value: "5", icon: "🧭" },
-      { label: "Earnings after platform fee, updated live", value: "Real-time", icon: "💰" },
-      { label: "To switch between online and away", value: "1 tap", icon: "🟢" },
+      { label: "Free tools — Kundali, Matching, Horoscope, Vastu", value: "4", icon: "✨" },
+      { label: "Partner earnings after platform fee, updated live", value: "Real-time", icon: "💰" },
+    ],
+    apps: [
+      {
+        name: "TalkAcharya",
+        audience: "For customers",
+        description:
+          "Find an astrologer who is online right now and start a chat, call or video consultation in a few taps — with the price per minute visible before you begin.",
+        highlights: [
+          "Mobile OTP sign-in — new users get an account automatically",
+          "Live \"online now\" count with one-tap Chat now and Call now",
+          "Wallet with top-up, notifications and language switch",
+          "Kundali, Matching, Horoscope and Vastu tools",
+          "Search astrologers by name, skill or language; filter by chat, call or video",
+          "Verified profiles with rating, experience, languages and per-minute price",
+        ],
+        screens: [
+          { src: "/images/projects/talkacharya-customer-home.webp", alt: "TalkAcharya customer app — home", aspect: "702/1522" },
+          { src: "/images/projects/talkacharya-customer-astrologers.webp", alt: "TalkAcharya customer app — astrologer directory", aspect: "702/1522" },
+          { src: "/images/projects/talkacharya-customer-login.webp", alt: "TalkAcharya customer app — mobile OTP sign-in", aspect: "702/1522" },
+        ],
+      },
+      {
+        name: "TalkAcharya Partner",
+        audience: "For astrologers",
+        description:
+          "Everything an astrologer needs to run their practice: go live when they are free, answer requests before they expire and watch their earnings grow in real time.",
+        highlights: [
+          "One-tap availability — online, away or offline",
+          "Incoming, active and history views for consultation requests",
+          "Today's earnings after platform fee, with a privacy toggle",
+          "Sessions, talk time and online time at a glance",
+          "Monthly earnings milestones with on-pace projection and daily nudges",
+        ],
+        screens: [
+          { src: "/images/projects/talkacharya-partner-app.webp", alt: "TalkAcharya Partner app — dashboard", aspect: "706/1124" },
+        ],
+      },
     ],
     features: [
-      "One-tap availability — go online, set yourself away or go offline",
-      "Incoming, active and history views for consultation requests",
-      "Chat, voice and video consultations",
-      "Today's earnings after platform fee, with a privacy toggle",
-      "Sessions, talk time and online time at a glance",
-      "Monthly earnings milestones with on-pace projection and daily nudges",
-      "Earnings and payout history",
-      "Partner profile with rating",
+      "Mobile OTP sign-in with automatic account creation",
+      "Live astrologer availability across both apps",
+      "Chat, voice and video consultations with per-minute pricing",
+      "Customer wallet with top-up and referral rewards",
+      "Kundali, Matching, Horoscope and Vastu tools",
+      "Astrologer search and filters by skill, language and consultation mode",
+      "Partner availability switch and request queue with expiry",
+      "Real-time partner earnings, milestones and payout history",
     ],
   },
   {

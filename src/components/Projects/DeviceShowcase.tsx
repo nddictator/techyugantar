@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
 import type { ProjectScreens } from "@/types/project";
+import PhoneFrame from "@/components/ui/PhoneFrame";
 import { SPRING_PHYSICS, SPRING_SURFACE } from "@/components/ui/utils";
 
 type Props = {
@@ -25,6 +26,7 @@ export default function DeviceShowcase({ screens, title, platforms, priority, cl
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const phoneY = useSpring(useTransform(scrollYProgress, [0, 1], ["10%", "-6%"]), SPRING_PHYSICS);
+  const backY = useSpring(useTransform(scrollYProgress, [0, 1], ["4%", "-2%"]), SPRING_PHYSICS);
   const webY = useTransform(scrollYProgress, [0, 1], ["-2%", "2%"]);
 
   const framed = (screens.webFrame ?? "browser") === "browser";
@@ -80,26 +82,45 @@ export default function DeviceShowcase({ screens, title, platforms, priority, cl
         </div>
       </motion.div>
 
+      {/* Second phone (e.g. a companion app), tucked behind the main one */}
+      {screens.mobileBack && (
+        <motion.div
+          style={reduce ? undefined : { y: backY }}
+          className="absolute bottom-[5%] right-[19%] w-[22%] min-w-[80px] max-w-[230px]"
+        >
+          <motion.div
+            variants={{ hidden: { opacity: 0, x: 30, rotate: 0 }, show: { opacity: 1, x: 0, rotate: -7 } }}
+            transition={{ ...SPRING_SURFACE, delay: 0.25 }}
+            className="origin-bottom-right"
+          >
+            <PhoneFrame
+              src={screens.mobileBack}
+              alt={`${title} — companion app`}
+              aspect={screens.mobileBackAspect}
+              priority={priority}
+              sizes="(max-width: 992px) 24vw, 230px"
+              className="brightness-[0.92]"
+            />
+          </motion.div>
+        </motion.div>
+      )}
+
       {/* Phone */}
       <motion.div
         style={reduce ? undefined : { y: phoneY }}
-        className={`absolute bottom-0 right-0 min-w-[96px] ${screens.mobileAspect ? "w-[30%] max-w-[300px]" : "w-[27%] max-w-[260px]"}`}
+        className={`absolute bottom-0 right-0 min-w-[96px] ${screens.mobileAspect && !screens.mobileBack ? "w-[30%] max-w-[300px]" : "w-[27%] max-w-[260px]"}`}
       >
         <motion.div
           variants={{ hidden: { opacity: 0, x: 40, rotate: 4 }, show: { opacity: 1, x: 0, rotate: 0 } }}
           transition={{ ...SPRING_SURFACE, delay: 0.15 }}
-          className="relative rounded-[14%/6.5%] border border-white/10 bg-[#121316] p-[4%] shadow-[0_30px_70px_rgba(6,8,15,0.35)] ring-1 ring-black/10 dark:shadow-[0_40px_90px_rgba(0,0,0,0.85)]"
         >
-          <div className="relative overflow-hidden rounded-[11%/5%]" style={{ aspectRatio: screens.mobileAspect ?? "720/1600" }}>
-            <Image
-              src={screens.mobile}
-              alt={`${title} — mobile app`}
-              fill
-              priority={priority}
-              sizes="(max-width: 992px) 30vw, 260px"
-              className="object-cover object-top"
-            />
-          </div>
+          <PhoneFrame
+            src={screens.mobile}
+            alt={`${title} — mobile app`}
+            aspect={screens.mobileAspect}
+            priority={priority}
+            sizes="(max-width: 992px) 30vw, 260px"
+          />
         </motion.div>
       </motion.div>
     </motion.div>

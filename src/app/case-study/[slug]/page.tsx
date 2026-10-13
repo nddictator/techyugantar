@@ -5,6 +5,7 @@ import caseStudiesData from "@/data/caseStudies";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import ParallaxShowcase from "@/components/CaseStudy/ParallaxShowcase";
 import DeviceShowcase from "@/components/Projects/DeviceShowcase";
+import ProductApps from "@/components/CaseStudy/ProductApps";
 
 export function generateStaticParams() {
   return caseStudiesData.map((cs) => ({ slug: cs.slug }));
@@ -181,6 +182,26 @@ export default async function CaseStudyPage({
           ))}
         </Stagger>
       </section>
+
+      {/* ── The apps (multi-app products) ────────────────────────────── */}
+      {cs.apps && cs.apps.length > 0 && (
+        <section className="container relative mt-24" data-testid="case-study-apps">
+          <Reveal>
+            <div className="mb-14 grid gap-6 border-t border-black/[0.07] pt-14 dark:border-white/[0.08] lg:grid-cols-12 lg:items-end">
+              <div className="lg:col-span-7">
+                <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-primary">The product</p>
+                <h2 className="font-display text-3xl font-semibold leading-tight tracking-tight text-gray-900 dark:text-white md:text-5xl">
+                  One platform, <span className="text-aurora">{cs.apps.length === 2 ? "two" : cs.apps.length === 3 ? "three" : cs.apps.length} apps.</span>
+                </h2>
+              </div>
+              <p className="text-base leading-relaxed text-gray-500 dark:text-zinc-400 lg:col-span-5">
+                Each side of the business gets its own app, built for how that person actually works — all running on the same backend.
+              </p>
+            </div>
+          </Reveal>
+          <ProductApps apps={cs.apps} />
+        </section>
+      )}
 
       {/* ── Story chapters ───────────────────────────────────────────── */}
       <section className="container relative mt-24">
