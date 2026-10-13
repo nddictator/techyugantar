@@ -8,7 +8,7 @@ import { SPRING_REVEAL } from "@/components/ui/utils";
 // ── Founder story data — edit here ────────────────────────────────────────────
 const founderStory = {
   name: "Tanmay Mishra",
-  title: "Founder, Tech Yugantar",
+  title: "Co-Founder, Tech Yugantar",
   location: "Varanasi, Uttar Pradesh",
   founded: "2023",
   avatar: "TM",
