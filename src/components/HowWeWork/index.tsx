@@ -1,10 +1,16 @@
 "use client";
-import { motion } from "motion/react";
-import { Reveal } from "@/components/motion";
-import { SPRING_REVEAL } from "@/components/ui/utils";
+
+import Link from "next/link";
+import { useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "motion/react";
+import { useLenis } from "lenis/react";
+import { FiArrowRight } from "react-icons/fi";
 import {
   LuBlocks, LuClipboardList, LuCode, LuFlaskConical, LuPalette, LuPhoneCall, LuRefreshCw, LuRocket,
 } from "react-icons/lu";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import { SPRING_HOVER, SPRING_REVEAL, SPRING_SURFACE } from "@/components/ui/utils";
+import SectionHeading from "./SectionHeading";
 
 // ── Process steps ─────────────────────────────────────────────────────────────
 const STEPS = [
@@ -15,9 +21,7 @@ const STEPS = [
     summary: "We listen before we build.",
     desc: "You share your idea, goals, and constraints. We ask the right questions to understand scope, timeline, and budget — no templates, no generic forms.",
     tag: "Day 1",
-    color: "from-teal-500/20 to-cyan-500/10",
-    border: "border-teal-500/20",
-    accent: "bg-teal-500/10 text-teal-400",
+    deliverables: ["Scope & goals", "Timeline + budget fit"],
   },
   {
     n: "02",
@@ -26,9 +30,7 @@ const STEPS = [
     summary: "Everything documented — nothing assumed.",
     desc: "We prepare a detailed SRS covering user stories, functional requirements, API contracts, and edge cases. You sign off before development begins.",
     tag: "Week 1",
-    color: "from-blue-500/20 to-indigo-500/10",
-    border: "border-blue-500/20",
-    accent: "bg-blue-500/10 text-blue-400",
+    deliverables: ["SRS document", "User stories", "API contracts"],
   },
   {
     n: "03",
@@ -37,9 +39,7 @@ const STEPS = [
     summary: "Design the system before writing a line of code.",
     desc: "Tech stack selection, database schema, system architecture, and a full sprint roadmap with milestones. You see the blueprint before work starts.",
     tag: "Week 1–2",
-    color: "from-violet-500/20 to-purple-500/10",
-    border: "border-violet-500/20",
-    accent: "bg-violet-500/10 text-violet-400",
+    deliverables: ["Tech stack", "Database schema", "Sprint roadmap"],
   },
   {
     n: "04",
@@ -48,9 +48,7 @@ const STEPS = [
     summary: "From wireframe to pixel-perfect Figma — your approval first.",
     desc: "We design every screen, user flow, and component in Figma. You review and approve before development. Zero surprises in the final product.",
     tag: "Week 2–3",
-    color: "from-pink-500/20 to-rose-500/10",
-    border: "border-pink-500/20",
-    accent: "bg-pink-500/10 text-pink-400",
+    deliverables: ["Wireframes", "Hi-fi Figma screens", "User flows"],
   },
   {
     n: "05",
@@ -59,9 +57,7 @@ const STEPS = [
     summary: "Two-week sprints. Real demos. Full visibility.",
     desc: "We ship working features every sprint. You attend demo calls, give feedback, and see your product come to life — not just progress reports in a doc.",
     tag: "Ongoing",
-    color: "from-amber-500/20 to-orange-500/10",
-    border: "border-amber-500/20",
-    accent: "bg-amber-500/10 text-amber-400",
+    deliverables: ["Working builds", "Sprint demos"],
   },
   {
     n: "06",
@@ -70,9 +66,7 @@ const STEPS = [
     summary: "Automated + manual testing across every surface.",
     desc: "Unit tests, integration tests, cross-browser and device testing, and a full QA round before any build reaches production. We find bugs so your users don't.",
     tag: "Per Sprint",
-    color: "from-emerald-500/20 to-green-500/10",
-    border: "border-emerald-500/20",
-    accent: "bg-emerald-500/10 text-emerald-400",
+    deliverables: ["Automated tests", "Cross-device QA"],
   },
   {
     n: "07",
@@ -81,9 +75,7 @@ const STEPS = [
     summary: "Zero-downtime launch with full monitoring.",
     desc: "CI/CD pipeline, staging environment validation, then production launch. We set up error tracking, uptime monitoring, and make sure everything runs smoothly.",
     tag: "Launch Day",
-    color: "from-sky-500/20 to-cyan-500/10",
-    border: "border-sky-500/20",
-    accent: "bg-sky-500/10 text-sky-400",
+    deliverables: ["CI/CD pipeline", "Staging", "Monitoring"],
   },
   {
     n: "08",
@@ -92,231 +84,221 @@ const STEPS = [
     summary: "30-day warranty. Then grow together.",
     desc: "30 days of post-launch support included. After that — ongoing retainer sprints, feature additions, or performance scaling as your product grows.",
     tag: "Post-Launch",
-    color: "from-primary/20 to-teal-500/10",
-    border: "border-primary/20",
-    accent: "bg-primary/10 text-primary",
+    deliverables: ["30-day warranty", "Retainer sprints"],
   },
 ];
 
-// ── Step Card ─────────────────────────────────────────────────────────────────
-function StepCard({
-  step,
-  index,
-  align,
-}: {
-  step: typeof STEPS[0];
-  index: number;
-  align: "left" | "right";
-}) {
+type Step = (typeof STEPS)[number];
+
+// ── Step row ──────────────────────────────────────────────────────────────────
+function StepRow({ step, isActive, isDone, onEnter }: { step: Step; isActive: boolean; isDone: boolean; onEnter: () => void }) {
+  const reduce = useReducedMotion();
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: align === "left" ? -40 : 40 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ ...SPRING_REVEAL, delay: index * 0.08 }}
-      className={`group relative h-full rounded-2xl p-6 border transition-all duration-300
-        bg-white shadow-sm hover:shadow-md
-        dark:bg-zinc-900/60 dark:hover:bg-zinc-900
-        border-gray-100 hover:border-primary/20
-        dark:border-white/[0.07] dark:hover:border-primary/30
-        ${align === "right" ? "md:text-left" : "md:text-right"}
-      `}
+    <motion.li
+      id={`step-${step.n}`}
+      // A thin band across the middle of the viewport decides which step is "current".
+      onViewportEnter={onEnter}
+      viewport={{ margin: "-45% 0px -45% 0px" }}
+      className="relative scroll-mt-32 pl-12 md:pl-20"
     >
-      {/* Top highlight shimmer on hover */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px rounded-t-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+      {/* Rail node */}
+      <span aria-hidden className="absolute left-[11px] top-8 flex h-[18px] w-[18px] -translate-x-1/2 items-center justify-center md:left-[19px]">
+        <motion.span
+          animate={{ scale: isActive ? 1 : 0.6 }}
+          transition={SPRING_HOVER}
+          className={`h-full w-full rounded-full border-2 transition-colors duration-300 ${
+            isDone || isActive
+              ? "border-primary bg-primary shadow-[0_0_18px_rgba(45,212,191,0.6)]"
+              : "border-black/15 bg-cream dark:border-white/20 dark:bg-obsidian"
+          }`}
+        />
+      </span>
 
-      {/* Gradient background blob */}
-      <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${step.color} opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
+      <motion.div
+        initial={reduce ? false : { opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={SPRING_REVEAL}
+      >
+        <SpotlightCard
+          className={`p-6 transition-[border-color,box-shadow] duration-500 md:p-8 ${
+            isActive
+              ? "border-primary/30! shadow-[0_20px_60px_rgba(45,212,191,0.12)]"
+              : ""
+          }`}
+        >
+          <div className="flex items-start justify-between gap-6">
+            <span
+              aria-hidden
+              className={`font-display text-5xl font-semibold leading-none tracking-tight text-transparent transition-colors duration-500 md:text-6xl ${
+                isActive ? "[-webkit-text-stroke:1.5px_var(--color-primary)]" : "[-webkit-text-stroke:1.5px_rgba(120,120,120,0.35)]"
+              }`}
+            >
+              {step.n}
+            </span>
+            <div className="flex items-center gap-3">
+              <span className="rounded-full border border-black/[0.08] px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-gray-500 dark:border-white/[0.1] dark:text-zinc-400">
+                {step.tag}
+              </span>
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                <step.Icon aria-hidden className="h-[18px] w-[18px]" />
+              </span>
+            </div>
+          </div>
 
-      <div className="relative">
-        {/* Emoji */}
-        <div className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/20 ${align === "right" ? "" : "md:ml-auto md:mr-0"}`}>
-          <step.Icon aria-hidden className="h-5 w-5" />
+          <h3 className="font-display mt-6 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+            <span className="sr-only">Step {step.n}: </span>
+            {step.title}
+          </h3>
+          <p className="mt-1.5 text-sm font-medium text-primary">{step.summary}</p>
+          <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-gray-500 dark:text-zinc-400">{step.desc}</p>
+
+          <ul className="mt-6 flex flex-wrap gap-2 border-t border-black/[0.06] pt-5 dark:border-white/[0.06]" aria-label="What you get">
+            {step.deliverables.map((d) => (
+              <li
+                key={d}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-black/[0.03] px-2.5 py-1 text-xs font-medium text-gray-600 dark:bg-white/[0.04] dark:text-zinc-300"
+              >
+                <span aria-hidden className="h-1 w-1 rounded-full bg-primary" />
+                {d}
+              </li>
+            ))}
+          </ul>
+        </SpotlightCard>
+      </motion.div>
+    </motion.li>
+  );
+}
+
+// ── Sticky progress panel (desktop) ───────────────────────────────────────────
+function ProgressPanel({ active, onJump }: { active: number; onJump: (i: number) => void }) {
+  const reduce = useReducedMotion();
+  const step = STEPS[active];
+
+  return (
+    <div className="sticky top-32">
+      <div className="flex items-baseline gap-3">
+        <div className="relative h-[5.5rem] w-[7rem] overflow-hidden">
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.span
+              key={step.n}
+              initial={reduce ? false : { y: "100%", opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={reduce ? undefined : { y: "-100%", opacity: 0 }}
+              transition={SPRING_SURFACE}
+              className="font-display absolute inset-0 text-[5.5rem] font-semibold leading-none tracking-tight text-aurora"
+            >
+              {step.n}
+            </motion.span>
+          </AnimatePresence>
         </div>
-
-        {/* Time tag */}
-        <span className={`mb-3 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${step.accent}`}>
-          {step.tag}
-        </span>
-
-        {/* Title */}
-        <h3 className="mb-1 text-lg font-bold text-gray-900 dark:text-white">
-          {step.title}
-        </h3>
-
-        {/* Summary */}
-        <p className="mb-2 text-sm font-medium text-primary">
-          {step.summary}
-        </p>
-
-        {/* Description */}
-        <p className="text-sm leading-relaxed text-gray-500 dark:text-zinc-400">
-          {step.desc}
-        </p>
+        <span className="font-mono text-sm text-gray-400 dark:text-zinc-600">/ {String(STEPS.length).padStart(2, "0")}</span>
       </div>
-    </motion.div>
+
+      <nav aria-label="Process steps" className="mt-8">
+        <ol className="space-y-0.5">
+          {STEPS.map((s, i) => {
+            const isActive = i === active;
+            return (
+              <li key={s.n}>
+                <button
+                  type="button"
+                  onClick={() => onJump(i)}
+                  aria-current={isActive ? "step" : undefined}
+                  className={`relative flex w-full items-center gap-4 rounded-xl px-4 py-2.5 text-left text-sm transition-colors duration-300 ${
+                    isActive ? "text-gray-900 dark:text-white" : "text-gray-400 hover:text-gray-700 dark:text-zinc-500 dark:hover:text-zinc-200"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="process-active-step"
+                      transition={SPRING_HOVER}
+                      className="absolute inset-0 rounded-xl border border-black/[0.06] bg-white/80 shadow-[0_8px_24px_rgba(6,8,15,0.06)] backdrop-blur-md dark:border-white/[0.08] dark:bg-white/[0.04] dark:shadow-none"
+                    />
+                  )}
+                  <span className={`relative font-mono text-xs ${isActive ? "text-primary" : ""}`}>{s.n}</span>
+                  <span className="relative font-medium">{s.title}</span>
+                  <span className="relative ml-auto font-mono text-[11px] text-gray-400 dark:text-zinc-600">{s.tag}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
+
+      <Link
+        href="/contact"
+        className="group mt-8 inline-flex items-center gap-2 px-4 text-sm font-semibold text-primary"
+      >
+        Start with step 01
+        <FiArrowRight aria-hidden className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
+      </Link>
+    </div>
   );
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
 export default function HowWeWork() {
-  return (
-    <section className="relative overflow-hidden py-16 md:py-20 lg:py-28">
-      {/* Section background */}
-      <div className="pointer-events-none absolute inset-0
-        bg-gradient-to-b from-gray-50 via-white to-gray-50
-        dark:from-zinc-950 dark:via-zinc-900/40 dark:to-zinc-950" />
+  const listRef = useRef<HTMLOListElement>(null);
+  const [active, setActive] = useState(0);
+  const reduce = useReducedMotion();
+  const lenis = useLenis();
 
-      {/* Top shimmer */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+  // Rail fill tracks how far the reader has scrolled through the steps.
+  const { scrollYProgress } = useScroll({ target: listRef, offset: ["start 55%", "end 55%"] });
+  const railFill = useSpring(scrollYProgress, { stiffness: 260, damping: 40, restDelta: 0.001 });
+
+  const jumpTo = (i: number) => {
+    const el = document.getElementById(`step-${STEPS[i].n}`);
+    if (!el) return;
+    if (lenis) lenis.scrollTo(el, { offset: -128, immediate: !!reduce });
+    else el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  };
+
+  return (
+    <section className="relative py-20 md:py-28">
+      <div aria-hidden className="pointer-events-none absolute -left-40 top-1/3 h-[560px] w-[560px] rounded-full bg-teal-500/[0.06] blur-3xl" />
 
       <div className="container relative">
+        <SectionHeading
+          kicker="01 — The process"
+          title={
+            <>
+              From idea to <span className="text-aurora">shipped product.</span>
+            </>
+          }
+          description="Every engagement follows the same eight steps. You always know where your project stands, what you'll receive, and what comes next."
+        />
 
-        {/* Header */}
-        <Reveal>
-          <div className="mb-16 text-center">
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium
-              border-gray-200 bg-white text-gray-600
-              dark:border-white/[0.1] dark:bg-white/[0.04] dark:text-zinc-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-              Our Process
-            </span>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl lg:text-5xl">
-              From Idea to{" "}
-              <span className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(135deg,#14B8A6,#22D3EE)" }}>
-                Shipped Product
-              </span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-gray-500 dark:text-zinc-400">
-              8 steps. Zero guesswork. You always know exactly where your project stands and what comes next.
-            </p>
-          </div>
-        </Reveal>
-
-        {/* ── Timeline ─────────────────────────────────────────────────────── */}
-        <div className="relative">
-
-          {/* ── DESKTOP alternating layout ─────────────────────────────────── */}
-          <div className="hidden md:block">
-            {/* Central vertical line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-primary/25 to-transparent" />
-
-            <div className="space-y-12">
-              {STEPS.map((step, i) => {
-                const isLeft = i % 2 === 0;
-                return (
-                  <div key={step.n} className="relative grid grid-cols-[1fr_80px_1fr] items-center gap-0">
-
-                    {/* Left card or empty */}
-                    <div className="pr-8">
-                      {isLeft && <StepCard step={step} index={i} align="left" />}
-                    </div>
-
-                    {/* Center badge */}
-                    <div className="flex flex-col items-center justify-center">
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ ...SPRING_REVEAL, delay: i * 0.08 + 0.05 }}
-                        className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full
-                          border-2 font-bold text-sm shadow-[0_0_16px_rgba(45,212,191,0.25)]
-                          bg-white border-primary text-primary
-                          dark:bg-zinc-900 dark:border-primary dark:text-primary"
-                      >
-                        {step.n}
-                        {/* Pulse ring */}
-                        <span className="absolute inset-0 animate-ping rounded-full border border-primary/30 opacity-60" />
-                      </motion.div>
-                    </div>
-
-                    {/* Right card or empty */}
-                    <div className="pl-8">
-                      {!isLeft && <StepCard step={step} index={i} align="right" />}
-                    </div>
-
-                  </div>
-                );
-              })}
-            </div>
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="hidden lg:col-span-4 lg:block">
+            <ProgressPanel active={active} onJump={jumpTo} />
           </div>
 
-          {/* ── MOBILE vertical list ───────────────────────────────────────── */}
-          <div className="md:hidden">
-            {/* Left border line */}
-            <div className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/25 to-transparent" />
+          <div className="relative lg:col-span-8">
+            {/* Rail: faint track + scroll-driven aurora fill */}
+            <div aria-hidden className="absolute bottom-0 left-[11px] top-8 w-px bg-black/[0.08] md:left-[19px] dark:bg-white/[0.08]" />
+            <motion.div
+              aria-hidden
+              style={{ scaleY: reduce ? 1 : railFill }}
+              className="absolute bottom-0 left-[11px] top-8 w-px origin-top bg-gradient-to-b from-teal-300 via-primary to-cyan-400 shadow-[0_0_12px_rgba(45,212,191,0.7)] md:left-[19px]"
+            />
 
-            <div className="space-y-8">
+            <ol ref={listRef} className="space-y-6 md:space-y-8">
               {STEPS.map((step, i) => (
-                <div key={step.n} className="relative flex gap-6">
-                  {/* Badge */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ ...SPRING_REVEAL, delay: i * 0.06 }}
-                    className="relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full
-                      border-2 font-bold text-xs shadow-md
-                      bg-white border-primary text-primary
-                      dark:bg-zinc-900 dark:border-primary dark:text-primary"
-                  >
-                    {step.n}
-                  </motion.div>
-
-                  {/* Card */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ ...SPRING_REVEAL, delay: i * 0.06 + 0.05 }}
-                    className="flex-1 rounded-2xl border p-5
-                      bg-white border-gray-100 shadow-sm
-                      dark:bg-zinc-900/60 dark:border-white/[0.07]"
-                  >
-                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
-                      <step.Icon aria-hidden className="h-[18px] w-[18px]" />
-                    </div>
-                    <span className={`mb-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${step.accent}`}>
-                      {step.tag}
-                    </span>
-                    <h3 className="mb-1 text-base font-bold text-gray-900 dark:text-white">{step.title}</h3>
-                    <p className="mb-1 text-xs font-medium text-primary">{step.summary}</p>
-                    <p className="text-xs leading-relaxed text-gray-500 dark:text-zinc-400">{step.desc}</p>
-                  </motion.div>
-                </div>
+                <StepRow
+                  key={step.n}
+                  step={step}
+                  isActive={i === active}
+                  isDone={i < active}
+                  onEnter={() => setActive(i)}
+                />
               ))}
-            </div>
+            </ol>
           </div>
-
         </div>
-
-        {/* CTA at bottom */}
-        <Reveal className="mt-16 text-center" delay={0.1}>
-          <p className="mb-4 text-sm text-gray-500 dark:text-zinc-400">
-            Ready to start your project?
-          </p>
-          <a
-            href="/contact"
-            className="
-              inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white
-              bg-gradient-to-b from-primary/80 to-primary
-              shadow-[0_0_24px_rgba(45,212,191,0.35)]
-              hover:shadow-[0_0_40px_rgba(45,212,191,0.55)] hover:scale-105
-              transition-all duration-300
-            "
-          >
-            Book a Discovery Call
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </Reveal>
-
       </div>
-
-      {/* Bottom shimmer */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
     </section>
   );
 }

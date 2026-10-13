@@ -71,7 +71,7 @@ const teamData: TeamMember[] = [
   {
     id: 1,
     name: "Er. Kushwaha",
-    role: "Full-Stack Lead",
+    role: "Founder & Full-Stack Lead",
     bio: "Leads architecture and full-stack delivery across Django and Next.js — from database design and APIs to the production frontend. Turns client requirements into systems that stay maintainable long after launch.",
     avatar: "EK",
     avatarBg: "bg-primary",

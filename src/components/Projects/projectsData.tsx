@@ -2,6 +2,38 @@ import { Project } from "@/types/project";
 
 export const projectsData: Project[] = [
   {
+    id: 6,
+    title: "Shankh Logistics",
+    paragraph: "One system for a trucking business — customers book loads from their phone while operations dispatch and track every vehicle live from a web console.",
+    image: "/images/projects/shankh.webp",
+    tags: ["Logistics", "Web App", "Android", "iOS", "GPS Tracking"],
+    caseStudySlug: "shankh-logistics",
+    platforms: ["Web admin", "Android", "iOS"],
+    screens: {
+      web: "/images/projects/shankh-admin.webp",
+      mobile: "/images/projects/shankh-app.webp",
+      webLabel: "Shankh Logistics · Admin console",
+    },
+  },
+  {
+    id: 7,
+    title: "TalkAcharya Apps",
+    paragraph: "Both sides of an astrology marketplace — a customer app to consult verified astrologers over chat, voice and video, and a partner app for astrologers to go live and track earnings in real time.",
+    image: "/images/projects/talkacharya-app.webp",
+    tags: ["Astrology", "Android", "iOS", "Mobile App", "Real-time"],
+    caseStudySlug: "talkacharya-app",
+    platforms: ["Android", "iOS"],
+    screens: {
+      web: "/images/projects/talkacharya-partner-banner.webp",
+      webFrame: "plain",
+      webAspect: "1024/500",
+      mobile: "/images/projects/talkacharya-customer-home.webp",
+      mobileAspect: "702/1522",
+      mobileBack: "/images/projects/talkacharya-partner-app.webp",
+      mobileBackAspect: "706/1124",
+    },
+  },
+  {
     id: 1,
     title: "LOEXA Africa",
     paragraph: "Building Africa's Future Workforce. Africa's capability-building ecosystem connecting education, AI, and industry for sustainable impact.",

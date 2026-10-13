@@ -15,6 +15,8 @@ const ALL = "All";
 const CATEGORIES: { label: string; tags: string[] }[] = [
   { label: "Web platforms", tags: ["Next.js", "React", "Web App", "Full-stack", "Node.js"] },
   { label: "AI", tags: ["AI"] },
+  { label: "Logistics", tags: ["Logistics"] },
+  { label: "Mobile apps", tags: ["Android", "iOS"] },
   { label: "EdTech", tags: ["Education"] },
   { label: "Healthcare", tags: ["Healthcare", "Ayurveda"] },
   { label: "Astrology", tags: ["Astrology", "Vedic"] },
@@ -41,7 +43,8 @@ export default function ProjectsClient() {
   // Stats derived from the data itself — nothing hand-typed.
   const stats = useMemo(() => {
     const industries = new Set(caseStudiesData.map((c) => c.industry.split("/")[0].trim()));
-    const live = projectsData.filter((p) => p.liveUrl).length;
+    // In production = a public site, or apps shipped to their platforms.
+    const live = projectsData.filter((p) => p.liveUrl || p.platforms?.length).length;
     return [
       { value: String(projectsData.length).padStart(2, "0"), label: "Products shipped" },
       { value: String(industries.size).padStart(2, "0"), label: "Industries" },

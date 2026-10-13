@@ -3,15 +3,22 @@
 // Edit this file to update all case study pages.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import type { ProductApp, ProjectScreens } from "@/types/project";
+
 export type CaseStudy = {
   slug: string;
   projectId: number;
   title: string;
   client: string;
   industry: string;
-  duration: string;
-  teamSize: string;
-  liveUrl: string;
+  duration?: string;
+  teamSize?: string;
+  /** Public URL — omit for products without a public site. */
+  liveUrl?: string;
+  /** Surfaces the product ships on, e.g. ["Web admin", "Android", "iOS"]. */
+  platforms?: string[];
+  /** Multi-device showcase (web + phone) instead of a single browser shot. */
+  screens?: ProjectScreens;
   image: string;
   tags: string[];
   summary: string;
@@ -24,17 +31,139 @@ export type CaseStudy = {
   // Metrics to highlight
   metrics: { label: string; value: string; icon: string }[];
 
-  // Tech breakdown
-  techStack: { layer: string; tech: string }[];
+  // Tech breakdown — omitted sections are hidden on the page
+  techStack?: { layer: string; tech: string }[];
 
   // Quote from client
   testimonial?: { quote: string; name: string; role: string };
 
   // What we built — feature list
   features: string[];
+
+  /** Apps that make up a multi-app product, shown as "One platform, N apps". */
+  apps?: ProductApp[];
 };
 
 const caseStudiesData: CaseStudy[] = [
+  {
+    slug: "shankh-logistics",
+    projectId: 6,
+    title: "A complete logistics suite — admin console, Android and iOS apps",
+    client: "Shankh Logistics",
+    industry: "Logistics / Transport",
+    image: "/images/projects/shankh.webp",
+    tags: ["Logistics", "Web App", "Android", "iOS", "GPS Tracking"],
+    platforms: ["Web admin", "Android", "iOS"],
+    screens: {
+      web: "/images/projects/shankh-admin.webp",
+      mobile: "/images/projects/shankh-app.webp",
+      webLabel: "Shankh Logistics · Admin console",
+    },
+    summary:
+      "Shankh Logistics needed one product to run a trucking business end to end: customers book a vehicle from their phone, and the operations team manages orders, fleet and drivers — and tracks every truck live — from a single web console. We designed and built all three surfaces.",
+    challenge:
+      "A transport business runs on many moving parts at once — customer enquiries, quotes for different vehicle sizes, a roster of trucks and drivers, and a GPS provider with its own separate portal. When those live in phone calls, chats and spreadsheets, answering a simple question like \"where is my truck right now?\" means calling the driver. Shankh wanted bookings, dispatch and tracking in one place, with an app simple enough for any customer to book a load.",
+    solution:
+      "We built a multi-tenant admin console for the operations team and a customer app for Android and iOS. The console covers the full business: orders, fleet and drivers, stakeholders, locations, materials, master data, coupons and notifications, plus a live tracking map that pulls vehicle positions from the GPS provider and shows status, speed and the assigned driver for every truck. In the customer app, users set pickup and drop by searching or dropping a pin, compare vehicle types from mini trucks to container trailers with an instant starting fare, and follow their bookings.",
+    outcome:
+      "Bookings, dispatch and tracking now run in one system. Customers book directly from their phone, while the operations team sees every order, vehicle and driver in one console and can follow or replay any truck on the map instead of calling drivers for updates.",
+    metrics: [
+      { label: "Apps shipped — web admin, Android and iOS", value: "3", icon: "📱" },
+      { label: "Admin modules, from orders to coupons", value: "11", icon: "🧩" },
+      { label: "Vehicle classes priced instantly in-app", value: "5", icon: "🚚" },
+      { label: "GPS tracking with follow and trip replay", value: "Live", icon: "📍" },
+    ],
+    features: [
+      "Live vehicle tracking map with status filters and auto-refreshing GPS positions",
+      "Follow a vehicle, replay its trip, or find the nearest available truck",
+      "Fleet management — vehicles, drivers and assignments",
+      "Order management from booking through delivery",
+      "Customer app: pickup and drop with search or exact pin placement",
+      "Vehicle-type catalogue with instant starting fares",
+      "Bookings history, profile and push notifications on mobile",
+      "Masters, locations, materials, stakeholders and coupons for the operations team",
+    ],
+  },
+  {
+    slug: "talkacharya-app",
+    projectId: 7,
+    title: "Two apps, one astrology marketplace — for customers and for astrologers",
+    client: "TalkAcharya",
+    industry: "Spiritual Tech / Consumer App",
+    image: "/images/projects/talkacharya-app.webp",
+    tags: ["Astrology", "Android", "iOS", "Mobile App", "Real-time"],
+    platforms: ["Android", "iOS"],
+    screens: {
+      web: "/images/projects/talkacharya-partner-banner.webp",
+      webFrame: "plain",
+      webAspect: "1024/500",
+      mobile: "/images/projects/talkacharya-customer-home.webp",
+      mobileAspect: "702/1522",
+      mobileBack: "/images/projects/talkacharya-partner-app.webp",
+      mobileBackAspect: "706/1124",
+    },
+    summary:
+      "TalkAcharya connects people with verified astrologers over chat, voice and video. We built both sides of the marketplace as Android and iOS apps: a customer app to find an astrologer and start a consultation in seconds, and a partner app for astrologers to go live, take requests and track their earnings in real time.",
+    challenge:
+      "A consultation marketplace has to work for two very different people at once. Customers want to find a trustworthy astrologer who is online right now, see the price per minute up front and start talking without friction. Astrologers need to know when customers are waiting, answer requests before they expire and see what each session earned them after the platform fee — or they stop showing up. TalkAcharya needed both experiences to feel premium and to stay in sync in real time.",
+    solution:
+      "We built two dedicated apps on one real-time backend. The customer app signs people in with a mobile OTP — new users get an account automatically — and opens on a home screen with a live count of astrologers online, one-tap Chat now and Call now, a wallet, free tools like Kundali, Matching, Horoscope and Vastu, and a referral programme. Its astrologer directory can be searched by name, skill or language and filtered by chat, call or video, with ratings, per-minute pricing, experience and languages on every card. The partner app gives astrologers a one-tap online / away switch, incoming, active and past requests, today's earnings after the platform fee, and monthly earnings milestones that show how close they are to the next tier.",
+    outcome:
+      "Customers can go from opening the app to talking with a verified astrologer in a few taps, and astrologers run their whole practice from their phone — going live when they are free, answering requests in time and seeing every session's effect on their monthly earnings straight away.",
+    metrics: [
+      { label: "Apps, each on Android and iOS — for customers and astrologers", value: "2", icon: "📱" },
+      { label: "Consultation modes — chat, voice and video", value: "3", icon: "💬" },
+      { label: "Free tools — Kundali, Matching, Horoscope, Vastu", value: "4", icon: "✨" },
+      { label: "Partner earnings after platform fee, updated live", value: "Real-time", icon: "💰" },
+    ],
+    apps: [
+      {
+        name: "TalkAcharya",
+        audience: "For customers",
+        description:
+          "Find an astrologer who is online right now and start a chat, call or video consultation in a few taps — with the price per minute visible before you begin.",
+        highlights: [
+          "Mobile OTP sign-in — new users get an account automatically",
+          "Live \"online now\" count with one-tap Chat now and Call now",
+          "Wallet with top-up, notifications and language switch",
+          "Kundali, Matching, Horoscope and Vastu tools",
+          "Search astrologers by name, skill or language; filter by chat, call or video",
+          "Verified profiles with rating, experience, languages and per-minute price",
+        ],
+        screens: [
+          { src: "/images/projects/talkacharya-customer-home.webp", alt: "TalkAcharya customer app — home", aspect: "702/1522" },
+          { src: "/images/projects/talkacharya-customer-astrologers.webp", alt: "TalkAcharya customer app — astrologer directory", aspect: "702/1522" },
+          { src: "/images/projects/talkacharya-customer-login.webp", alt: "TalkAcharya customer app — mobile OTP sign-in", aspect: "702/1522" },
+        ],
+      },
+      {
+        name: "TalkAcharya Partner",
+        audience: "For astrologers",
+        description:
+          "Everything an astrologer needs to run their practice: go live when they are free, answer requests before they expire and watch their earnings grow in real time.",
+        highlights: [
+          "One-tap availability — online, away or offline",
+          "Incoming, active and history views for consultation requests",
+          "Today's earnings after platform fee, with a privacy toggle",
+          "Sessions, talk time and online time at a glance",
+          "Monthly earnings milestones with on-pace projection and daily nudges",
+        ],
+        screens: [
+          { src: "/images/projects/talkacharya-partner-app.webp", alt: "TalkAcharya Partner app — dashboard", aspect: "706/1124" },
+        ],
+      },
+    ],
+    features: [
+      "Mobile OTP sign-in with automatic account creation",
+      "Live astrologer availability across both apps",
+      "Chat, voice and video consultations with per-minute pricing",
+      "Customer wallet with top-up and referral rewards",
+      "Kundali, Matching, Horoscope and Vastu tools",
+      "Astrologer search and filters by skill, language and consultation mode",
+      "Partner availability switch and request queue with expiry",
+      "Real-time partner earnings, milestones and payout history",
+    ],
+  },
   {
     slug: "loexa-africa",
     projectId: 1,

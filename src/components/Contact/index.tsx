@@ -116,7 +116,8 @@ const Contact = () => {
     }
   };
 
-  const whatsappHref = `https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ""}?text=${encodeURIComponent(
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER;
+  const whatsappHref = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
     "Hi Tech Yugantar! I'd like to discuss a project. Can we connect?",
   )}`;
 
@@ -238,7 +239,8 @@ const Contact = () => {
 
         {/* ── Sidebar ──────────────────────────────────────────────────── */}
         <Reveal delay={0.1} className="space-y-6 lg:col-span-4">
-          {/* WhatsApp */}
+          {/* WhatsApp — hidden when no number is configured, rather than linking nowhere */}
+          {whatsappNumber && (
           <motion.a
             href={whatsappHref}
             target="_blank"
@@ -264,6 +266,7 @@ const Contact = () => {
               </div>
             </div>
           </motion.a>
+          )}
 
           {/* Details */}
           <div className="rounded-2xl border border-black/[0.07] bg-white/70 p-7 backdrop-blur-xl dark:border-white/[0.08] dark:bg-white/[0.03]">
