@@ -1,10 +1,15 @@
 export type ProjectScreens = {
-  /** Desktop / admin screenshot, shown in a browser frame. */
+  /** Wide shot — a web screenshot, or a store banner for app-only products. */
   web: string;
-  /** Phone screenshot (portrait), shown in a device frame over the web shot. */
+  /** Phone screenshot (portrait), shown in a device frame over the wide shot. */
   mobile: string;
   /** Label for the browser address bar when there is no public URL. */
   webLabel?: string;
+  /** "browser" wraps the wide shot in browser chrome; "plain" shows it as a card (store banners). */
+  webFrame?: "browser" | "plain";
+  /** CSS aspect ratios of the source images, e.g. "1919/1001". */
+  webAspect?: string;
+  mobileAspect?: string;
 };
 
 export type Project = {

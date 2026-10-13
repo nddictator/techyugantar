@@ -82,6 +82,47 @@ const caseStudiesData: CaseStudy[] = [
     ],
   },
   {
+    slug: "talkacharya-partner",
+    projectId: 7,
+    title: "A partner app that runs an astrologer's practice from their phone",
+    client: "TalkAcharya",
+    industry: "Spiritual Tech / Consumer App",
+    image: "/images/projects/talkacharya-partner.webp",
+    tags: ["Astrology", "Android", "Mobile App", "Real-time"],
+    platforms: ["Android"],
+    screens: {
+      web: "/images/projects/talkacharya-partner-banner.webp",
+      webFrame: "plain",
+      webAspect: "1024/500",
+      mobile: "/images/projects/talkacharya-partner-app.webp",
+      mobileAspect: "706/1124",
+    },
+    summary:
+      "TalkAcharya Partner is the astrologer-facing app behind the TalkAcharya consultation platform. Astrologers set their availability, accept chat, voice and video consultations, and watch their earnings grow in real time — all from one app.",
+    challenge:
+      "A consultation marketplace is only as good as the astrologers who show up on it. Partners need to know when customers are waiting, answer requests before they expire, and see what each session actually earned them after the platform fee. Without that, availability is patchy, requests go unanswered and good astrologers drift away. TalkAcharya needed a partner app that makes being online — and staying online — clearly worth it.",
+    solution:
+      "We built a dedicated partner app with five focused sections: Home, Requests, Earnings, Chats and Profile. Home shows the astrologer's rating, a one-tap online / away switch, today's earnings after the platform fee, and sessions, talk time and online time at a glance. A monthly earnings tracker turns income into milestones — on-pace projections toward the next club and a daily nudge showing how much more to earn today. Requests separates incoming, active and history, with every past chat, voice or video session listed with its duration and what it earned.",
+    outcome:
+      "Astrologers run their whole practice from the app: they go live when they are free, respond to requests before they expire, and see the effect of every session on their monthly goal straight away — which gives them a clear reason to stay online and keep customers coming back.",
+    metrics: [
+      { label: "Consultation modes — chat, voice and video", value: "3", icon: "💬" },
+      { label: "App sections, from requests to payouts", value: "5", icon: "🧭" },
+      { label: "Earnings after platform fee, updated live", value: "Real-time", icon: "💰" },
+      { label: "To switch between online and away", value: "1 tap", icon: "🟢" },
+    ],
+    features: [
+      "One-tap availability — go online, set yourself away or go offline",
+      "Incoming, active and history views for consultation requests",
+      "Chat, voice and video consultations",
+      "Today's earnings after platform fee, with a privacy toggle",
+      "Sessions, talk time and online time at a glance",
+      "Monthly earnings milestones with on-pace projection and daily nudges",
+      "Earnings and payout history",
+      "Partner profile with rating",
+    ],
+  },
+  {
     slug: "loexa-africa",
     projectId: 1,
     title: "Building Africa's Workforce Capability Platform",

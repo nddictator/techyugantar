@@ -16,6 +16,22 @@ export const projectsData: Project[] = [
     },
   },
   {
+    id: 7,
+    title: "TalkAcharya Partner",
+    paragraph: "The astrologer's side of TalkAcharya — go live, take chat, voice and video consultations, and track earnings and payouts in real time.",
+    image: "/images/projects/talkacharya-partner.webp",
+    tags: ["Astrology", "Android", "Mobile App", "Real-time"],
+    caseStudySlug: "talkacharya-partner",
+    platforms: ["Android"],
+    screens: {
+      web: "/images/projects/talkacharya-partner-banner.webp",
+      webFrame: "plain",
+      webAspect: "1024/500",
+      mobile: "/images/projects/talkacharya-partner-app.webp",
+      mobileAspect: "706/1124",
+    },
+  },
+  {
     id: 1,
     title: "LOEXA Africa",
     paragraph: "Building Africa's Future Workforce. Africa's capability-building ecosystem connecting education, AI, and industry for sustainable impact.",
