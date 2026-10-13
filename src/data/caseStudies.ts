@@ -3,15 +3,22 @@
 // Edit this file to update all case study pages.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import type { ProjectScreens } from "@/types/project";
+
 export type CaseStudy = {
   slug: string;
   projectId: number;
   title: string;
   client: string;
   industry: string;
-  duration: string;
-  teamSize: string;
-  liveUrl: string;
+  duration?: string;
+  teamSize?: string;
+  /** Public URL — omit for products without a public site. */
+  liveUrl?: string;
+  /** Surfaces the product ships on, e.g. ["Web admin", "Android", "iOS"]. */
+  platforms?: string[];
+  /** Multi-device showcase (web + phone) instead of a single browser shot. */
+  screens?: ProjectScreens;
   image: string;
   tags: string[];
   summary: string;
@@ -24,8 +31,8 @@ export type CaseStudy = {
   // Metrics to highlight
   metrics: { label: string; value: string; icon: string }[];
 
-  // Tech breakdown
-  techStack: { layer: string; tech: string }[];
+  // Tech breakdown — omitted sections are hidden on the page
+  techStack?: { layer: string; tech: string }[];
 
   // Quote from client
   testimonial?: { quote: string; name: string; role: string };
@@ -35,6 +42,45 @@ export type CaseStudy = {
 };
 
 const caseStudiesData: CaseStudy[] = [
+  {
+    slug: "shankh-logistics",
+    projectId: 6,
+    title: "A complete logistics suite — admin console, Android and iOS apps",
+    client: "Shankh Logistics",
+    industry: "Logistics / Transport",
+    image: "/images/projects/shankh.webp",
+    tags: ["Logistics", "Web App", "Android", "iOS", "GPS Tracking"],
+    platforms: ["Web admin", "Android", "iOS"],
+    screens: {
+      web: "/images/projects/shankh-admin.webp",
+      mobile: "/images/projects/shankh-app.webp",
+      webLabel: "Shankh Logistics · Admin console",
+    },
+    summary:
+      "Shankh Logistics needed one product to run a trucking business end to end: customers book a vehicle from their phone, and the operations team manages orders, fleet and drivers — and tracks every truck live — from a single web console. We designed and built all three surfaces.",
+    challenge:
+      "A transport business runs on many moving parts at once — customer enquiries, quotes for different vehicle sizes, a roster of trucks and drivers, and a GPS provider with its own separate portal. When those live in phone calls, chats and spreadsheets, answering a simple question like \"where is my truck right now?\" means calling the driver. Shankh wanted bookings, dispatch and tracking in one place, with an app simple enough for any customer to book a load.",
+    solution:
+      "We built a multi-tenant admin console for the operations team and a customer app for Android and iOS. The console covers the full business: orders, fleet and drivers, stakeholders, locations, materials, master data, coupons and notifications, plus a live tracking map that pulls vehicle positions from the GPS provider and shows status, speed and the assigned driver for every truck. In the customer app, users set pickup and drop by searching or dropping a pin, compare vehicle types from mini trucks to container trailers with an instant starting fare, and follow their bookings.",
+    outcome:
+      "Bookings, dispatch and tracking now run in one system. Customers book directly from their phone, while the operations team sees every order, vehicle and driver in one console and can follow or replay any truck on the map instead of calling drivers for updates.",
+    metrics: [
+      { label: "Apps shipped — web admin, Android and iOS", value: "3", icon: "📱" },
+      { label: "Admin modules, from orders to coupons", value: "11", icon: "🧩" },
+      { label: "Vehicle classes priced instantly in-app", value: "5", icon: "🚚" },
+      { label: "GPS tracking with follow and trip replay", value: "Live", icon: "📍" },
+    ],
+    features: [
+      "Live vehicle tracking map with status filters and auto-refreshing GPS positions",
+      "Follow a vehicle, replay its trip, or find the nearest available truck",
+      "Fleet management — vehicles, drivers and assignments",
+      "Order management from booking through delivery",
+      "Customer app: pickup and drop with search or exact pin placement",
+      "Vehicle-type catalogue with instant starting fares",
+      "Bookings history, profile and push notifications on mobile",
+      "Masters, locations, materials, stakeholders and coupons for the operations team",
+    ],
+  },
   {
     slug: "loexa-africa",
     projectId: 1,

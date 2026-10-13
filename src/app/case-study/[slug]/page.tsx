@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import caseStudiesData from "@/data/caseStudies";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import ParallaxShowcase from "@/components/CaseStudy/ParallaxShowcase";
+import DeviceShowcase from "@/components/Projects/DeviceShowcase";
 
 export function generateStaticParams() {
   return caseStudiesData.map((cs) => ({ slug: cs.slug }));
@@ -70,7 +71,14 @@ export default async function CaseStudyPage({
     { k: "Industry", v: cs.industry },
     { k: "Timeline", v: cs.duration },
     { k: "Team", v: cs.teamSize },
-  ];
+    { k: "Platforms", v: cs.platforms?.join(" · ") },
+  ]
+    .filter((m): m is { k: string; v: string } => Boolean(m.v))
+    .slice(0, 4);
+
+  // Chapters are numbered in order, skipping any section without content.
+  const hasStack = Boolean(cs.techStack?.length);
+  const chapterNo = (n: number) => String(n).padStart(2, "0");
 
   return (
     <main className="relative overflow-hidden pb-24">
@@ -104,7 +112,7 @@ export default async function CaseStudyPage({
           </div>
 
           <StaggerItem>
-            <dl className="mt-12 grid grid-cols-2 border-y border-black/[0.07] dark:border-white/[0.08] md:grid-cols-4">
+            <dl className={`mt-12 grid grid-cols-2 border-y border-black/[0.07] dark:border-white/[0.08] ${meta.length === 3 ? "md:grid-cols-3" : "md:grid-cols-4"}`}>
               {meta.map((m, i) => (
                 <div
                   key={m.k}
@@ -119,6 +127,7 @@ export default async function CaseStudyPage({
 
           <StaggerItem>
             <div className="mt-8 flex flex-wrap items-center gap-3">
+              {cs.liveUrl && (
               <Link
                 href={cs.liveUrl}
                 target="_blank"
@@ -127,6 +136,7 @@ export default async function CaseStudyPage({
               >
                 Visit live site ↗
               </Link>
+              )}
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 rounded-full border border-black/[0.08] bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition-colors hover:text-gray-900 dark:border-white/[0.12] dark:bg-white/[0.05] dark:text-zinc-200 dark:hover:text-white"
@@ -147,7 +157,11 @@ export default async function CaseStudyPage({
 
       {/* ── Showcase ─────────────────────────────────────────────────── */}
       <section className="container relative mt-16">
-        <ParallaxShowcase src={cs.image} alt={cs.title} url={hostOf(cs.liveUrl)} />
+        {cs.screens ? (
+          <DeviceShowcase screens={cs.screens} title={cs.client} platforms={cs.platforms} priority />
+        ) : (
+          <ParallaxShowcase src={cs.image} alt={cs.title} url={cs.liveUrl ? hostOf(cs.liveUrl) : cs.client} />
+        )}
       </section>
 
       {/* ── Metrics ──────────────────────────────────────────────────── */}
@@ -190,9 +204,10 @@ export default async function CaseStudyPage({
           </Stagger>
         </Chapter>
 
+        {hasStack && (
         <Chapter index="03" label="Stack" title="Under the hood">
           <dl className="divide-y divide-black/[0.06] dark:divide-white/[0.07]">
-            {cs.techStack.map((row) => (
+            {cs.techStack!.map((row) => (
               <div key={row.layer} className="grid gap-1 py-4 sm:grid-cols-[140px_1fr] sm:gap-6">
                 <dt className="font-mono text-xs uppercase tracking-wider text-primary sm:pt-0.5">{row.layer}</dt>
                 <dd className="text-[15px] text-gray-700 dark:text-zinc-300">{row.tech}</dd>
@@ -200,8 +215,9 @@ export default async function CaseStudyPage({
             ))}
           </dl>
         </Chapter>
+        )}
 
-        <Chapter index="04" label="Outcome" title="What changed">
+        <Chapter index={chapterNo(hasStack ? 4 : 3)} label="Outcome" title="What changed">
           <p className="text-lg leading-[1.8] text-gray-600 dark:text-zinc-300">{cs.outcome}</p>
         </Chapter>
       </section>

@@ -2,6 +2,20 @@ import { Project } from "@/types/project";
 
 export const projectsData: Project[] = [
   {
+    id: 6,
+    title: "Shankh Logistics",
+    paragraph: "One system for a trucking business — customers book loads from their phone while operations dispatch and track every vehicle live from a web console.",
+    image: "/images/projects/shankh.webp",
+    tags: ["Logistics", "Web App", "Android", "iOS", "GPS Tracking"],
+    caseStudySlug: "shankh-logistics",
+    platforms: ["Web admin", "Android", "iOS"],
+    screens: {
+      web: "/images/projects/shankh-admin.webp",
+      mobile: "/images/projects/shankh-app.webp",
+      webLabel: "Shankh Logistics · Admin console",
+    },
+  },
+  {
     id: 1,
     title: "LOEXA Africa",
     paragraph: "Building Africa's Future Workforce. Africa's capability-building ecosystem connecting education, AI, and industry for sustainable impact.",

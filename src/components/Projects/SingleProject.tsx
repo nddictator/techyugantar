@@ -28,6 +28,9 @@ export default function SingleProject({
 }: Props) {
   const { title, image, paragraph, liveUrl, tags, caseStudySlug } = project;
   const cardRef = useRef<HTMLDivElement>(null);
+  // Products without a public site (internal consoles, app-store apps) link to their case study instead.
+  const href = liveUrl ?? (caseStudySlug ? `/case-study/${caseStudySlug}` : "/projects");
+  const externalProps = liveUrl ? { target: "_blank", rel: "noopener noreferrer" } : {};
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -73,9 +76,8 @@ export default function SingleProject({
 
         {/* Screenshot */}
         <Link
-          href={liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={href}
+          {...externalProps}
           className={`relative block overflow-hidden ${imageHeight}`}
         >
           <Image
@@ -89,7 +91,7 @@ export default function SingleProject({
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-end justify-center pb-5 z-20">
             <span className="inline-flex items-center gap-2 bg-primary px-4 py-2 rounded-full text-white text-xs font-semibold
               translate-y-3 group-hover:translate-y-0 transition-transform duration-300 shadow-lg">
-              View Live
+              {liveUrl ? "View Live" : "View case study"}
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
@@ -114,9 +116,8 @@ export default function SingleProject({
           </div>
 
           <Link
-            href={liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={href}
+            {...externalProps}
             className={`block font-bold text-black dark:text-white hover:text-primary dark:hover:text-primary transition-colors mb-1.5 leading-snug
               ${compact ? "text-base" : centerFeatured ? "text-xl" : "text-lg"}`}
           >
@@ -145,6 +146,7 @@ export default function SingleProject({
                 <LuBookOpen aria-hidden className="h-3.5 w-3.5" /> Case Study
               </Link>
             )}
+            {liveUrl && (
             <Link
               href={liveUrl}
               target="_blank"
@@ -154,6 +156,7 @@ export default function SingleProject({
             >
               ↗ Live Site
             </Link>
+            )}
           </div>
         </div>
       </div>
