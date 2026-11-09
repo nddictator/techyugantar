@@ -317,9 +317,9 @@ function Pricing() {
       <div className="container">
         <Heading
           eyebrow="Pricing"
-          title="Priced for a new MPO,"
-          accent="not a big corporate"
-          text="Less than what a single paper form costs you to print, file and type again. Plans go by active members; prices are per year, plus GST."
+          title="Simple, transparent"
+          accent="pricing"
+          text="Annual plans based on the number of active members, priced for growing producer organizations. All prices are per year and exclude GST."
           center
         />
         <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" staggerDelay={0.08}>
@@ -327,16 +327,9 @@ function Pricing() {
             <StaggerItem key={plan.name} className="h-full">
               <SpotlightCard
                 className={`flex h-full flex-col p-7 ${plan.best ? "ring-2 ring-primary" : ""}`}
-                tag={plan.best ? "Most MPOs pick this" : undefined}
+                tag={plan.best ? "Most popular" : undefined}
               >
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                  {plan.name}{" "}
-                  {plan.hindi ? (
-                    <span lang="hi" className="text-sm font-medium text-gray-400">
-                      {plan.hindi}
-                    </span>
-                  ) : null}
-                </h3>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">{plan.name}</h3>
                 <p className="mt-1 text-sm text-gray-500 dark:text-zinc-400">{plan.members}</p>
                 <p className="mt-5 text-3xl font-extrabold tracking-tight whitespace-nowrap text-gray-900 dark:text-white">
                   {plan.price}
@@ -352,7 +345,7 @@ function Pricing() {
                   ))}
                 </ul>
                 <SpringLink href="#book-demo" variant={plan.best ? "primary" : "glass"} className="w-full">
-                  {plan.price.startsWith("₹") ? "Book a demo" : "Contact us"}
+                  {plan.price.startsWith("₹") ? "Request a demo" : "Contact sales"}
                 </SpringLink>
               </SpotlightCard>
             </StaggerItem>
