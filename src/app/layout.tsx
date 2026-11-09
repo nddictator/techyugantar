@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer";
+import SocialSidebar from "@/components/Common/SocialSidebar";
 import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -97,6 +98,7 @@ export default function RootLayout({
         <Providers>
           <div className="isolate">
             <Header />
+        <SocialSidebar />
             {children}
             <Footer />
           </div>
