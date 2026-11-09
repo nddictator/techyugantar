@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { SPRING_HOVER, SPRING_REVEAL } from "@/components/ui/utils";
 
 export default function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
@@ -26,7 +27,7 @@ export default function WhatsAppButton() {
         onHoverEnd={() => setIsHovered(false)}
         initial={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.6, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.4 }}
+        transition={{ ...SPRING_REVEAL, delay: 0.4 }}
         whileHover={shouldReduceMotion ? undefined : { scale: 1.08 }}
         whileTap={shouldReduceMotion ? undefined : { scale: 0.95 }}
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_8px_30px_rgba(37,211,102,0.45)] backdrop-blur-md"
@@ -43,7 +44,7 @@ export default function WhatsAppButton() {
               initial={{ opacity: 0, x: 8, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: 8, scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              transition={SPRING_HOVER}
               className="border-body-color/10 dark:border-white/10 absolute right-full mr-3 rounded-md border bg-white/90 px-3 py-1.5 text-sm font-medium whitespace-nowrap text-black shadow-lg backdrop-blur-md dark:bg-[#1a1f2b]/90 dark:text-white"
             >
               Chat on WhatsApp

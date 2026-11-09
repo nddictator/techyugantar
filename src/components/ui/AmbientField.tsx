@@ -72,7 +72,7 @@ export default function AmbientField({
           className="absolute inset-0 transition-opacity duration-700"
           style={{
             background:
-              "radial-gradient(560px circle at var(--mx) var(--my), rgba(57,157,145,0.14), transparent 45%)",
+              "radial-gradient(560px circle at var(--mx) var(--my), rgba(45,212,191,0.14), transparent 45%)",
           }}
         />
       )}
@@ -97,7 +97,7 @@ export default function AmbientField({
           className="motion-safe:animate-[ambient-beam-spin_26s_linear_infinite] absolute -inset-1/2 opacity-[0.05] dark:opacity-[0.09]"
           style={{
             background:
-              "conic-gradient(from 0deg at 50% 50%, transparent, #399D91, transparent 30%)",
+              "conic-gradient(from 0deg at 50% 50%, transparent, #14B8A6, transparent 30%)",
           }}
         />
       )}

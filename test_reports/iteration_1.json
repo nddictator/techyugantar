@@ -1,0 +1,29 @@
+{
+  "summary": "Frontend-only smoke test of Tech Yugantar Next.js homepage redesign completed. Homepage and all secondary routes (about, services, projects, pricing, blog, contact, how-we-work) return 200. Hero renders 'We Build Software That Ships.' with aurora-teal gradient on 'That Ships.'. All requested data-testid elements are visible: hero-start-project-btn, hero-view-work-btn, hero-announcement-pill, live-chart-illustration, network-mesh-illustration, code-editor-illustration. Header pill nav routes correctly (Home->/, About->/about, Services->/services, Process->/how-we-work, Projects->/projects, Pricing->/pricing, Blog->/blog). Theme toggle (aria-label='theme toggler') switches html class between dark and 'lenis light'; both themes look polished. Mobile drawer opens via aria-label='Toggle menu' and shows all nav links + Get a Quote CTA. Testimonials slider exposes prev/next buttons. Contact form renders name/email/message; form has a bot-field honeypot (correct anti-spam pattern). No page/runtime JS errors detected. Only console noise is dev-only Next webpack-HMR websocket 502s (Cloudflare doesn't proxy the HMR ws, harmless) and a few next/image sizes warnings.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Homepage (dark)", "issues": ["next/image warning: /images/logo/logo.png has only one of width/height set — add 'width:auto' or 'height:auto' CSS to preserve aspect ratio"]},
+      {"screen": "Homepage projects bento", "issues": ["Multiple next/image with fill are missing 'sizes' prop (loexa/jyotify/itwebdream/maasulakhi/talkacharya) — performance warning, add sizes for LCP", "loexa.webp is LCP but missing loading='eager'"]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "(Optional/perf) Add sizes prop to <Image fill /> for project bento webps and set loading='eager' on the first LCP image",
+    "(Optional/lint) Add width:auto or height:auto style to the header logo image to silence Next image aspect-ratio warning",
+    "(Infra note) The supervisor 'frontend' program is configured with directory=/app/frontend but this project lives at /app root (Next.js). Supervisor is FATAL; the dev server had to be started manually via 'yarn dev' in /app. Main agent should update supervisor conf or move the app so the dev server auto-restarts. Right now if the pod is rebooted the site 502s."
+  ],
+  "critical_code_review_comments": [
+    "Supervisor/frontend program directory mismatch (/app/frontend vs /app) — service won't auto-recover on pod restart",
+    "Contact API route depends on unset RESEND env vars — 500 on submit is expected per problem statement; UI should surface it as a graceful toast (couldn't fully validate toast content because inline error selectors did not expose the message, but no crash observed)"
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "n/a (skipped)", "frontend": "100% on tested flows"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Next.js 16 App Router app at /app root (not /app/frontend). Start with 'cd /app && yarn dev -p 3000' if supervisor frontend is FATAL. Public URL: REACT_APP_BACKEND_URL host (same host serves 3000 for non-/api). Homepage default theme is system-preference; playwright defaults to light — force dark via emulated media if you specifically want to screenshot dark. Contact form's first <input> is a hidden 'bot-field' honeypot — use nth(1) or [type=email] selectors. Mobile hamburger has aria-label='Toggle menu'. Theme button has aria-label='theme toggler'. Testimonials slider uses aria-label 'next/prev' buttons. HMR websocket 502 errors in console are dev-only and can be ignored.",
+  "rca of the issue": "n/a — no functional defects reproduced. The one operational issue is supervisor misconfiguration (directory=/app/frontend does not exist) causing the dev server not to auto-start; workaround was manual 'yarn dev'. Recommend fixing supervisor conf or app placement."
+}

@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { LuBookOpen } from "react-icons/lu";
 import { Project } from "@/types/project";
 import TiltCard from "@/components/ui/TiltCard";
 import GlowingBadge from "@/components/ui/GlowingBadge";
@@ -56,7 +57,7 @@ export default function SingleProject({
           className="pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           style={{
             background:
-              "radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(57,157,145,0.10), transparent 70%)",
+              "radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(45,212,191,0.10), transparent 70%)",
           }}
         />
 
@@ -81,6 +82,7 @@ export default function SingleProject({
             src={image}
             alt={title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(.25,.46,.45,.94)] group-hover:scale-105"
           />
           {/* Hover overlay */}
@@ -140,7 +142,7 @@ export default function SingleProject({
                 className="inline-flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary/20"
                 onClick={(e) => e.stopPropagation()}
               >
-                📖 Case Study
+                <LuBookOpen aria-hidden className="h-3.5 w-3.5" /> Case Study
               </Link>
             )}
             <Link

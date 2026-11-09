@@ -7,6 +7,8 @@ import AuthorAvatar from "@/components/Blog/AuthorAvatar";
 import SharePost from "@/components/Blog/SharePost";
 import TagButton from "@/components/Blog/TagButton";
 import RelatedPost from "@/components/Blog/RelatedPost";
+import ReadingProgress from "@/components/Blog/ReadingProgress";
+import { Reveal } from "@/components/motion";
 import JsonLdScript from "@/components/JsonLdScript";
 import { getAllSlugs, getBlogBySlug, getRelatedBlogs } from "@/lib/blog";
 import { buildArticleSchema, buildBreadcrumbSchema } from "@/lib/schema";
@@ -28,7 +30,7 @@ export async function generateMetadata({
   if (!post) return {};
 
   return {
-    title: `${post.title} | Tech Yugantar Blog`,
+    title: `${post.title} — Blog`,
     description: post.excerpt,
     alternates: { canonical: `${SITE_URL}/blog/${slug}` },
     openGraph: {
@@ -50,7 +52,13 @@ export async function generateMetadata({
 const mdxComponents = {
   h2: (props: React.ComponentProps<"h2">) => (
     <h2
-      className="font-xl mt-12 mb-6 leading-tight font-bold text-black sm:text-2xl sm:leading-tight lg:text-xl lg:leading-tight xl:text-2xl xl:leading-tight dark:text-white"
+      className="font-display mt-14 mb-6 text-2xl leading-tight font-semibold tracking-tight text-gray-900 sm:text-3xl dark:text-white"
+      {...props}
+    />
+  ),
+  h3: (props: React.ComponentProps<"h3">) => (
+    <h3
+      className="font-display mt-10 mb-4 text-xl leading-snug font-semibold tracking-tight text-gray-900 dark:text-white"
       {...props}
     />
   ),
@@ -61,22 +69,32 @@ const mdxComponents = {
     />
   ),
   ul: (props: React.ComponentProps<"ul">) => (
-    <ul className="text-body-color mb-6 list-inside list-disc space-y-2" {...props} />
+    <ul className="text-body-color mb-6 list-outside list-disc space-y-2 pl-6 marker:text-primary" {...props} />
   ),
   ol: (props: React.ComponentProps<"ol">) => (
-    <ol className="text-body-color mb-6 list-inside list-decimal space-y-2" {...props} />
+    <ol className="text-body-color mb-6 list-outside list-decimal space-y-2 pl-6 marker:text-primary" {...props} />
   ),
   li: (props: React.ComponentProps<"li">) => (
-    <li className="text-base font-medium sm:text-lg" {...props} />
+    <li className="pl-1 text-base font-medium sm:text-lg" {...props} />
   ),
-  pre: (props: React.ComponentProps<"pre">) => (
-    <pre
-      className="mb-6 overflow-x-auto rounded-md bg-[#1a1f2b] p-5 text-sm leading-relaxed text-[#e2e8f0]"
+  blockquote: (props: React.ComponentProps<"blockquote">) => (
+    <blockquote
+      className="mb-6 rounded-r-xl border-l-2 border-primary bg-primary/[0.05] py-1 pr-5 pl-5 [&>p]:mb-3 [&>p:last-child]:mb-0 [&>p]:text-gray-700 dark:[&>p]:text-zinc-300"
       {...props}
     />
   ),
+  pre: (props: React.ComponentProps<"pre">) => (
+    <pre
+      className="mb-6 overflow-x-auto rounded-xl border border-white/[0.06] bg-[#0d0f13] p-5 text-sm leading-relaxed text-[#e2e8f0] shadow-[0_10px_30px_rgba(0,0,0,0.3)] [&_code]:rounded-none [&_code]:border-0 [&_code]:bg-transparent [&_code]:p-0 [&_code]:text-inherit"
+      {...props}
+    />
+  ),
+  // Inline code; block code inherits a reset from `pre` above.
   code: (props: React.ComponentProps<"code">) => (
-    <code className="font-mono text-sm" {...props} />
+    <code
+      className="rounded-md border border-black/[0.06] bg-black/[0.04] px-1.5 py-0.5 font-mono text-[0.85em] text-gray-800 dark:border-white/[0.08] dark:bg-white/[0.06] dark:text-zinc-200"
+      {...props}
+    />
   ),
   strong: (props: React.ComponentProps<"strong">) => (
     <strong className="text-primary dark:text-white" {...props} />
@@ -117,8 +135,9 @@ const BlogDetailsPage = async ({
     <>
       <JsonLdScript schema={breadcrumbSchema} />
       <JsonLdScript schema={articleSchema} />
+      <ReadingProgress />
 
-      <section className="pt-[150px] pb-[120px]">
+      <section className="pt-[140px] pb-[120px]">
         <div className="container">
           <div className="-mx-4 flex flex-wrap justify-center">
             <div className="w-full px-4 lg:w-8/12">
@@ -157,7 +176,7 @@ const BlogDetailsPage = async ({
                 <div className="mb-2">
                   <Link
                     href={`/blog?tag=${post.tags[0]}`}
-                    className="bg-primary inline-flex items-center justify-center rounded-full px-4 py-2 text-sm font-semibold text-white capitalize"
+                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-teal-400 to-teal-600 px-4 py-2 text-sm font-semibold text-white capitalize shadow-[0_0_16px_rgba(45,212,191,0.3)]"
                   >
                     {post.tags[0]}
                   </Link>
@@ -168,16 +187,17 @@ const BlogDetailsPage = async ({
                 {post.excerpt}
               </p>
 
-              <div className="mb-10 w-full overflow-hidden rounded-sm">
-                <div className="relative aspect-97/60 w-full sm:aspect-97/44">
+              <div className="mb-10 w-full overflow-hidden rounded-2xl">
+                <Reveal className="relative aspect-97/60 w-full sm:aspect-97/44 overflow-hidden rounded-2xl border border-black/[0.06] shadow-[0_20px_60px_rgba(6,8,15,0.12)] dark:border-white/[0.08]">
                   <Image
                     src={post.image}
                     alt={post.title}
                     fill
                     priority
+                    sizes="(max-width: 992px) 100vw, 66vw"
                     className="object-cover object-center"
                   />
-                </div>
+                </Reveal>
               </div>
 
               <article>

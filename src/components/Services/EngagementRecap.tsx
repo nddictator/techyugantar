@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 const EngagementRecap = () => {
   return (
@@ -14,7 +15,7 @@ const EngagementRecap = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          transition={SPRING_REVEAL}
           className="relative mx-auto max-w-[820px]"
         >
           {/* Card */}
@@ -25,7 +26,7 @@ const EngagementRecap = () => {
               /* Light mode */
               border-gray-200 bg-white shadow-xl shadow-gray-200/60
               /* Dark mode */
-              dark:border-white/[0.08] dark:bg-gradient-to-b dark:from-white/[0.06] dark:to-transparent dark:shadow-2xl
+              dark:border-white/[0.08] dark:bg-transparent dark:bg-gradient-to-b dark:from-white/[0.06] dark:to-transparent dark:shadow-2xl dark:shadow-black/40
             "
           >
             {/* Inner glow overlay — dark mode only */}

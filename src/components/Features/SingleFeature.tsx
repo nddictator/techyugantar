@@ -11,10 +11,10 @@ const SingleFeature = ({ feature }: { feature: Feature & { tags?: string[] } }) 
           group relative h-full overflow-hidden rounded-2xl p-6
           border transition-all duration-300 cursor-default
           border-gray-100 bg-white shadow-sm
-          hover:border-primary/30 hover:shadow-[0_0_24px_rgba(57,157,145,0.08)]
+          hover:border-primary/30 hover:shadow-[0_0_24px_rgba(45,212,191,0.08)]
           dark:border-white/[0.07] dark:bg-zinc-900/50
           dark:hover:border-primary/40 dark:hover:bg-zinc-900/80
-          dark:hover:shadow-[0_0_32px_rgba(57,157,145,0.12)]
+          dark:hover:shadow-[0_0_32px_rgba(45,212,191,0.12)]
         "
       >
         {/* Top-edge highlight line — Launch UI signature */}

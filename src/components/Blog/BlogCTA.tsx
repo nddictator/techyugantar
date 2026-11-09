@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LuBriefcase, LuCalendar, LuLightbulb, LuMapPin, LuShieldCheck } from "react-icons/lu";
 
 type BlogCTAProps = {
   title?: string;
@@ -20,7 +21,7 @@ export default function BlogCTA({
 
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div className="flex items-start gap-4">
-          <span className="mt-1 text-3xl">💡</span>
+          <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/20"><LuLightbulb aria-hidden className="h-5 w-5" /></span>
           <div>
             <h3 className="mb-1 text-lg font-bold text-gray-900 dark:text-white">
               {title}
@@ -49,9 +50,15 @@ export default function BlogCTA({
 
       {/* Trust badges */}
       <div className="mt-6 flex flex-wrap gap-4 border-t border-gray-200/60 pt-5 dark:border-white/[0.07]">
-        {["✅ Free 30-min discovery call", "🔒 NDA on request", "📦 Fixed-price or hourly", "🇮🇳 Based in Varanasi, India"].map((badge) => (
-          <span key={badge} className="text-xs font-medium text-gray-500 dark:text-zinc-500">
-            {badge}
+        {[
+          { Icon: LuCalendar, text: "Free 30-min discovery call" },
+          { Icon: LuShieldCheck, text: "NDA on request" },
+          { Icon: LuBriefcase, text: "Fixed-price or hourly" },
+          { Icon: LuMapPin, text: "Based in Varanasi, India" },
+        ].map(({ Icon, text }) => (
+          <span key={text} className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-zinc-500">
+            <Icon aria-hidden className="h-3.5 w-3.5 text-primary" />
+            {text}
           </span>
         ))}
       </div>

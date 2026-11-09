@@ -4,14 +4,12 @@ import Header from "@/components/Header";
 import ScrollToTop from "@/components/ScrollToTop";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import JsonLd from "@/components/JsonLd";
+import { PageTransition } from "@/components/motion";
 import { Providers } from "./providers";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Inter } from "next/font/google";
 import type { Metadata } from "next";
 import "lenis/dist/lenis.css";
 import "../styles/index.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://techyugantar.in"),
@@ -91,10 +89,16 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <head>
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700,900&display=swap"
+        />
         <JsonLd />
       </head>
 
-      <body className={`bg-[#FCFCFC] dark:bg-black ${inter.className}`}>
+      <body className="bg-cream text-gray-900 dark:bg-obsidian dark:text-zinc-100 antialiased">
         <Providers>
           <div className="isolate">
             <Header />
@@ -107,7 +111,9 @@ export default function RootLayout({
         </Providers>
       </body>
 
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
+      {process.env.NEXT_PUBLIC_GA_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+      )}
     </html>
   );
 }

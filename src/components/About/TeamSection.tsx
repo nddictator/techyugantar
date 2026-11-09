@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { FiLinkedin } from "react-icons/fi";
 import teamData, { companyStory } from "@/data/team";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 function Avatar({ initials, bg }: { initials: string; bg: string }) {
   return (
@@ -26,7 +27,7 @@ export default function TeamSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          transition={SPRING_REVEAL}
           className="mb-14 text-center"
         >
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/8 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary">
@@ -49,7 +50,7 @@ export default function TeamSection() {
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ type: "spring", stiffness: 80, damping: 20, delay: i * 0.08 }}
+              transition={{ ...SPRING_REVEAL, delay: i * 0.08 }}
               className={`group relative rounded-2xl border p-7 transition-all duration-300
                 border-gray-200 bg-white shadow-sm hover:border-primary/30 hover:shadow-lg
                 dark:border-white/[0.08] dark:bg-zinc-900/60 dark:hover:border-primary/20
@@ -62,7 +63,6 @@ export default function TeamSection() {
               <div className="flex items-start gap-5">
                 <div className="relative">
                   <Avatar initials={member.avatar} bg={member.avatarBg} />
-                  <span className="absolute -bottom-1 -right-1 text-2xl">{member.emoji}</span>
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="mb-1 flex items-center justify-between gap-2">
@@ -111,7 +111,7 @@ export default function TeamSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          transition={SPRING_REVEAL}
           className="mb-10 text-center"
         >
           <h3 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
@@ -127,10 +127,12 @@ export default function TeamSection() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.1 }}
-              transition={{ type: "spring", stiffness: 80, damping: 20, delay: i * 0.07 }}
+              transition={{ ...SPRING_REVEAL, delay: i * 0.07 }}
               className="flex items-start gap-4 rounded-xl border border-gray-200 bg-white p-5 shadow-sm dark:border-white/[0.07] dark:bg-zinc-900/40"
             >
-              <span className="mt-0.5 text-2xl">{v.emoji}</span>
+              <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-inset ring-primary/15">
+                <v.Icon aria-hidden className="h-[18px] w-[18px]" />
+              </span>
               <div>
                 <p className="mb-1 text-sm font-bold text-gray-900 dark:text-white">{v.title}</p>
                 <p className="text-sm leading-relaxed text-gray-600 dark:text-zinc-400">{v.desc}</p>

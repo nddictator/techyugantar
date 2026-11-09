@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "motion/react";
 import type { ReactNode } from "react";
+import { REVEAL_Y, SPRING_REVEAL, STAGGER } from "@/components/ui/utils";
 
 type StaggerProps = {
   children: ReactNode;
@@ -16,7 +17,7 @@ export function Stagger({
   children,
   className,
   amount = 0.2,
-  staggerDelay = 0.12,
+  staggerDelay = STAGGER,
   immediate = false,
 }: StaggerProps) {
   const shouldReduceMotion = useReducedMotion();
@@ -56,7 +57,7 @@ type StaggerItemProps = {
 export function StaggerItem({
   children,
   className,
-  y = 20,
+  y = REVEAL_Y,
   as = "div",
 }: StaggerItemProps) {
   const shouldReduceMotion = useReducedMotion();
@@ -71,7 +72,7 @@ export function StaggerItem({
     show: {
       opacity: 1,
       y: 0,
-      transition: { type: "spring", stiffness: 90, damping: 18 },
+      transition: SPRING_REVEAL,
     },
   };
 

@@ -1,11 +1,12 @@
 import SingleBlog from "@/components/Blog/SingleBlog";
 import Breadcrumb from "@/components/Common/Breadcrumb";
+import { Reveal } from "@/components/motion";
 import { getAllBlogs } from "@/lib/blog";
 
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Tech Insights & Tutorials | Tech Yugantar Blog",
+  title: "Tech Insights & Tutorials — Blog",
   description:
     "Articles on Flutter, Django, Next.js, and mobile development from the Tech Yugantar team in Varanasi — practical tutorials and insights for developers and businesses building software products.",
   keywords: [
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
       "Expert insights into Flutter, Django, Next.js, and software engineering from the Tech Yugantar team.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Tech Yugantar Blog",
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Tech Yugantar Blog — Digital Innovation Insights",
     description: "Insights on Flutter, Django, Next.js, and software engineering.",
-    images: ["/og-image.png"],
+    images: ["/og-image.webp"],
   },
 };
 
@@ -57,19 +58,21 @@ const Blog = async ({
   return (
     <>
       <Breadcrumb
-        pageName="Tech Insights"
-        description="Deep dives into the world of software development, modern architecture, and the future of digital business. Knowledge shared by the Tech Yugantar team."
+        pageName="Blog"
+        headline="Notes from building software in production."
+        highlight="in production."
+        description="Field notes from our engineering team — the trade-offs, bugs and patterns we hit while shipping Django, Next.js and Flutter in production."
       />
 
-      <section className="pt-[120px] pb-[120px]">
+      <section className="py-16 md:py-20 lg:py-24">
         <div className="container">
-          <div className="mb-12 flex flex-wrap items-center justify-center gap-3">
+          <div className="mb-12 flex flex-wrap items-center justify-center gap-2.5">
             <a
               href="/blog"
-              className={`inline-flex items-center justify-center rounded-xs px-4 py-2 text-sm capitalize duration-300 ${
+              className={`inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-medium capitalize transition-all duration-300 ${
                 !tag
-                  ? "bg-primary text-white"
-                  : "bg-gray-light text-black dark:bg-[#2C303B] dark:text-white hover:bg-primary hover:text-white"
+                  ? "bg-gradient-to-r from-teal-400 to-teal-600 text-white shadow-[0_0_18px_rgba(45,212,191,0.35)]"
+                  : "border border-black/[0.08] bg-white/70 text-gray-600 hover:border-primary/40 hover:text-primary dark:border-white/[0.1] dark:bg-white/[0.04] dark:text-zinc-400 dark:hover:text-white"
               }`}
             >
               All
@@ -78,10 +81,10 @@ const Blog = async ({
               <a
                 key={t}
                 href={`/blog?tag=${t}`}
-                className={`inline-flex items-center justify-center rounded-xs px-4 py-2 text-sm capitalize duration-300 ${
+                className={`inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-medium capitalize transition-all duration-300 ${
                   tag === t
-                    ? "bg-primary text-white"
-                    : "bg-gray-light text-black dark:bg-[#2C303B] dark:text-white hover:bg-primary hover:text-white"
+                    ? "bg-gradient-to-r from-teal-400 to-teal-600 text-white shadow-[0_0_18px_rgba(45,212,191,0.35)]"
+                    : "border border-black/[0.08] bg-white/70 text-gray-600 hover:border-primary/40 hover:text-primary dark:border-white/[0.1] dark:bg-white/[0.04] dark:text-zinc-400 dark:hover:text-white"
                 }`}
               >
                 {t}
@@ -89,14 +92,11 @@ const Blog = async ({
             ))}
           </div>
 
-          <div className="-mx-4 flex flex-wrap justify-center">
-            {posts.map((blog) => (
-              <div
-                key={blog.slug}
-                className="w-full px-4 md:w-2/3 lg:w-1/2 xl:w-1/3"
-              >
+          <div className="grid grid-cols-1 gap-x-7 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+            {posts.map((blog, i) => (
+              <Reveal key={blog.slug} delay={(i % 3) * 0.08} className="w-full">
                 <SingleBlog blog={blog} />
-              </div>
+              </Reveal>
             ))}
           </div>
 

@@ -7,6 +7,7 @@ import JsonLdScript from "../JsonLdScript";
 import faqData from "./faqData";
 import { buildFaqSchema } from "@/lib/schema";
 import { Reveal, StaggerItem, Stagger } from "@/components/motion";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 const FAQ = () => {
   const [openId, setOpenId] = useState<number | null>(faqData[0]?.id ?? null);
@@ -37,7 +38,7 @@ const FAQ = () => {
                     {faq.question}
                     <motion.span
                       animate={{ rotate: isOpen ? 45 : 0 }}
-                      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                      transition={SPRING_REVEAL}
                       className="ml-4 shrink-0 text-primary text-2xl leading-none"
                       aria-hidden="true"
                     >

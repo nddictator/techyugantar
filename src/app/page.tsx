@@ -1,5 +1,3 @@
-import AboutSectionOne from "@/components/About/AboutSectionOne";
-import AboutSectionTwo from "@/components/About/AboutSectionTwo";
 import ScrollUp from "@/components/Common/ScrollUp";
 import Contact from "@/components/Contact";
 import Features from "@/components/Features";
@@ -30,6 +28,7 @@ export const metadata: Metadata = {
     canonical: "https://techyugantar.in",
   },
   openGraph: {
+    images: [{ url: "/og-image.webp", width: 1200, height: 630, alt: "Tech Yugantar" }],
     title: "Tech Yugantar | Architecting the Digital Era",
     description: "Expert software solutions specializing in Django, React, and Flutter. Partner with Tech Yugantar to scale your digital presence.",
     url: "https://techyugantar.in",
@@ -48,13 +47,12 @@ export default function Home() {
   return (
     <>
       <ScrollUp />
+      {/* Story order: what we build → proof → who for → how → what clients say → engage */}
       <Hero />
       <Features />
-      <Domains />
-      <AboutSectionOne />
-      <AboutSectionTwo />
-      <Trust />
       <Projects />
+      <Domains />
+      <Trust />
       <Testimonials />
       <Pricing />
       <Contact />

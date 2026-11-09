@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const { name, email, message, "bot-field": botField } = body as Record<string, string>;
+  const { name, email, message, projectType, budget, "bot-field": botField } = body as Record<string, string>;
 
   // Honeypot: real users never fill this hidden field, so a filled value means a bot.
   // Report success without sending mail, so bots don't learn the field is being checked.
@@ -36,7 +36,15 @@ export async function POST(request: Request) {
       to: toEmail,
       replyTo: email,
       subject: `New support ticket from ${name}`,
-      text: `From: ${name} <${email}>\n\n${message}`,
+      text: [
+        `From: ${name} <${email}>`,
+        projectType ? `Project type: ${projectType}` : null,
+        budget ? `Budget: ${budget}` : null,
+        "",
+        message,
+      ]
+        .filter((line) => line !== null)
+        .join("\n"),
     });
 
     if (error) {

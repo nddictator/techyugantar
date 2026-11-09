@@ -3,6 +3,7 @@
 import { motion } from "motion/react";
 import SectionTitle from "../Common/SectionTitle";
 import techStackData from "./techStackData";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 const TechStackSection = () => {
   return (
@@ -15,7 +16,7 @@ const TechStackSection = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          transition={SPRING_REVEAL}
         >
           <SectionTitle
             title="Our Tech Stack"
@@ -33,12 +34,7 @@ const TechStackSection = () => {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 80,
-                  damping: 20,
-                  delay: groupIndex * 0.05,
-                }}
+                transition={{ ...SPRING_REVEAL, delay: groupIndex * 0.05, }}
               >
                 <span className="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent" />
                 <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
@@ -55,12 +51,7 @@ const TechStackSection = () => {
                     initial={{ opacity: 0, scale: 0.85, y: 10 }}
                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.1 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 100,
-                      damping: 20,
-                      delay: groupIndex * 0.05 + itemIndex * 0.06,
-                    }}
+                    transition={{ ...SPRING_REVEAL, delay: groupIndex * 0.05 + itemIndex * 0.06, }}
                     whileHover={{ scale: 1.06, y: -2 }}
                     className="
                       group flex min-w-[130px] flex-col items-center gap-3 rounded-xl

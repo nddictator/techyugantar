@@ -28,7 +28,7 @@ export const metadata: Metadata = {
       "Learn about Tech Yugantar, a Varanasi-based software development company serving startups to enterprise businesses.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "About Tech Yugantar",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: "About Tech Yugantar — Software Company in Varanasi",
     description:
       "A Varanasi-based software development company serving startups to enterprises.",
-    images: ["/og-image.png"],
+    images: ["/og-image.webp"],
   },
 };
 
@@ -48,8 +48,10 @@ const AboutPage = () => {
   return (
     <>
       <Breadcrumb
-        pageName="About Tech Yugantar"
-        description="We are a forward-thinking technology company dedicated to building robust, scalable software solutions that empower businesses to thrive in the digital age."
+        pageName="About"
+        headline="A small, senior team building software from Varanasi for the world."
+        highlight="from Varanasi for the world."
+        description="Tech Yugantar is a Varanasi-based software studio. We design, build and run web, mobile and AI products for startups and growing businesses."
       />
       <AboutSectionOne />
       <AboutSectionTwo />

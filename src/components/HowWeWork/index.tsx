@@ -1,12 +1,16 @@
 "use client";
 import { motion } from "motion/react";
 import { Reveal } from "@/components/motion";
+import { SPRING_REVEAL } from "@/components/ui/utils";
+import {
+  LuBlocks, LuClipboardList, LuCode, LuFlaskConical, LuPalette, LuPhoneCall, LuRefreshCw, LuRocket,
+} from "react-icons/lu";
 
 // ── Process steps ─────────────────────────────────────────────────────────────
 const STEPS = [
   {
     n: "01",
-    emoji: "📞",
+    Icon: LuPhoneCall,
     title: "Discovery Call",
     summary: "We listen before we build.",
     desc: "You share your idea, goals, and constraints. We ask the right questions to understand scope, timeline, and budget — no templates, no generic forms.",
@@ -17,7 +21,7 @@ const STEPS = [
   },
   {
     n: "02",
-    emoji: "📋",
+    Icon: LuClipboardList,
     title: "Requirement Analysis",
     summary: "Everything documented — nothing assumed.",
     desc: "We prepare a detailed SRS covering user stories, functional requirements, API contracts, and edge cases. You sign off before development begins.",
@@ -28,7 +32,7 @@ const STEPS = [
   },
   {
     n: "03",
-    emoji: "🏗️",
+    Icon: LuBlocks,
     title: "Architecture & Planning",
     summary: "Design the system before writing a line of code.",
     desc: "Tech stack selection, database schema, system architecture, and a full sprint roadmap with milestones. You see the blueprint before work starts.",
@@ -39,7 +43,7 @@ const STEPS = [
   },
   {
     n: "04",
-    emoji: "🎨",
+    Icon: LuPalette,
     title: "UI / UX Design",
     summary: "From wireframe to pixel-perfect Figma — your approval first.",
     desc: "We design every screen, user flow, and component in Figma. You review and approve before development. Zero surprises in the final product.",
@@ -50,7 +54,7 @@ const STEPS = [
   },
   {
     n: "05",
-    emoji: "⚡",
+    Icon: LuCode,
     title: "Agile Development",
     summary: "Two-week sprints. Real demos. Full visibility.",
     desc: "We ship working features every sprint. You attend demo calls, give feedback, and see your product come to life — not just progress reports in a doc.",
@@ -61,7 +65,7 @@ const STEPS = [
   },
   {
     n: "06",
-    emoji: "🧪",
+    Icon: LuFlaskConical,
     title: "Quality Assurance",
     summary: "Automated + manual testing across every surface.",
     desc: "Unit tests, integration tests, cross-browser and device testing, and a full QA round before any build reaches production. We find bugs so your users don't.",
@@ -72,7 +76,7 @@ const STEPS = [
   },
   {
     n: "07",
-    emoji: "🚀",
+    Icon: LuRocket,
     title: "Deployment & Launch",
     summary: "Zero-downtime launch with full monitoring.",
     desc: "CI/CD pipeline, staging environment validation, then production launch. We set up error tracking, uptime monitoring, and make sure everything runs smoothly.",
@@ -83,7 +87,7 @@ const STEPS = [
   },
   {
     n: "08",
-    emoji: "🔄",
+    Icon: LuRefreshCw,
     title: "Support & Growth",
     summary: "30-day warranty. Then grow together.",
     desc: "30 days of post-launch support included. After that — ongoing retainer sprints, feature additions, or performance scaling as your product grows.",
@@ -109,7 +113,7 @@ function StepCard({
       initial={{ opacity: 0, x: align === "left" ? -40 : 40 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ type: "spring", stiffness: 60, damping: 18, delay: index * 0.08 }}
+      transition={{ ...SPRING_REVEAL, delay: index * 0.08 }}
       className={`group relative h-full rounded-2xl p-6 border transition-all duration-300
         bg-white shadow-sm hover:shadow-md
         dark:bg-zinc-900/60 dark:hover:bg-zinc-900
@@ -126,8 +130,8 @@ function StepCard({
 
       <div className="relative">
         {/* Emoji */}
-        <div className={`mb-3 text-3xl ${align === "right" ? "" : "md:ml-auto md:mr-0 w-fit"}`}>
-          {step.emoji}
+        <div className={`mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary ring-1 ring-inset ring-primary/20 ${align === "right" ? "" : "md:ml-auto md:mr-0"}`}>
+          <step.Icon aria-hidden className="h-5 w-5" />
         </div>
 
         {/* Time tag */}
@@ -180,7 +184,7 @@ export default function HowWeWork() {
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white md:text-4xl lg:text-5xl">
               From Idea to{" "}
               <span className="bg-clip-text text-transparent"
-                style={{ backgroundImage: "linear-gradient(135deg,#399D91,#22D3EE)" }}>
+                style={{ backgroundImage: "linear-gradient(135deg,#14B8A6,#22D3EE)" }}>
                 Shipped Product
               </span>
             </h2>
@@ -215,9 +219,9 @@ export default function HowWeWork() {
                         initial={{ opacity: 0, scale: 0.5 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15, delay: i * 0.08 + 0.05 }}
+                        transition={{ ...SPRING_REVEAL, delay: i * 0.08 + 0.05 }}
                         className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full
-                          border-2 font-bold text-sm shadow-[0_0_16px_rgba(57,157,145,0.25)]
+                          border-2 font-bold text-sm shadow-[0_0_16px_rgba(45,212,191,0.25)]
                           bg-white border-primary text-primary
                           dark:bg-zinc-900 dark:border-primary dark:text-primary"
                       >
@@ -251,7 +255,7 @@ export default function HowWeWork() {
                     initial={{ opacity: 0, scale: 0.5 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 200, damping: 15, delay: i * 0.06 }}
+                    transition={{ ...SPRING_REVEAL, delay: i * 0.06 }}
                     className="relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full
                       border-2 font-bold text-xs shadow-md
                       bg-white border-primary text-primary
@@ -265,12 +269,14 @@ export default function HowWeWork() {
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 70, damping: 18, delay: i * 0.06 + 0.05 }}
+                    transition={{ ...SPRING_REVEAL, delay: i * 0.06 + 0.05 }}
                     className="flex-1 rounded-2xl border p-5
                       bg-white border-gray-100 shadow-sm
                       dark:bg-zinc-900/60 dark:border-white/[0.07]"
                   >
-                    <div className="mb-2 text-2xl">{step.emoji}</div>
+                    <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-inset ring-primary/20">
+                      <step.Icon aria-hidden className="h-[18px] w-[18px]" />
+                    </div>
                     <span className={`mb-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium ${step.accent}`}>
                       {step.tag}
                     </span>
@@ -295,8 +301,8 @@ export default function HowWeWork() {
             className="
               inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold text-white
               bg-gradient-to-b from-primary/80 to-primary
-              shadow-[0_0_24px_rgba(57,157,145,0.35)]
-              hover:shadow-[0_0_40px_rgba(57,157,145,0.55)] hover:scale-105
+              shadow-[0_0_24px_rgba(45,212,191,0.35)]
+              hover:shadow-[0_0_40px_rgba(45,212,191,0.55)] hover:scale-105
               transition-all duration-300
             "
           >

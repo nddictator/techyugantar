@@ -1,124 +1,82 @@
 import Link from "next/link";
+import { Stagger, StaggerItem } from "@/components/motion";
 
-const Breadcrumb = ({
-  pageName,
-  description,
-}: {
+type BreadcrumbProps = {
+  /** Short page name — used in the breadcrumb trail and kicker. */
   pageName: string;
   description: string;
-}) => {
+  /** Editorial headline for the h1. Falls back to `pageName`. */
+  headline?: string;
+  /** Part of the headline to render with the aurora gradient. */
+  highlight?: string;
+};
+
+function Headline({ text, highlight }: { text: string; highlight?: string }) {
+  if (!highlight || !text.includes(highlight)) return <>{text}</>;
+  const [before, after] = text.split(highlight);
   return (
     <>
-      <section className="relative z-10 overflow-hidden pt-28 lg:pt-[150px]">
-        <div className="container">
-          <div className="-mx-4 flex flex-wrap items-center">
-            <div className="w-full px-4 md:w-8/12 lg:w-7/12">
-              <div className="mb-8 max-w-[570px] md:mb-0 lg:mb-12">
-                <h1 className="mb-5 text-2xl font-bold text-black dark:text-white sm:text-3xl">
-                  {pageName}
-                </h1>
-                <p className="text-base font-medium leading-relaxed text-body-color">
-                  {description}
-                </p>
-              </div>
-            </div>
-            <div className="w-full px-4 md:w-4/12 lg:w-5/12">
-              <div className="text-end">
-                <ul className="flex items-center md:justify-end">
-                  <li className="flex items-center">
-                    <Link
-                      href="/"
-                      className="pr-1 text-base font-medium text-body-color hover:text-primary"
-                    >
-                      Home
-                    </Link>
-                    <span className="mr-3 block h-2 w-2 rotate-45 border-r-2 border-t-2 border-body-color"></span>
-                  </li>
-                  <li className="text-base font-medium text-primary">
-                    {pageName}
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <span className="absolute left-0 top-0 z-[-1]">
-            <svg
-              width="287"
-              height="254"
-              viewBox="0 0 287 254"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                opacity="0.1"
-                d="M286.5 0.5L-14.5 254.5V69.5L286.5 0.5Z"
-                fill="url(#paint0_linear_111:578)"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_111:578"
-                  x1="-40.5"
-                  y1="117"
-                  x2="301.926"
-                  y2="-97.1485"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#399D91" />
-                  <stop offset="1" stopColor="#399D91" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </span>
-          <span className="absolute right-0 top-0 z-[-1]">
-            <svg
-              width="628"
-              height="258"
-              viewBox="0 0 628 258"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                opacity="0.1"
-                d="M669.125 257.002L345.875 31.9983L524.571 -15.8832L669.125 257.002Z"
-                fill="url(#paint0_linear_0:1)"
-              />
-              <path
-                opacity="0.1"
-                d="M0.0716344 182.78L101.988 -15.0769L142.154 81.4093L0.0716344 182.78Z"
-                fill="url(#paint1_linear_0:1)"
-              />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_0:1"
-                  x1="644"
-                  y1="221"
-                  x2="429.946"
-                  y2="37.0429"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#399D91" />
-                  <stop offset="1" stopColor="#399D91" stopOpacity="0" />
-                </linearGradient>
-                <linearGradient
-                  id="paint1_linear_0:1"
-                  x1="18.3648"
-                  y1="166.016"
-                  x2="105.377"
-                  y2="32.3398"
-                  gradientUnits="userSpaceOnUse"
-                >
-                  <stop stopColor="#399D91" />
-                  <stop offset="1" stopColor="#399D91" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </span>
-        </div>
-      </section>
+      {before}
+      <span className="text-aurora">{highlight}</span>
+      {after}
     </>
+  );
+}
+
+/**
+ * Editorial page hero shared by inner pages: mono breadcrumb kicker, large
+ * display headline on the left, supporting copy on the right, staggered in.
+ */
+const Breadcrumb = ({ pageName, description, headline, highlight }: BreadcrumbProps) => {
+  return (
+    <section className="relative z-10 overflow-hidden bg-cream pt-36 pb-6 dark:bg-obsidian lg:pt-44">
+      {/* Hairline grid, masked toward the top-right where the glow sits */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 [--g:rgba(15,23,35,0.05)] dark:[--g:rgba(255,255,255,0.05)]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right,var(--g) 1px,transparent 1px),linear-gradient(to bottom,var(--g) 1px,transparent 1px)",
+          backgroundSize: "56px 56px",
+          maskImage: "radial-gradient(ellipse 60% 90% at 75% 0%, black 15%, transparent 75%)",
+          WebkitMaskImage: "radial-gradient(ellipse 60% 90% at 75% 0%, black 15%, transparent 75%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-40 right-[-10%] h-[480px] w-[760px] rounded-full blur-[130px] motion-safe:animate-[aurora-drift_16s_ease-in-out_infinite]"
+        style={{ background: "radial-gradient(ellipse at center, rgba(45,212,191,0.17), transparent 70%)" }}
+      />
+
+      <div className="container relative">
+        <Stagger immediate>
+          <StaggerItem>
+            <nav aria-label="Breadcrumb" className="mb-8 font-mono text-xs uppercase tracking-[0.2em]">
+              <ol className="flex items-center gap-2">
+                <li>
+                  <Link href="/" className="text-gray-400 transition-colors hover:text-primary dark:text-zinc-500">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden className="text-gray-300 dark:text-zinc-700">/</li>
+                <li aria-current="page" className="text-primary">{pageName}</li>
+              </ol>
+            </nav>
+          </StaggerItem>
+
+          <div className="grid gap-8 border-b border-black/[0.07] pb-14 dark:border-white/[0.08] lg:grid-cols-12 lg:items-end">
+            <StaggerItem className="lg:col-span-8">
+              <h1 className="font-display text-4xl font-semibold leading-[1.04] tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-[4rem]">
+                <Headline text={headline ?? pageName} highlight={highlight} />
+              </h1>
+            </StaggerItem>
+            <StaggerItem className="lg:col-span-4">
+              <p className="text-base leading-relaxed text-gray-500 dark:text-zinc-400 md:text-lg">{description}</p>
+            </StaggerItem>
+          </div>
+        </Stagger>
+      </div>
+    </section>
   );
 };
 

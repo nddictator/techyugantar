@@ -1,3 +1,6 @@
+import type { IconType } from "react-icons";
+import { LuEye, LuHandshake, LuMapPin, LuTarget, LuTrendingUp, LuWrench } from "react-icons/lu";
+
 // ─────────────────────────────────────────────────────────────────────────────
 // CENTRALIZED TEAM DATA
 // Edit this file to update team/founder info across the site.
@@ -13,7 +16,6 @@ export type TeamMember = {
   linkedin?: string;
   twitter?: string;
   skills: string[];
-  emoji: string;
 };
 
 export type CompanyStory = {
@@ -21,7 +23,7 @@ export type CompanyStory = {
   city: string;
   mission: string;
   vision: string;
-  values: { emoji: string; title: string; desc: string }[];
+  values: { Icon: IconType; title: string; desc: string }[];
 };
 
 export const companyStory: CompanyStory = {
@@ -33,32 +35,32 @@ export const companyStory: CompanyStory = {
     "To be the most trusted software development partner for 500+ businesses across India by 2027, known for shipping reliable products on time, every time.",
   values: [
     {
-      emoji: "🎯",
+      Icon: LuTarget,
       title: "Delivery Over Promises",
       desc: "We set realistic timelines and hit them. Every sprint ends with a live demo — not a status update.",
     },
     {
-      emoji: "🔍",
+      Icon: LuEye,
       title: "Radical Transparency",
       desc: "You see our code, our progress board, and our honest assessment of every challenge — good news and bad.",
     },
     {
-      emoji: "🤝",
+      Icon: LuHandshake,
       title: "Client Partnership",
       desc: "We treat your product like it's our own. Your success metric is our success metric.",
     },
     {
-      emoji: "⚡",
+      Icon: LuWrench,
       title: "Pragmatic Engineering",
       desc: "We choose boring, proven tech that scales — not the latest hype framework that breaks in production.",
     },
     {
-      emoji: "📈",
+      Icon: LuTrendingUp,
       title: "Long-Term Thinking",
       desc: "We build codebases that are maintainable 3 years from now — not just demos that impress in week one.",
     },
     {
-      emoji: "🇮🇳",
+      Icon: LuMapPin,
       title: "India-First Mindset",
       desc: "We build for India's infrastructure — low bandwidth, diverse devices, multiple languages, UPI, and more.",
     },
@@ -68,14 +70,13 @@ export const companyStory: CompanyStory = {
 const teamData: TeamMember[] = [
   {
     id: 1,
-    name: "Nishant Dixit",
-    role: "Founder & Full-Stack Lead",
-    bio: "Built his first web app at 17, shipped to production at 19. Founded Tech Yugantar to prove that tier-2 India can build tier-1 software. Leads architecture, client strategy, and Django/Next.js development.",
-    avatar: "ND",
+    name: "Er. Kushwaha",
+    role: "Full-Stack Lead",
+    bio: "Leads architecture and full-stack delivery across Django and Next.js — from database design and APIs to the production frontend. Turns client requirements into systems that stay maintainable long after launch.",
+    avatar: "EK",
     avatarBg: "bg-primary",
     linkedin: "https://www.linkedin.com/in/tech-yugantar-6b1147431/",
     skills: ["Django", "Next.js", "PostgreSQL", "System Design"],
-    emoji: "👨‍💻",
   },
   {
     id: 2,
@@ -85,7 +86,6 @@ const teamData: TeamMember[] = [
     avatar: "SM",
     avatarBg: "bg-pink-500",
     skills: ["Figma", "React", "Tailwind CSS", "Motion Design"],
-    emoji: "🎨",
   },
   {
     id: 3,
@@ -95,7 +95,6 @@ const teamData: TeamMember[] = [
     avatar: "AP",
     avatarBg: "bg-violet-500",
     skills: ["FastAPI", "Django", "Redis", "PostgreSQL"],
-    emoji: "⚙️",
   },
   {
     id: 4,
@@ -105,7 +104,6 @@ const teamData: TeamMember[] = [
     avatar: "KT",
     avatarBg: "bg-blue-500",
     skills: ["Flutter", "Dart", "Firebase", "REST APIs"],
-    emoji: "📱",
   },
   {
     id: 5,
@@ -115,7 +113,6 @@ const teamData: TeamMember[] = [
     avatar: "RK",
     avatarBg: "bg-amber-500",
     skills: ["AWS", "Docker", "Kubernetes", "CI/CD"],
-    emoji: "🚀",
   },
 ];
 

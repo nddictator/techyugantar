@@ -8,7 +8,7 @@ export default function JsonLd() {
         name: "Tech Yugantar",
         url: "https://techyugantar.in",
         logo: "https://techyugantar.in/images/logo/logo.svg",
-        image: "https://techyugantar.in/og-image.png",
+        image: "https://techyugantar.in/og-image.webp",
         description:
             "Tech Yugantar is a software development company based in Varanasi, India, building Android, iOS, and web applications for startups and enterprise businesses using Flutter, Django, and React.",
         address: {
@@ -35,7 +35,7 @@ export default function JsonLd() {
         contactPoint: {
             "@type": "ContactPoint",
             contactType: "customer service",
-            email: "nddictator@gmail.com",
+            email: "info@techyugantar.in",
             availableLanguage: ["English", "Hindi"],
         },
         sameAs: [

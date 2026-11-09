@@ -8,6 +8,10 @@ import {
   FiMail, FiMapPin, FiArrowUpRight,
 } from "react-icons/fi";
 import { FaWhatsapp, FaFacebook } from "react-icons/fa";
+import { SPRING_HOVER } from "@/components/ui/utils";
+import {
+  LuBuilding2, LuCreditCard, LuGraduationCap, LuHeart, LuHeartPulse, LuRocket, LuScissors, LuShoppingCart, LuUtensils,
+} from "react-icons/lu";
 
 // ── Data ─────────────────────────────────────────────────────────────────────
 
@@ -39,22 +43,25 @@ const legal = [
 ];
 
 const domains = [
-  { emoji: "🏥", name: "Healthcare" },
-  { emoji: "📚", name: "School ERP" },
-  { emoji: "🛒", name: "E-Commerce" },
-  { emoji: "🚀", name: "Startups & SaaS" },
-  { emoji: "💆", name: "Salon & Spa" },
-  { emoji: "🍽️", name: "Restaurant & Food" },
-  { emoji: "🏢", name: "Real Estate" },
-  { emoji: "💳", name: "FinTech & Payments" },
+  { Icon: LuHeartPulse,    name: "Healthcare" },
+  { Icon: LuGraduationCap, name: "School ERP" },
+  { Icon: LuShoppingCart,  name: "E-Commerce" },
+  { Icon: LuRocket,        name: "Startups & SaaS" },
+  { Icon: LuScissors,      name: "Salon & Spa" },
+  { Icon: LuUtensils,      name: "Restaurant & Food" },
+  { Icon: LuBuilding2,     name: "Real Estate" },
+  { Icon: LuCreditCard,    name: "FinTech & Payments" },
 ];
 
 const socials = [
-  { label: "GitHub",    href: "https://github.com/techyugantar",                           icon: FiGithub },
+  // TODO: re-enable once the real handle is confirmed
+  // { label: "GitHub",    href: "https://github.com/techyugantar",                           icon: FiGithub },
   { label: "LinkedIn",  href: "https://www.linkedin.com/in/tech-yugantar-6b1147431/",      icon: FiLinkedin },
   { label: "Facebook",  href: "https://www.facebook.com/profile.php?id=61590556752766",   icon: FaFacebook },
-  { label: "Twitter",   href: "https://twitter.com/techyugantar",                          icon: FiTwitter },
-  { label: "Instagram", href: "https://instagram.com/techyugantar",                        icon: FiInstagram },
+  // TODO: re-enable once the real handle is confirmed
+  // { label: "Twitter",   href: "https://twitter.com/techyugantar",                          icon: FiTwitter },
+  // TODO: re-enable once the real handle is confirmed
+  // { label: "Instagram", href: "https://instagram.com/techyugantar",                        icon: FiInstagram },
 ];
 
 // ── Reusable column header ────────────────────────────────────────────────────
@@ -127,7 +134,7 @@ export default function Footer() {
                 alt="Tech Yugantar"
                 width={150}
                 height={32}
-                className="w-36"
+                className="h-auto w-36"
               />
             </Link>
 
@@ -149,7 +156,7 @@ export default function Footer() {
                   aria-label={label}
                   whileHover={{ y: -3, scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring" as const, stiffness: 400, damping: 20 }}
+                  transition={SPRING_HOVER}
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.04] text-zinc-400 backdrop-blur-sm transition-colors duration-200 hover:border-primary/40 hover:bg-primary/10 hover:text-primary"
                 >
                   <Icon className="h-4 w-4" />
@@ -198,10 +205,10 @@ export default function Footer() {
           <Reveal delay={0.12} className="lg:col-span-2">
             <ColHeader>Industries</ColHeader>
             <ul className="grid grid-cols-1 gap-y-2.5">
-              {domains.map(({ emoji, name }) => (
+              {domains.map(({ Icon, name }) => (
                 <li key={name}>
-                  <span className="inline-flex items-center gap-1.5 text-xs text-zinc-400 hover:text-white transition-colors duration-200 cursor-default">
-                    <span className="text-sm leading-none">{emoji}</span>
+                  <span className="group inline-flex items-center gap-2 text-xs text-zinc-400 hover:text-white transition-colors duration-200 cursor-default">
+                    <Icon aria-hidden className="h-3.5 w-3.5 text-zinc-500 transition-colors duration-200 group-hover:text-primary" />
                     {name}
                   </span>
                 </li>
@@ -222,8 +229,8 @@ export default function Footer() {
                 mb-4 inline-flex items-center gap-2 rounded-full
                 border border-t-primary/60 border-white/10
                 bg-gradient-to-b from-primary/60 to-primary px-5 py-2.5
-                text-sm font-semibold text-white shadow-[0_0_20px_rgba(57,157,145,0.35)]
-                transition-all duration-300 hover:shadow-[0_0_28px_rgba(57,157,145,0.55)] hover:scale-105
+                text-sm font-semibold text-white shadow-[0_0_20px_rgba(45,212,191,0.35)]
+                transition-all duration-300 hover:shadow-[0_0_28px_rgba(45,212,191,0.55)] hover:scale-105
               "
             >
               Get a Quote
@@ -286,7 +293,7 @@ export default function Footer() {
                 Available for new projects
               </span>
               <span className="hidden sm:block text-sm text-zinc-600">
-                Made with ♥ in Varanasi
+                Made with <LuHeart aria-label="love" className="mx-1 inline h-3.5 w-3.5 -translate-y-px fill-current text-primary" /> in Varanasi
               </span>
             </div>
 

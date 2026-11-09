@@ -1,7 +1,9 @@
 "use client";
 
 import { motion } from "motion/react";
+import { FiMapPin, FiStar } from "react-icons/fi";
 import { Reveal } from "@/components/motion";
+import { SPRING_REVEAL } from "@/components/ui/utils";
 
 // ── Founder story data — edit here ────────────────────────────────────────────
 const founderStory = {
@@ -45,7 +47,7 @@ export default function FounderStory() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ type: "spring", stiffness: 80, damping: 20 }}
+            transition={SPRING_REVEAL}
             className="flex flex-col items-center rounded-2xl border border-gray-200 bg-white p-8 text-center shadow-sm dark:border-white/[0.08] dark:bg-zinc-900/60"
           >
             {/* Avatar */}
@@ -58,7 +60,7 @@ export default function FounderStory() {
             </h3>
             <p className="mb-1 text-sm font-semibold text-primary">{founderStory.title}</p>
             <p className="mb-5 text-xs text-gray-500 dark:text-zinc-500">
-              📍 {founderStory.location}
+              <FiMapPin aria-hidden className="mr-1 inline h-3.5 w-3.5 -translate-y-px" />{founderStory.location}
             </p>
 
             {/* Stats */}
@@ -76,7 +78,7 @@ export default function FounderStory() {
                 <p className="text-xs text-gray-500 dark:text-zinc-500">Countries</p>
               </div>
               <div className="rounded-lg bg-gray-50 p-3 dark:bg-white/[0.04]">
-                <p className="text-lg font-bold text-primary">4.9★</p>
+                <p className="text-lg font-bold text-primary">4.9<FiStar aria-hidden className="ml-0.5 inline h-3.5 w-3.5 -translate-y-0.5 fill-current" /></p>
                 <p className="text-xs text-gray-500 dark:text-zinc-500">Avg. rating</p>
               </div>
             </div>
@@ -89,7 +91,7 @@ export default function FounderStory() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ type: "spring", stiffness: 80, damping: 20 }}
+              transition={SPRING_REVEAL}
               className="relative mb-8 overflow-hidden rounded-2xl border border-primary/20 bg-primary/5 p-6 dark:border-primary/15"
             >
               <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent" />
@@ -108,7 +110,7 @@ export default function FounderStory() {
                   initial={{ opacity: 0, y: 12 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ type: "spring", stiffness: 80, damping: 20, delay: i * 0.08 }}
+                  transition={{ ...SPRING_REVEAL, delay: i * 0.08 }}
                   className="text-base leading-relaxed text-gray-700 dark:text-zinc-400"
                 >
                   {para}
