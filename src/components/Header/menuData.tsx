@@ -6,6 +6,7 @@ const menuData: Menu[] = [
   { id: 4,  title: "Services", path: "/services",     newTab: false },
   { id: 6,  title: "Process",  path: "/how-we-work",  newTab: false },
   { id: 5,  title: "Projects", path: "/projects",     newTab: false },
+  { id: 8,  title: "SadasyaSetu", path: "/sadasyasetu", newTab: false },
   { id: 7,  title: "Pricing",  path: "/pricing",      newTab: false },
   { id: 33, title: "Blog",     path: "/blog",         newTab: false },
 ];
