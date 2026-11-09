@@ -90,44 +90,40 @@ export const TRUST = [
 
 export const PLANS = [
   {
-    name: "Shuruaat",
-    hindi: "शुरुआत",
+    name: "Starter",
     members: "Up to 5,000 members",
     price: "₹48,000",
-    monthly: "about ₹4,000 a month",
-    points: ["Mobile app for facilitators", "Approval portal", "Printed forms and register", "50 GB of documents"],
+    monthly: "Equivalent to ₹4,000 per month",
+    points: ["Mobile app for field facilitators", "Online approval portal", "Printed forms and member register", "50 GB document storage"],
   },
   {
-    name: "Vikas",
-    hindi: "विकास",
+    name: "Growth",
     members: "Up to 25,000 members",
     price: "₹1,20,000",
-    monthly: "about ₹10,000 a month",
-    points: ["Everything in Shuruaat", "Your own approval stages", "Bulk printing and exports", "100 GB of documents"],
+    monthly: "Equivalent to ₹10,000 per month",
+    points: ["Everything in Starter", "Configurable approval stages", "Bulk printing and exports", "100 GB document storage"],
     best: true,
   },
   {
-    name: "Vistar",
-    hindi: "विस्तार",
+    name: "Scale",
     members: "Up to 75,000 members",
     price: "₹2,40,000",
-    monthly: "about ₹20,000 a month",
-    points: ["Everything in Vikas", "Priority support", "Imports from your ERP's files", "200 GB of documents"],
+    monthly: "Equivalent to ₹20,000 per month",
+    points: ["Everything in Growth", "Priority support", "Data imports from your ERP", "200 GB document storage"],
   },
   {
-    name: "Large MPOs",
-    hindi: "",
+    name: "Enterprise",
     members: "More than 75,000 members",
-    price: "Let's talk",
-    monthly: "a plan built around you",
-    points: ["Everything in Vistar", "Custom modules", "Dedicated onboarding", "Storage as you need"],
+    price: "Custom",
+    monthly: "Tailored to your organization",
+    points: ["Everything in Scale", "Custom modules", "Dedicated onboarding manager", "Storage as required"],
   },
 ];
 
 export const PRICING_NOTES = [
-  { title: "One-time setup: ₹25,000 to ₹50,000", text: "Your network loaded from your ERP files, branding, approval stages, staff training and go-live support." },
-  { title: "Pay yearly, get 2 months free", text: "Or pay quarterly. SMS and WhatsApp are billed as used, at cost." },
-  { title: "Growing fast?", text: "Prefer to pay as you grow? Ask for ₹12 per approved member, with a ₹30,000 yearly minimum." },
+  { title: "One-time setup: ₹25,000 to ₹50,000", text: "Includes loading your collection network, branding, approval stages, staff training and go-live support." },
+  { title: "Annual billing: 2 months free", text: "Quarterly billing is also available. SMS and WhatsApp messages are billed at cost." },
+  { title: "Usage-based option", text: "₹12 per approved member, with a minimum of ₹30,000 per year. Suited to fast-growing organizations." },
 ];
 
 export const FAQS = [
